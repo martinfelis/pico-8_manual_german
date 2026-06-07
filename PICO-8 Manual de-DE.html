@@ -110,69 +110,70 @@
 
 <div style="max-width:99vw; width:820px; margin:auto; padding:12px;">
 
-<a href="#PICO_8_User_Manual"><h1 id="PICO_8_User_Manual">PICO-8-Benutzerhandbuch</h1></a>
+<a href="#PICO_8_User_Manual"><h1 id="PICO_8_User_Manual">PICO-8-Benutzerhandbuch (inoffizielle Übersetzung!)</h1></a>
+
 <p>PICO-8 v0.2.7<br>
 https://www.pico-8.com<br>
 (c) Copyright 2014-2025 Lexaloffle Games LLP<br>
 Autor: Joseph White // hey@lexaloffle.com<br>
 
 </p><p>PICO-8 wurde entwickelt mit:<br>
- <br>
+<br>
   SDL2 http://www.libsdl.org<br>
-  Lua 5.2 http://www.lua.org  // siehe license.txt<br>
-  ws281x von jgarff            // siehe license.txt<br>
+&nbsp;&nbsp;Lua 5.2 http://www.lua.org&nbsp;&nbsp;// siehe license.txt<br>
+&nbsp;&nbsp;ws281x von jgarff&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// siehe license.txt<br>
   GIFLIB http://giflib.sourceforge.net/<br>
-  WiringPi http://wiringpi.com/<br>
-  libb64 von Chris Venter<br>
-  miniz von Rich Geldreich<br>
-  z8lua von Sam Hocevar https://github.com/samhocevar/z8lua<br>
+&nbsp;&nbsp;WiringPi http://wiringpi.com/<br>
+&nbsp;&nbsp;libb64 von Chris Venter<br>
+&nbsp;&nbsp;miniz von Rich Geldreich<br>
+&nbsp;&nbsp;z8lua von Sam Hocevar https://github.com/samhocevar/z8lua<br>
 
 </p><p>Aktuelle Version dieses Handbuchs (als HTML, TXT) und weitere Ressourcen:</p><p>
 https://www.lexaloffle.com/pico-8.php?page=resources</p><div onclick="el = document.getElementById('contents'); el.style.display = el.style.display == 'none' ? '': 'none';" style="display:inline;cursor:pointer;">
  </div><p> </p><div onclick="el = document.getElementById('contents'); el.style.display = el.style.display == 'none' ? '': 'none';" style="display:inline;cursor:pointer;"> </div><hr><div onclick="el = document.getElementById('contents'); el.style.display = el.style.display == 'none' ? '': 'none';" style="display:inline;cursor:pointer;"> </div> [<div onclick="el = document.getElementById('contents'); el.style.display = el.style.display == 'none' ? '': 'none';" style="display:inline;cursor:pointer;">+] </div><b>Inhalt</b>: <a href="#Editing_Tools"><b>Bearbeitungswerkzeuge</b></a> | <a href="#Lua_Syntax_Primer"><b>Einführung in die Lua-Syntax</b></a> | <a href="#API_Reference"><b>API-Referenz</b></a> | <a href="#Appendix"><b>Anhang</b></a><div id="contents" style="display:none"><p></p>
 <a href="#Getting_Started">1. Erste Schritte</a><br>
- <a href="#_Keys"> 1.1  Schlüssel</a><br>
- <a href="#_Hello_World"> 1.2  Hello World</a><br>
- <a href="#_Example_Cartridges"> 1.3  Beispiel-Cartridges</a><br>
- <a href="#_File_System"> 1.4  Dateisystem</a><br>
-  <a href="#_Loading_and_Saving">1.5  Laden und Speichern</a><br>
- <a href="#_Using_an_External_Text_Editor"> 1.6  Verwendung eines externen Texteditors</a><br>
- <a href="#_Backups"> 1.7  Backups</a><br>
- <a href="#_Configuration"> 1.8  Konfiguration</a><br>
- <a href="#_Screenshots_and_GIFS"> 1.9  Screenshots und GIFs</a><br>
- <a href="#_Sharing_Cartridges"> 1.10  Kassetten teilen</a><br>
- <a href="#_SPLORE"> 1.11  SPLORE</a><br>
+&nbsp;&nbsp;<a href="#_Keys"> 1.1 Schlüssel</a><br>
+&nbsp;&nbsp;<a href="#_Hello_World"> 1.2 Hello World</a><br>
+&nbsp;&nbsp;<a href="#_Example_Cartridges"> 1.3 Beispiel-Cartridges</a><br>
+&nbsp;&nbsp;<a href="#_File_System"> 1.4 Dateisystem</a><br>
+  <a href="#_Loading_and_Saving">1.5 Laden und Speichern</a><br>
+&nbsp;&nbsp;<a href="#_Using_an_External_Text_Editor"> 1.6 Verwendung eines externen Texteditors</a><br>
+&nbsp;&nbsp;<a href="#_Backups"> 1.7 Backups</a><br>
+&nbsp;&nbsp;<a href="#_Configuration"> 1.8 Konfiguration</a><br>
+&nbsp;&nbsp;<a href="#_Screenshots_and_GIFS"> 1.9 Screenshots und GIFs</a><br>
+&nbsp;&nbsp;<a href="#_Sharing_Cartridges"> 1.10 Kassetten teilen</a><br>
+&nbsp;&nbsp;<a href="#_SPLORE"> 1.11 SPLORE</a><br>
 <a href="#Editing_Tools">2. Bearbeitungstools</a><br>
- <a href="#Code_Editor"> 2.1 Code-Editor</a><br>
- <a href="#Sprite_Editor"> 2.2 Sprite-Editor</a><br>
- <a href="#Map_Editor"> 2.3 Karten-Editor</a><br>
- <a href="#SFX_Editor"> 2.4 SFX-Editor</a><br>
- <a href="#Music_Editor"> 2.5 Musik-Editor</a><br>
-<a href="#_Exporters_">3.  Exporter / Importer</a><br>
- <a href="#Web_Applications_"> 3.1 Webanwendungen (.html)</a><br>
- <a href="#Binary_Applications_"> 3.2 Binäre Anwendungen (.bin)</a><br>
- <a href="#Uploading_to_itch"> 3.3 Hochladen auf itch.io</a><br>
- <a href="#Exporting_Multiple_Cartridges"> 3.4 Exportieren mehrerer Cartridges</a><br>
- <a href="#Running_EXPORT_from_the_host_operating_system"> 3.5 Ausführen von EXPORT vom Host-Betriebssystem aus</a><br>
+&nbsp;&nbsp;<a href="#Code_Editor"> 2.1 Code-Editor</a><br>
+&nbsp;&nbsp;<a href="#Sprite_Editor"> 2.2 Sprite-Editor</a><br>
+&nbsp;&nbsp;<a href="#Map_Editor"> 2.3 Karten-Editor</a><br>
+&nbsp;&nbsp;<a href="#SFX_Editor"> 2.4 SFX-Editor</a><br>
+&nbsp;&nbsp;<a href="#Music_Editor"> 2.5 Musik-Editor</a><br>
+<a href="#_Exporters_">3. Exporter / Importer</a><br>
+&nbsp;&nbsp;<a href="#Web_Applications_"> 3.1 Webanwendungen (.html)</a><br>
+&nbsp;&nbsp;<a href="#Binary_Applications_"> 3.2 Binäre Anwendungen (.bin)</a><br>
+&nbsp;&nbsp;<a href="#Uploading_to_itch"> 3.3 Hochladen auf itch.io</a><br>
+&nbsp;&nbsp;<a href="#Exporting_Multiple_Cartridges"> 3.4 Exportieren mehrerer Cartridges</a><br>
+&nbsp;&nbsp;<a href="#Running_EXPORT_from_the_host_operating_system"> 3.5 Ausführen von EXPORT vom Host-Betriebssystem aus</a><br>
 <a href="#Lua_Syntax_Primer">4. Einführung in die Lua-Syntax</a><br>
 <a href="#PICO_8_Program_Structure">5. PICO-8-Programmstruktur</a><br>
 <a href="#API_Reference">6. API-Referenz</a><br>
- <a href="#System"> 6.1 System</a><br>
- <a href="#Graphics"> 6.2 Grafik</a><br>
- <a href="#Table_Functions"> 6.3 Tabellenfunktionen</a><br>
- <a href="#Input"> 6.4 Eingabe</a><br>
- <a href="#Audio"> 6.5 Audio</a><br>
- <a href="#Map"> 6.6 Karte</a><br>
- <a href="#Memory"> 6.7 Speicher</a><br>
- <a href="#Math"> 6.8 Mathematik</a><br>
- <a href="#Custom_Menu_Items"> 6.9 Benutzerdefinierte Menüpunkte</a><br>
-  <a href="#Strings_and_Type_Conversion">6.10 Zeichenketten und Typkonvertierung</a><br>
- <a href="#Cartridge_Data"> 6.11 Cartridge-Daten</a><br>
- <a href="#GPIO"> 6.12 GPIO</a><br>
- <a href="#Mouse_and_Keyboard_Input"> 6.13 Maus- und Tastatureingaben</a><br>
- <a href="#Additional_Lua_Features"> 6.14 Zusätzliche Lua-Funktionen</a><br>
+&nbsp;&nbsp;<a href="#System"> 6.1 System</a><br>
+&nbsp;&nbsp;<a href="#Graphics"> 6.2 Grafik</a><br>
+&nbsp;&nbsp;<a href="#Table_Functions"> 6.3 Tabellenfunktionen</a><br>
+&nbsp;&nbsp;<a href="#Input"> 6.4 Eingabe</a><br>
+&nbsp;&nbsp;<a href="#Audio"> 6.5 Audio</a><br>
+&nbsp;&nbsp;<a href="#Map"> 6.6 Karte</a><br>
+&nbsp;&nbsp;<a href="#Memory"> 6.7 Speicher</a><br>
+&nbsp;&nbsp;<a href="#Math"> 6.8 Mathematik</a><br>
+&nbsp;&nbsp;<a href="#Custom_Menu_Items"> 6.9 Benutzerdefinierte Menüpunkte</a><br>
+&nbsp;&nbsp;<a href="#Strings_and_Type_Conversion"> 6.10 Zeichenketten und Typkonvertierung</a><br>
+&nbsp;&nbsp;<a href="#Cartridge_Data"> 6.11 Cartridge-Daten</a><br>
+&nbsp;&nbsp;<a href="#GPIO"> 6.12 GPIO</a><br>
+&nbsp;&nbsp;<a href="#Mouse_and_Keyboard_Input"> 6.13 Maus- und Tastatureingaben</a><br>
+&nbsp;&nbsp;<a href="#Additional_Lua_Features"> 6.14 Zusätzliche Lua-Funktionen</a><br>
 <a href="#Appendix">7. Anhang</a><br>
- <a href="#Appendix_A__P8SCII_Control_Codes"> 7.1 Anhang A: P8SCII-Steuercodes</a><br>
+&nbsp;&nbsp;<a href="#Appendix_A__P8SCII_Control_Codes"> 7.1 Anhang A: P8SCII-Steuercodes</a><br>
 
 </div><hr><div id="contents" style="display:none">
 </div><a href="#Welcome_to_PICO_8"><h3 id="Welcome_to_PICO_8">▨ Willkommen bei PICO-8!</h3>
