@@ -1,0 +1,2703 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<title>PICO-8-Handbuch</title>
+
+	<style type="text/css">
+
+		@font-face {
+		  font-family: 'proggyvec';
+		  src: url('https://www.lexaloffle.com/dl/docs/proggyvec.woff') format('woff');
+		}
+
+		body{
+			font-size:10pt;
+			font-family : "proggyvec", "Courier New";
+			line-height: 1.6;	
+		}
+
+		h1{
+			font-size:30pt;
+			margin-top: 50px;
+			color:#444;
+		}
+		h2{
+			font-size:18pt;
+			margin-top: 30px;
+			color:#444;
+		}
+		h3{
+			font-size:16pt;
+			margin-top: 20px;
+			color:#444;
+		}
+		h4{
+			font-size:14pt;
+			margin-top: 20px;
+			color:#444;
+		}
+		h5{
+			font-size:12pt;
+			margin-top: 4px;
+			margin-bottom: 4px;
+			color:#444;
+		}
+
+		a{
+			text-decoration:none;
+			color:#222;
+			font-weight:bold;
+		}
+
+		p{
+			break-inside: avoid; 
+		}
+
+		.codebox{
+			display:block;
+			break-inside: avoid;
+			width:90%%;
+			padding:16px;
+			margin-top:16px;
+			margin-bottom:24px;
+
+			border-width:2px;
+			border-radius:15px;
+			border-style:solid;
+			border-color:#444;
+			overflow-x:auto;-webkit-overflow-scrolling:touch;
+		}
+
+		.dark-mode {
+		  -webkit-filter: invert(100%);
+			filter: invert(100%);
+			background-color:#000;
+		}
+
+	</style>
+
+	<script>
+	function toggle_dark_mode() {
+	  var element = document.body;
+	  element.classList.toggle("dark-mode");
+
+	  if (element.classList.contains("dark-mode"))
+		localStorage.setItem("dark-mode", "true");
+	  else
+		localStorage.removeItem("dark-mode");
+
+	}
+
+	document.addEventListener('DOMContentLoaded', function() {
+	   // set initial dark mode state
+		if (localStorage.getItem("dark-mode"))
+			document.body.classList.toggle("dark-mode");
+	}, false);
+	</script>
+
+</head>
+
+<body>
+
+
+
+<div style="cursor:pointer; display:table; padding:20px" onclick="toggle_dark_mode();"> 
+<img style="display:none" alt="Dark Mode" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAiCAYAAAA6RwvCAAACCklEQVR4Ae2dwZGjMBBFNVN7hwxgI1BnMCICyxFYRGA5ApTBQATIGWgy0EbgVgYQwYoI2JqDq7yYNcIFrC99pGjq0f3/7+tb3/fkFer9JShuQbz30UuAxHHchTQYY3ZSys+lwYNW472PlFJFHMe/9/u94ZybUPDQ+jH1AiJSzrlp2zYlhJDD4aAZY7+WXs1DEK31Ic9zfftMKaU2dc0YBKUU0zRtNwNBRDqE+J4f59xsmiNCiDuIbxLGmN0MpCzLo3MO/nuyriXGWSDGmF3XdfErgPBHLzdNk24CgogPtWGtZZuATIl0amKr35prdV0Xa60Pa4BM3poxV61x9GZNhBBC2rZNpZTlqquhlGJI0/l8FlLKz9VWAwAYmqpVVcnrqp5ZEyJSAHCjE5l71Kqqkowxa639CO2x1n4AwGWYSUOQryiK/BwY5xxkWWYB4FKW5RER6djfl2V5BIBLlmXWex9zzr8eukYppU6n02wxOucgtG/sut+5RkpZhYr2mUqSpBlz3ah9tdZiLRBjDB8T9ygIALi6rheHqeta3DolKFmFEGdCCMnz/G6fz0Jcvzk74oUQZwBAzrlp2/Yvu83RhDGG/2sSwREPAA4RoSgKNcfaSZI0RVGopml+TkEQQshb3/dzxbYzxnBEhGEKU0rxOsFhTiwOsmR576Org2Zf3wVtvGOM2ZeYyG39AfiA/dXUMa3sAAAAEHRFWHRMb2RlUE5HADIwMTEwMjIx41m2wQAAAABJRU5ErkJggg==">
+<span style="font-size:32pt">☾</span>
+</div>
+
+
+<div style="max-width:99vw; width:820px; margin:auto; padding:12px;">
+
+<a href="#PICO_8_User_Manual"><h1 id="PICO_8_User_Manual">PICO-8-Benutzerhandbuch</h1></a>
+<p>PICO-8 v0.2.7<br>
+https://www.pico-8.com<br>
+(c) Copyright 2014-2025 Lexaloffle Games LLP<br>
+Autor: Joseph White // hey@lexaloffle.com<br>
+
+</p><p>PICO-8 wurde entwickelt mit:<br>
+ <br>
+  SDL2 http://www.libsdl.org<br>
+  Lua 5.2 http://www.lua.org  // siehe license.txt<br>
+  ws281x von jgarff            // siehe license.txt<br>
+  GIFLIB http://giflib.sourceforge.net/<br>
+  WiringPi http://wiringpi.com/<br>
+  libb64 von Chris Venter<br>
+  miniz von Rich Geldreich<br>
+  z8lua von Sam Hocevar https://github.com/samhocevar/z8lua<br>
+
+</p><p>Aktuelle Version dieses Handbuchs (als HTML, TXT) und weitere Ressourcen:</p><p>
+https://www.lexaloffle.com/pico-8.php?page=resources</p><div onclick="el = document.getElementById('contents'); el.style.display = el.style.display == 'none' ? '': 'none';" style="display:inline;cursor:pointer;">
+ </div><p> </p><div onclick="el = document.getElementById('contents'); el.style.display = el.style.display == 'none' ? '': 'none';" style="display:inline;cursor:pointer;"> </div><hr><div onclick="el = document.getElementById('contents'); el.style.display = el.style.display == 'none' ? '': 'none';" style="display:inline;cursor:pointer;"> </div> [<div onclick="el = document.getElementById('contents'); el.style.display = el.style.display == 'none' ? '': 'none';" style="display:inline;cursor:pointer;">+] </div><b>Inhalt</b>: <a href="#Editing_Tools"><b>Bearbeitungswerkzeuge</b></a> | <a href="#Lua_Syntax_Primer"><b>Einführung in die Lua-Syntax</b></a> | <a href="#API_Reference"><b>API-Referenz</b></a> | <a href="#Appendix"><b>Anhang</b></a><div id="contents" style="display:none"><p></p>
+<a href="#Getting_Started">1. Erste Schritte</a><br>
+ <a href="#_Keys"> 1.1  Schlüssel</a><br>
+ <a href="#_Hello_World"> 1.2  Hello World</a><br>
+ <a href="#_Example_Cartridges"> 1.3  Beispiel-Cartridges</a><br>
+ <a href="#_File_System"> 1.4  Dateisystem</a><br>
+  <a href="#_Loading_and_Saving">1.5  Laden und Speichern</a><br>
+ <a href="#_Using_an_External_Text_Editor"> 1.6  Verwendung eines externen Texteditors</a><br>
+ <a href="#_Backups"> 1.7  Backups</a><br>
+ <a href="#_Configuration"> 1.8  Konfiguration</a><br>
+ <a href="#_Screenshots_and_GIFS"> 1.9  Screenshots und GIFs</a><br>
+ <a href="#_Sharing_Cartridges"> 1.10  Kassetten teilen</a><br>
+ <a href="#_SPLORE"> 1.11  SPLORE</a><br>
+<a href="#Editing_Tools">2. Bearbeitungstools</a><br>
+ <a href="#Code_Editor"> 2.1 Code-Editor</a><br>
+ <a href="#Sprite_Editor"> 2.2 Sprite-Editor</a><br>
+ <a href="#Map_Editor"> 2.3 Karten-Editor</a><br>
+ <a href="#SFX_Editor"> 2.4 SFX-Editor</a><br>
+ <a href="#Music_Editor"> 2.5 Musik-Editor</a><br>
+<a href="#_Exporters_">3.  Exporter / Importer</a><br>
+ <a href="#Web_Applications_"> 3.1 Webanwendungen (.html)</a><br>
+ <a href="#Binary_Applications_"> 3.2 Binäre Anwendungen (.bin)</a><br>
+ <a href="#Uploading_to_itch"> 3.3 Hochladen auf itch.io</a><br>
+ <a href="#Exporting_Multiple_Cartridges"> 3.4 Exportieren mehrerer Cartridges</a><br>
+ <a href="#Running_EXPORT_from_the_host_operating_system"> 3.5 Ausführen von EXPORT vom Host-Betriebssystem aus</a><br>
+<a href="#Lua_Syntax_Primer">4. Einführung in die Lua-Syntax</a><br>
+<a href="#PICO_8_Program_Structure">5. PICO-8-Programmstruktur</a><br>
+<a href="#API_Reference">6. API-Referenz</a><br>
+ <a href="#System"> 6.1 System</a><br>
+ <a href="#Graphics"> 6.2 Grafik</a><br>
+ <a href="#Table_Functions"> 6.3 Tabellenfunktionen</a><br>
+ <a href="#Input"> 6.4 Eingabe</a><br>
+ <a href="#Audio"> 6.5 Audio</a><br>
+ <a href="#Map"> 6.6 Karte</a><br>
+ <a href="#Memory"> 6.7 Speicher</a><br>
+ <a href="#Math"> 6.8 Mathematik</a><br>
+ <a href="#Custom_Menu_Items"> 6.9 Benutzerdefinierte Menüpunkte</a><br>
+  <a href="#Strings_and_Type_Conversion">6.10 Zeichenketten und Typkonvertierung</a><br>
+ <a href="#Cartridge_Data"> 6.11 Cartridge-Daten</a><br>
+ <a href="#GPIO"> 6.12 GPIO</a><br>
+ <a href="#Mouse_and_Keyboard_Input"> 6.13 Maus- und Tastatureingaben</a><br>
+ <a href="#Additional_Lua_Features"> 6.14 Zusätzliche Lua-Funktionen</a><br>
+<a href="#Appendix">7. Anhang</a><br>
+ <a href="#Appendix_A__P8SCII_Control_Codes"> 7.1 Anhang A: P8SCII-Steuercodes</a><br>
+
+</div><hr><div id="contents" style="display:none">
+</div><a href="#Welcome_to_PICO_8"><h3 id="Welcome_to_PICO_8">▨ Willkommen bei PICO-8!</h3>
+</a><p>PICO-8 ist eine Fantasie-Konsole zum Erstellen, Teilen und Spielen von kleinen 
+Spielen und anderen Computerprogrammen. Wenn du sie einschaltest, 
+begrüßt dich die Maschine mit einer Shell zum Eingeben von Lua-Programmen  und bietet einfache 
+integrierte Werkzeuge zum Erstellen von Sprites, Karten und Sounds.</p>
+<p>Die strengen Einschränkungen von PICO-8 wurden sorgfältig ausgewählt, um Spaß bei der 
+Arbeit zu bieten, kleine, aber ausdrucksstarke Designs zu fördern und hoffentlich den 
+PICO-8-Kassetten ihren ganz eigenen Look und  Feel zu verleihen.</p>
+<a href="#Specifications"><h3 id="Specifications">▨ Technische Daten</h3>
+</a><p class="codebox">
+
+Display: &nbsp;&nbsp; 128x128, feste 16-Farben-Palette<br>
+Eingabe: &nbsp;&nbsp; 6-Tasten-Controller<br>
+Kassetten: &nbsp;32 KB Daten, kodiert als PNG-Dateien<br>
+Sound: &nbsp;&nbsp;&nbsp;&nbsp; 4 Kanäle, 64 definierbare Chip-Sounds<br>
+Code: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P8 Lua (max. 8192 Code-Token) <br>
+CPU: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4 Mio. VM-Befehle/Sek.<br>
+Sprites: &nbsp;&nbsp; Ein Bank mit 128 8x8-Sprites (+128 gemeinsam genutzt)<br>
+Karte: &nbsp;&nbsp;&nbsp;&nbsp; 128 x 32 Kachelkarte (+ 128 x 32 gemeinsam genutzt)<br>
+
+</p><a href="#Getting_Started"><h1 id="Getting_Started"><span style="font-size:48pt">❶</span> Erste Schritte</h1></a>
+<a href="#_Keys"><h2 id="_Keys">1.1  Tasten</h2></a><p class="codebox">
+
+
+ALT+ENTER:  Vollbild umschalten<br>
+ALT+F4: &nbsp;&nbsp;  Schnell beenden (Windows)<br>
+STRG-Q: &nbsp;&nbsp;  Schnell beenden (Mac, Linux)<br>
+STRG-R: &nbsp;&nbsp;  Cartridge neu laden / ausführen / neu starten<br>
+STRG-S: &nbsp;&nbsp;  Aktuelle Cartridge schnell speichern<br>
+STRG-M: &nbsp;&nbsp;  Ton stummschalten / Ton wieder einschalten<br>
+ENTER / P:  Pausenmenü (während der Cartridge läuft)<br></p><p class="codebox">
+
+
+
+Standardtasten für Spieler 1: Pfeiltasten + ZX / NM / CV<br>
+Standardtasten für Spieler 2: SDFE + Tab, Q / Umschalt + A<br>
+
+</p><p>Um die Standardtasten zu ändern, verwende das KEYCONFIG-Dienstprogramm innerhalb von PICO-8:</p><p class="codebox">
+
+
+&gt; KEYCONFIG<br>
+
+</p><a href="#_Hello_World"><h2 id="_Hello_World">1.2  Hello World</h2></a>
+<p>Nachdem PICO-8 gestartet ist, gib einige dieser Befehle ein und drücke anschließend die Eingabetaste:</p><p class="codebox">
+
+
+&gt; PRINT("HELLO WORLD")<br>
+&gt; RECTFILL(80,80,120,100,12)<br>
+&gt; CIRCFILL(70,90,20,14)<br>
+&gt; FOR I=1,4 DO PRINT(I) END<br>
+
+</p><p>(Hinweis: PICO-8 zeigt nur Großbuchstaben an – tippe einfach normal ohne Feststelltaste!)</p>
+<p>Du kannst ein interaktives Programm erstellen, indem du Befehle wie diese 
+im Code-Bearbeitungsmodus zusammen mit den beiden speziellen Callback-Funktionen <a href="#_UPDATE"><b>_UPDATE</b></a> und <a href="#_DRAW"><b>_DRAW</b></a> verwendest.
+ Mit dem folgenden Programm kannst du beispielsweise einen Kreis 
+mit den Cursortasten bewegen. Drücke Esc, um zum Code-Editor zu wechseln, und gib den folgenden Code ein oder
+ kopiere ihn und füge ihn ein:</p><p class="codebox">
+
+
+X = 64  Y = 64<br>
+FUNCTION _UPDATE()<br>
+&nbsp;&nbsp;IF (BTN(0)) THEN X=X-1 END<br>
+&nbsp;&nbsp;IF (BTN(1)) THEN X=X+1 END<br>
+&nbsp;&nbsp;IF (BTN(2)) THEN Y=Y-1 END<br>
+&nbsp;&nbsp;IF (BTN(3)) THEN Y=Y+1 END<br>
+END<br>
+ <br>
+FUNCTION _DRAW()<br>
+&nbsp;&nbsp;CLS(5)<br>
+&nbsp;&nbsp;CIRCFILL(X,Y,7,14)<br>
+END<br>
+
+</p><p>Drücke nun Esc, um zur Konsole zurückzukehren, und gib RUN ein (oder drücke STRG-R),
+ um das Programm in Aktion zu sehen. Für komplexere Programme schau dir bitte die Demo-Kassetten an
+(gib INSTALL_DEMOS ein).</p>
+<p>Wenn Sie Ihr Programm für später speichern möchten, verwenden Sie den Befehl SAVE:</p><p class="codebox">
+
+
+&gt; SAVE PINKCIRC<br>
+
+</p><p>Und um es wieder zu laden:</p><p class="codebox">
+
+
+&gt; LOAD PINKCIRC<br>
+
+</p><a href="#_Example_Cartridges"><h2 id="_Example_Cartridges">1.3  Beispiel-Kassetten</h2></a>
+<p>Diese Cartridges sind im Lieferumfang von PICO-8 enthalten und können durch Eingabe folgender Befehle installiert werden:</p><p class="codebox">
+
+
+&gt; INSTALL_DEMOS<br>
+&gt; CD DEMOS<br>
+&gt; LS    <br> 
+ <br> 
+HELLO      Grüße von PICO-8<br>
+API        Demonstriert die meisten PICO-8-Funktionen<br>
+JELPI      Plattformspiel-Demo mit 2-Spieler-Unterstützung <br>
+CAST       2,5D-Raycaster-Demo<br>
+DRIPPY     Zeichne eine tropfende Schnörkel<br>
+WANDER     Einfacher Walking-Simulator<br>
+COLLIDE    Beispiel für Kollisionen zwischen Wänden und Akteuren<br>
+
+</p><p>Um eine Cartridge auszuführen, öffne PICO-8 und gib Folgendes ein:</p><p class="codebox">
+
+
+&gt; LOAD JELPI<br>
+&gt; RUN<br>
+
+</p><p>Drücke die Escape-Taste, um das Programm zu beenden, und noch einmal, um in den Bearbeitungsmodus zu gelangen.</p>
+<p>Eine kleine Sammlung von BBS-Kassetten kann auch mit folgendem Befehl unter /GAMES installiert werden: </p><p class="codebox">
+
+
+&gt; INSTALL_GAMES<br>
+
+</p><a href="#_File_System"><h2 id="_File_System">1.4  Dateisystem</h2></a>
+<p>Mit diesen Befehlen können Sie Dateien und Verzeichnisse (Ordner) verwalten:</p><p class="codebox">
+
+
+LS          das aktuelle Verzeichnis auflisten<br>
+CD BLAH     Verzeichnis wechseln<br>
+CD ..       ein Verzeichnis höher gehen<br>
+CD /        zurück zum obersten Verzeichnis wechseln (auf dem virtuellen Laufwerk von PICO-8)<br>
+MKDIR BLAH  ein Verzeichnis erstellen<br>
+FOLDER      das aktuelle Verzeichnis im Dateibrowser des Host-Betriebssystems öffnen<br>
+
+</p><p>LOAD BLAH  eine Cartridge aus dem aktuellen Verzeichnis laden SAVE BLAH  eine Cartridge im aktuellen Verzeichnis speichern</p>
+<p>Wenn du Dateien verschieben, duplizieren oder löschen möchtest, verwende den Befehl FOLDER  und führe die Aktion im Host-Betriebssystem aus.</p>
+<p>Der Standardpfad für das Laufwerk von PICO-8 lautet:</p>
+<p>Windows: C:/Users/Yourname/AppData/Roaming/pico-8/carts<br>
+OSX: /Users/Yourname/Library/Application Support/pico-8/carts<br>
+Linux: ~/.lexaloffle/pico-8/carts<br>
+
+</p><p>Du kannst diese und andere Einstellungen in pico-8/config.txt ändern
+</p><div style="display:inline-block; float:left; position:relative; left:-10px; top:5px; font-size:26pt; background-color:#fff">☆</div><p style="width:90%; padding:16px; border-width:2px; border-radius:15px; border-style:dashed; border-color:#aaa; background-color:#fff; ">
+
+Tipp: Das Laufwerksverzeichnis kann einem Cloud-Laufwerk (z. B. von 
+Dropbox, Google Drive oder ähnlichen Anbietern) zugeordnet werden, um eine einzige Festplatte zu erstellen, 
+die von PICO-8-Instanzen auf verschiedenen Host-Rechnern gemeinsam genutzt wird.</p>
+<a href="#_Loading_and_Saving"><h2 id="_Loading_and_Saving">1.5  Laden und Speichern</h2></a>
+<p>Bei der Verwendung von LOAD und SAVE kann die Dateiendung .P8 weggelassen werden und wird automatisch hinzugefügt.</p><p class="codebox">
+
+
+&gt; SAVE FOO<br>
+SAVED FOO.P8<br>
+
+</p><p>Cartridge-Dateien können auch per Drag &amp; Drop in das PICO-8-Fenster gezogen werden, um sie zu laden.</p>
+<p>Die Dateiendung .p8.png schreibt die Cartridge in ein 
+spezielles Bildformat, das wie eine Cartridge aussieht. Die Endung .p8.rom schreibt 
+in ein rohes 32k-Binärformat.</p>
+<p>Verwende den Dateinamen „@clip“, um in die Zwischenablage zu laden oder dort zu speichern.</p>
+<p>Verwende den Dateinamen „@url“, um den Inhalt als URL für pico-8-edu.com in die Zwischenablage zu speichern,
+ sofern er in 2040 Zeichen kodiert werden kann (nur Code und Grafiken).</p>
+<p>Sobald eine Cartridge geladen oder gespeichert wurde, kann sie auch mit STRG-S schnell gespeichert werden</p>
+<a href="#Saving_"><h4 id="Saving_">■ Speichern von .p8.png-Kassetten mit Textbeschriftung und Vorschaubild</h4>
+</a><p>Um ein Beschriftungsbild zu erstellen, das mit der Cartridge gespeichert wird, führen Sie das Programm 
+zuerst aus und drücken Sie STRG-7, um den aktuellen Bildschirminhalt zu erfassen. Die ersten beiden 
+Zeilen des Programms, die mit „--“ beginnen, werden ebenfalls  auf die Beschriftung der Cartridge 
+gezeichnet.</p><p class="codebox">
+
+
+-- OCEAN DIVER LEGENDS<br>
+-- BY LOOPY<br>
+
+</p><a href="#Code_size_restrictions_for_"><h4 id="Code_size_restrictions_for_">■ Beschränkungen der Code-Größe für die Formate .p8.png / .p8.rom</h4>
+</a><p>Beim Speichern im .png- oder .rom-Format muss die komprimierte Größe des 
+Codes weniger als 15360 Bytes betragen, damit die Gesamtdatenmenge &lt;= 32k ist.</p>
+<p>Um die aktuelle Größe deines Codes zu ermitteln, verwende den Befehl INFO. Die 
+Beschränkung der komprimierten Größe  gilt nicht für das Speichern im .p8-Format.</p>
+<a href="#_Using_an_External_Text_Editor"><h2 id="_Using_an_External_Text_Editor">1.6  Verwendung eines externen Texteditors</h2></a>
+<p>Es ist möglich, .p8-Dateien direkt mit einem separaten Texteditor zu bearbeiten. 
+Wenn Sie STRG-R drücken, um eine Cartridge auszuführen, wird die Datei automatisch neu geladen</p><p>,</p><p>
+wenn:
+</p><p>1. keine ungespeicherten Änderungen in den PICO-8-Editoren vorliegen UND<br> 2. sich der Inhalt der Datei von der zuletzt geladenen Version unterscheidet.
+</p><p>Wenn sowohl an der Cartridge auf der Festplatte als auch im Editor Änderungen vorgenommen wurden, wird folgende Meldung angezeigt:</p><p class="codebox">
+
+
+NICHT NEU GELADEN; UNGESPEICHERTE ÄNDERUNGEN<br>
+
+</p><p>Alternativ können .lua-Textdateien in einem separaten Editor bearbeitet 
+und dann bei jeder Ausführung der Cartridge mithilfe von <a href="#_INCLUDE"><b>#INCLUDE</b></a> (an der gewünschten Stelle im Code) in den Code der Cartridge eingebunden werden:</p><p class="codebox">
+
+
+#INCLUDE YOURFILE.LUA<br>
+
+</p><a href="#_Backups"><h2 id="_Backups">1.7  Sicherungen</h2></a>
+<p>Wenn Sie das Programm beenden, ohne Änderungen zu speichern, oder eine vorhandene 
+Datei überschreiben, wird eine Sicherungskopie der Cartridge  unter {appdata}/pico-8/backup gespeichert. Eine
+ zusätzliche Kopie der aktuellen Cartridge kann ebenfalls in demselben 
+Ordner gespeichert werden, indem Sie BACKUP eingeben.</p>
+<p>Um den Ordner „backups“ im Dateibrowser des Host-Betriebssystems zu öffnen, verwenden Sie:</p><p class="codebox">
+
+
+&gt; FOLDER BACKUPS<br>
+
+</p><p>Anschließend können Dateien per Drag &amp; Drop in das PICO-8-Fenster gezogen werden, um sie zu laden.</p>
+<p>Ab Version 0.2.4c werden außerdem alle 20 Minuten regelmäßige Sicherungen erstellt, wenn 
+der Editor nicht im Leerlauf ist, was  bedeutet, dass der Sicherungsordner alle 
+5 Stunden um etwa 1 MB wächst. Dies kann in der Datei config.txt deaktiviert oder angepasst werden</p>
+<a href="#_Configuration"><h2 id="_Configuration">1.8  Konfiguration</h2></a>
+<p>PICO-8 liest zu Beginn jeder Sitzung die Konfigurationseinstellungen aus der Datei „config.txt“ 
+und speichert sie beim Beenden (Sie sollten die Datei „config.txt“ also bearbeiten, wenn 
+PICO-8 nicht läuft).</p>
+<p>Der Speicherort der Datei „config.txt“ hängt vom jeweiligen Betriebssystem ab:</p>
+<p>Windows: C:/Users/Yourname/AppData/Roaming/pico-8/config.txt<br>
+OSX: /Users/Yourname/Library/Application Support/pico-8/config.txt<br>
+Linux: ~/.lexaloffle/pico-8/config.txt<br>
+
+</p><p>Verwende den Schalter -home (siehe unten), um einen anderen Pfad zum Speichern von config.txt und anderen Daten zu verwenden.</p>
+<p>Einige Einstellungen können während der Ausführung von PICO-8 durch Eingabe von CONFIG SETTING VALUE geändert werden. (Geben Sie CONFIG allein ein, um eine Liste anzuzeigen.)</p>
+<a href="#Commandline_parameters"><h4 id="Commandline_parameters">■ Befehlszeilenparameter</h4>
+</a><p>// Hinweis: Diese überschreiben die Einstellungen in config.txt</p>
+<p>pico8 [Schalter] [Dateiname.p8]</p>
+<p>-width n                Fensterbreite festlegen <br>
+-height n               Fensterhöhe festlegen <br>
+-windowed n             Fenstermodus deaktivieren (0) oder aktivieren (1)<br>
+-volume n               Lautstärke festlegen 0..256<br>
+-joystick n             Joystick-Steuerung beginnt bei Spieler n (0..7)<br>
+-pixel_perfect n        1 für ungefilterte Bildschirmstreckung bei ganzzahligen Skalierungen (standardmäßig aktiviert)<br>
+-preblit_scale n        Skaliert die Anzeige um den Faktor n vor dem Blitting auf den Bildschirm (nützlich bei -pixel_perfect 0)<br>
+-draw_rect x,y,w,h      absolute Fensterkoordinaten und Größe zum Zeichnen des PICO-8-Bildschirms <br>
+-display n              den bevorzugten Anzeigeindex festlegen, wenn mehrere Anzeigen vorhanden sind<br>
+-run filename           eine Cartridge laden und ausführen<br>
+-x filename             eine PICO-8-Cartridge im Headless-Modus ausführen und dann beenden (experimentell!)<br>
+-export param_str       den EXPORT-Befehl im Headless-Modus ausführen und beenden (siehe Hinweise unter „export“)<br>
+-p param_str            eine Parameterzeichenfolge an die angegebene Cartridge übergeben<br>
+-splore                 im Splore-Modus starten<br>
+-home path              den Pfad zum Speichern von config.txt und anderen Benutzerdatendateien festlegen<br>
+-root_path Pfad         Legt den Pfad zum Speichern von Cartridge-Dateien fest<br>
+-desktop Pfad           Legt einen Speicherort für Screenshots und GIFs fest<br>
+-screenshot_scale n     Skalierung von Screenshots.  Standard: 3 (368x368 Pixel)<br>
+-gif_scale n            Skalierung von GIF-Aufnahmen. Standard: 2 (256x256 Pixel)<br>
+-gif_len n              Legt die maximale GIF-Länge in Sekunden fest (1..120)<br>
+-gui_theme n            Verwende 1 für ein Editor-Farbschema mit höherem Kontrast<br>
+-timeout n              Wartezeit in Sekunden bis zum Ablauf des Downloads (Standard: 30)<br>
+-software_blit n        Software-Blitting-Modus deaktivieren (0) oder aktivieren (1)<br>
+-foreground_sleep_ms n  Pause in Millisekunden zwischen den Frames.<br>
+-background_sleep_ms n  Wie viele Millisekunden zwischen den Frames pausieren, wenn das Programm im Hintergrund läuft<br>
+-accept_future n        1, um das Laden von Kassetten zuzulassen, die mit zukünftigen Versionen von PICO-8 erstellt wurden<br>
+-global_api n           1, um API-Funktionen im globalen Bereich zu belassen (nützlich für die Fehlersuche)<br>
+
+</p><a href="#Controller_Setup"><h3 id="Controller_Setup">▨ Controller-Einrichtung</h3>
+</a><p>PICO-8 verwendet das SDL2-Controller-Konfigurationsschema. Es 
+erkennt gängige Controller beim Start und sucht außerdem nach benutzerdefinierten Zuordnungen 
+in der Datei sdl_controllers.txt im selben Verzeichnis  wie config.txt. 
+sdl_controllers.txt enthält eine Zuordnung pro Zeile.</p>
+<p>Um eine benutzerdefinierte Zuordnungszeichenfolge für Ihren Controller zu generieren, verwenden Sie entweder 
+das mit SDL2 mitgelieferte Programm „controllermap“ oder versuchen Sie es mit 
+http://www.generalarcade.com/gamepadtool/
+</p><p>Um die ID Ihres Controllers herauszufinden, wie sie von SDL2 erkannt wird, 
+suchen Sie nach „joysticks“ oder „Mapping“ in der Datei „log.txt“, nachdem Sie PICO-8 gestartet haben. 
+Diese ID kann je nach Betriebssystem variieren. Siehe: 
+https://www.lexaloffle.com/bbs/?tid=32130</p>
+<p>Um festzulegen, welche Tastaturtasten Joystick-Tastenanschläge auslösen, verwenden Sie KEYCONFIG.</p>
+<a href="#_Screenshots_and_GIFS"><h2 id="_Screenshots_and_GIFS">1.9  Screenshots und GIFs</h2></a>
+<p>Während eine Kassette läuft, verwende:</p><p class="codebox">
+
+
+STRG-6 Speichere einen Screenshot auf dem Desktop<br>
+STRG-7 Erfasse das Bild des Kassettenetiketts<br>
+STRG-8 Starte die Videoaufnahme<br>
+STRG-9 Speichere ein GIF-Video auf dem Desktop (standardmäßig 8 Sekunden)<br>
+
+</p><p>Sie können jederzeit ein Video speichern (die Aufnahme läuft immer); STRG-8 
+setzt lediglich den Startpunkt des Videos zurück. Um mehr als 8 Sekunden aufzunehmen, 
+verwenden Sie den Befehl CONFIG (maximal: 120)</p><p class="codebox">
+
+
+CONFIG GIF_LEN 60<br>
+
+</p><p>Wenn du möchtest, dass die Aufnahme jedes Mal zurückgesetzt wird (um eine nicht überlappende Sequenz zu erstellen), verwende:</p><p class="codebox">
+
+
+CONFIG GIF_RESET_MODE 1<br>
+
+</p><p>Das GIF-Format kann 30 fps nicht exakt wiedergeben, daher verwendet PICO-8 stattdessen den nächstgelegenen Wert: 33,3 fps.
+</p><p>Wenn du Probleme beim Speichern auf dem Desktop hast, versuche, in der Datei config.txt einen alternativen Desktop-Pfad zu konfigurieren</p>
+<a href="#_Sharing_Cartridges"><h2 id="_Sharing_Cartridges">1.10  Kassetten teilen</h2></a>
+<p>Es gibt drei Möglichkeiten, in PICO-8 erstellte Cartridges zu teilen:</p>
+<p>1. Teile die .p8- oder .p8.png-Datei direkt mit anderen PICO-8-Nutzern</p>
+<p>Gib FOLDER ein, um den aktuellen Ordner in deinem Host-Betriebssystem zu öffnen.</p>
+<p>2. Veröffentlichen Sie die Cartridge im Lexaloffe BBS, um eine im Web spielbare Version zu erhalten</p><p>
+http://www.lexaloffle.com/pico-8.php?page=submit
+</p><p>3. Exportieren Sie die Cartridge in einen eigenständigen HTML/JS- oder nativen Binär-Player (Details finden Sie im Abschnitt „Exporter“)</p>
+<a href="#_SPLORE"><h2 id="_SPLORE">1.11  SPLORE</h2></a>
+<p>SPLORE ist ein integriertes Dienstprogramm zum Durchsuchen und Organisieren sowohl lokaler 
+als auch BBS- (Online-)Kassetten. Geben Sie SPLORE [Enter] ein, um es zu starten, oder starten Sie
+ PICO-8 mit -splore. 
+ </p><p>Es ist möglich, SPLORE vollständig mit einem Joystick zu steuern:</p><p class="codebox">
+
+
+LINKS und RECHTS, um durch die Cartridge-Listen zu navigieren<br>
+OBEN und UNTEN, um Elemente in jeder Liste auszuwählen<br>
+X, O oder MENU, um die Cartridge zu starten<br>
+
+</p><p>Drücke innerhalb einer Cartridge MENU, um sie als Favorit zu speichern, oder drücke Exit, um zu 
+SPLORE zurückzukehren. Wenn du eine Tastatur verwendest, kannst du auch F drücken, um 
+ein Element als Favorit zu speichern, während es in der Cartridge-Listenansicht ausgewählt ist.</p>
+<p>Wenn du eine Liste von BBS-Kassetten anzeigst, verwende den obersten Listeneintrag, um 
+eine Liste der Kassetten erneut herunterzuladen. Wenn du offline bist, wird die zuletzt 
+heruntergeladene Liste angezeigt, und es ist weiterhin möglich, alle 
+Kassetten zu spielen, die du dir angesehen hast.</p>
+<p>Sobald BBS-Kassetten ausgeführt oder in Splore aufgelistet wurden, werden sie 
+automatisch abgerufen und dauerhaft zwischengespeichert. Es ist in der Regel nicht erforderlich, 
+sie manuell herunterzuladen und zu speichern. Eine Ausnahme bilden Kassetten, die andere Kassetten laden (load()); 
+für das erste Laden jeder Kassette ist eine Internetverbindung erforderlich.</p>
+<p>Wenn du PICO-8 auf einem Rechner ohne Internetzugang installiert hast, 
+kannst du auch INSTALL_GAMES verwenden, um eine kleine Auswahl vorinstallierter
+ BBS-Kassetten zu /games hinzuzufügen. Es ist auch möglich, alle zwischengespeicherten Kassetten 
+(sortiert nach Download-Zeit) über die Registerkarte „Lokale Dateien“ anzuzeigen.</p>
+<p>Die Splore-Suchleiste kann nur mit einem Controller bedient werden; drücke LINKS 
+und RECHTS, um den Cursor zu bewegen, und OBEN und UNTEN, um durch Buchstaben, 
+Zahlen und einige Symbole zu blättern.</p>
+<p>Um deine Online-BBS-Favoriten anzuzeigen, stelle sie auf „öffentlich“ (in deinen 
+Kontoeinstellungen) und suche dann in Splore nach „fav:Benutzername“.</p>
+<a href="#Editing_Tools"><h1 id="Editing_Tools"><span style="font-size:48pt">❷</span> Bearbeitungswerkzeuge</h1></a>
+<p>Drücke ESC, um zwischen Konsole und Editor umzuschalten.<br> Klicke oben rechts auf die Registerkarten des Bearbeitungsmodus, um zu wechseln, oder drücke ALT+LINKS/RECHTS.	
+</p><a href="#Code_Editor"><h2 id="Code_Editor">2.1 Code-Editor</h2></a><p class="codebox">
+
+
+Halten Sie die Umschalttaste gedrückt, um auszuwählen (oder klicken und ziehen Sie mit der Maus)<br>
+STRG-X, C, V zum Ausschneiden, Kopieren oder Einfügen der Auswahl<br>
+STRG-Z, Y zum Rückgängigmachen und Wiederherstellen<br>
+STRG-F zum Suchen nach Text im aktuellen Tab<br>
+STRG-G zum Wiederholen der letzten Suche<br>
+STRG-L zum Springen zu einer Zeilennummer<br>
+STRG-PFEIL NACH OBEN, UNTEN, um zum Anfang oder Ende zu springen<br>
+ALT-PFEIL NACH OBEN, UNTEN, um zur vorherigen bzw. nächsten Funktion zu navigieren<br>
+STRG-PFEIL NACH LINKS, RECHTS, um wortweise zu springen<br>
+STRG-W, E, um zum Anfang oder Ende der aktuellen Zeile zu springen<br>
+STRG-D, um die aktuelle Zeile zu duplizieren<br>
+TAB, um eine Auswahl einzurücken (Umschalt, um die Einrückung aufzuheben)<br>
+STRG-B, um den ausgewählten Block zu kommentieren/den Kommentar aufzuheben<br>
+STRG-U, um Hilfe zum Schlüsselwort unter dem Cursor zu erhalten<br>
+
+</p><p>Um Sonderzeichen einzugeben, die Tasten (und andere 
+Glyphen) darstellen, verwende UMSCHALT-L,R,U,D,O,X Es gibt 3 zusätzliche Eingabemodi für Schriftzeichen, 
+die umgeschaltet werden können:</p><p class="codebox">
+
+
+STRG-J Hiragana   // gib die entsprechenden Romaji-Zeichen ein (ka, ki, ku..)<br>
+STRG-K Katakana   // + Umschalt-0..9 für zusätzliche Symbole<br>
+STRG-P Puny-Schriftart  // halte die Umschalttaste gedrückt für die Standardschriftart<br>
+
+</p><div style="display:inline-block; float:left; position:relative; left:-10px; top:5px; font-size:16pt; background-color:#fff">ⓘ</div><p style="width:90%; padding:16px; border-width:2px; border-radius:15px; border-style:dashed; border-color:#aaa; background-color:#fff; ">
+
+Standardmäßig werden Puny-Zeichen beim Kopieren/Einfügen als Unicode-Ersetzungen kodiert 
+, und sowohl Groß- als auch Kleinbuchstaben im ASCII-Zeichensatz werden
+ als reguläre PICO-8-Zeichen eingefügt. Um Puny-Zeichen als 
+ASCII-Großbuchstaben zu kopieren/einzufügen, stelle sicher, dass der Puny-Modus (STRG-P) aktiviert ist.</p>
+<a href="#Code_Tabs"><h4 id="Code_Tabs">■ Code-Registerkarten</h4>
+</a><p>Klicken Sie oben auf die Schaltfläche [+], um eine neue Registerkarte hinzuzufügen. Wechseln Sie zwischen den Registerkarten 
+mit einem Linksklick oder mit STRG-TAB, UMSCHALT-STRG-TAB. Um die letzte 
+Registerkarte zu entfernen, löschen Sie den Inhalt und wechseln Sie dann von ihr weg (STRG-A, ENTF, STRG-TAB)</p>
+<p>Beim Ausführen eines Cartridges wird ein einziges Programm generiert, indem alle Registerkarten der Reihe nach verkettet werden.</p>
+<a href="#Code_Limits"><h4 id="Code_Limits">■ Code-Beschränkungen</h4>
+</a><p>Die Anzahl der Code-Token wird unten rechts angezeigt. Ein 
+Programm kann maximal 8192 Token enthalten. Jedes Token ist ein Wort (z. B. 
+Variablenname) oder ein Operator. Klammerpaare und Zeichenfolgen zählen jeweils als
+ 1 Token. Kommas, Punkte, LOCALs, Semikolons, ENDs und Kommentare werden 
+nicht gezählt.</p>
+<p>Klicke mit der rechten Maustaste, um zwischen anderen Statistiken zu wechseln (Zeichenanzahl, 
+komprimierte Größe). Wenn eine Grenze erreicht ist, blinkt eine Warnleuchte. 
+Dies kann durch einen Rechtsklick deaktiviert werden.</p>
+<a href="#Sprite_Editor"><h2 id="Sprite_Editor">2.2 Sprite-Editor</h2></a>
+<p>Der Sprite-Editor ist sowohl für die Bearbeitung auf Sprite-Ebene
+ als auch für die freie Bearbeitung auf Pixelebene ausgelegt. Der Sprite-Navigator am 
+unteren Bildschirmrand bietet eine 8x8-Ansicht auf Sprite-Ebene  des Sprite-Sheets
+, es ist jedoch möglich, Freiform-Werkzeuge (Verschieben, Auswählen) zu verwenden, wenn 
+es um größere oder ungewöhnlich geformte Bereiche geht.</p>
+<a href="#Draw_Tool"><h4 id="Draw_Tool">■ Zeichenwerkzeug</h4>
+</a><p>Klicken und ziehen Sie auf dem Sprite, um Pixel zu zeichnen, oder verwenden Sie die rechte Maustaste, um die Farbe unter dem Cursor auszuwählen.</p>
+<p>Alle Vorgänge gelten nur für den sichtbaren Bereich oder den Ausschnitt, falls vorhanden.</p>
+<p>Halten Sie die STRG-Taste gedrückt, um eine Farbe zu suchen und zu ersetzen.</p>
+<a href="#Stamp_Tool"><h4 id="Stamp_Tool">■ Stempel-Werkzeug</h4>
+</a><p>Klicken Sie, um den Inhalt des Zwischenablagebereichs zu stempeln. Halten Sie die STRG-Taste gedrückt, um die Farbe 0 (Schwarz) als transparent zu behandeln.</p>
+<a href="#Select_Tool_"><h4 id="Select_Tool_">■ Auswahlwerkzeug (Tastenkombination: UMSCHALT oder S)</h4>
+</a><p>Klicke und ziehe, um eine rechteckige Auswahl zu erstellen. Um die Auswahl aufzuheben, drücke die Eingabetaste oder klicke auf eine beliebige Stelle.</p>
+<p>Wenn keine pixelweise Auswahl vorliegt, werden viele Operationen stattdessen
+ auf eine spriteweise Auswahl oder die sichtbare Ansicht angewendet. Um Sprites auszuwählen,
+ziehe mit gedrückter Umschalttaste im Sprite-Navigator. Um das Sprite-Sheet auszuwählen,
+drücke STRG-A (wiederhole dies, um die untere Hälfte, die mit Kartendaten geteilt wird, auszublenden)</p>
+<a href="#Pan_Tool_"><h4 id="Pan_Tool_">■ Verschiebungswerkzeug (Tastenkombination: LEERTASTE)</h4>
+</a><p>Klicken und ziehen Sie, um sich auf dem Sprite-Sheet zu bewegen.</p>
+<a href="#Fill_Tool"><h4 id="Fill_Tool">■ Füllwerkzeug</h4>
+</a><p>Mit der aktuellen Farbe füllen. Dies gilt nur für die aktuelle Auswahl oder, falls keine Auswahl vorhanden ist, für den sichtbaren Bereich.</p>
+<a href="#Shape_Tools"><h4 id="Shape_Tools">■ Formwerkzeuge</h4>
+</a><p>Klicken Sie auf die Werkzeugschaltfläche, um zwischen den Optionen „Oval“, „Rechteck“ und „Linie“ zu wechseln.</p>
+<p>Halten Sie die STRG-Taste gedrückt, um ein gefülltes Oval oder Rechteck zu erhalten.<br> Halten Sie die UMSCHALT-Taste gedrückt, um an Kreisen, Quadraten oder Linien mit einem niedrigen Seitenverhältnis auszurichten.</p>
+<a href="#Extra_keys"><h4 id="Extra_keys">■ Zusatztasten</h4>
+</a><p>STRG-Z:   Rückgängig<br>
+STRG-C/X: Ausgewählten Bereich oder ausgewählte Sprites kopieren/ausschneiden<br>
+STRG-V:   An der aktuellen Sprite-Position einfügen<br>
+Q/A,W/Z:  Zum vorherigen/nächsten Sprite wechseln<br>
+1,2:      Zur vorherigen/nächsten Farbe wechseln<br>
+TAB:      Vollbildansicht umschalten<br>
+Mausrad oder &lt; und &gt; zum Zoomen (zentriert im Vollbildmodus)<br>
+STRG-H zum Umschalten der Hex-Ansicht (zeigt den Sprite-Index in Hexadezimal an)<br>
+STRG-G zum Umschalten der schwarzen Gitterlinien beim Vergrößern<br>
+
+</p><a href="#Operations_on_selected_area_or_selected_sprites"><h4 id="Operations_on_selected_area_or_selected_sprites">■ Operationen auf ausgewähltem Bereich oder ausgewählten Sprites</h4>
+</a><p>F: Sprite horizontal spiegeln<br>
+V: Sprite vertikal spiegeln<br>
+R: Drehen (erfordert eine quadratische Auswahl)<br>
+Pfeiltasten zum Verschieben (wiederholt sich bei Sprite-Auswahl)<br>
+ENTF/RÜCKTASTE zum Löschen des ausgewählten Bereichs<br>
+
+</p><a href="#Sprite_Flags"><h4 id="Sprite_Flags">■ Sprite-Flags</h4>
+</a><p>Die 8 farbigen Kreise sind Sprite-Flags für das aktuelle Sprite. 
+Diese  haben keine besondere Bedeutung, können aber über die Funktionen <a href="#FGET"><b>FGET</b></a>() / <a href="#FSET"><b>FSET</b></a>() abgerufen werden. Sie sind von links beginnend ab 0 indiziert.</p>
+<p>Weitere Informationen finden Sie unter <a href="#FSET"><b>FSET</b></a>().</p>
+<a href="#Loading_"><h4 id="Loading_">■ Laden von .png-Dateien in das Sprite-Sheet</h4>
+</a><p>Um eine PNG-Datei beliebiger Größe in das Sprite-Sheet zu laden, wähle zunächst 
+das Sprite aus, das als Ziel für die obere linke Ecke dienen soll, und 
+gib dann entweder „IMPORT IMAGE_FILE.PNG“ ein oder ziehe die Bilddatei per Drag &amp; Drop
+ in das PICO-8-Fenster. In beiden Fällen wird das Bild farblich an 
+die aktuelle Anzeige-Palette angepasst.</p>
+<a href="#Map_Editor"><h2 id="Map_Editor">2.3 Karteneditor</h2></a>
+<p>Die PICO-8-Karte ist ein 128x32 (oder 128x64 bei gemeinsamer Nutzung des Speicherplatzes) Block aus 
+8-Bit-Werten. Jeder Wert wird im Editor als Verweis auf ein 
+Sprite (0..255) angezeigt, aber du kannst die Daten natürlich nutzen, um 
+alles darzustellen, was du möchtest.</p>
+<div style="display:inline-block; float:left; position:relative; left:-10px; top:5px; font-size:16pt; background-color:#fff">ⓘ</div><p style="width:90%; padding:16px; border-width:2px; border-radius:15px; border-style:dashed; border-color:#aaa; background-color:#fff; ">
+
+WARNUNG: Die zweite Hälfte des Sprite-Sheets (Bänke 2 und 3) und die 
+untere Hälfte der Karte teilen sich denselben Speicherplatz auf der Kassette. Es liegt an dir, 
+wie du die Daten verwendest, aber beachte, dass das Zeichnen auf der zweiten Hälfte des 
+Sprite-Sheets Daten auf der Karte überschreiben könnte und umgekehrt.</p>
+<p>Die Werkzeuge ähneln denen im Sprite-Bearbeitungsmodus. Wähle ein Sprite aus und klicke und ziehe, um Werte in die Karte zu malen.    
+</p><p>Um mehrere Sprites zu zeichnen, wähle sie im Sprite-Navigator mit 
+Umschalt+Ziehen aus. Um einen Werteblock zu kopieren, verwende das Auswahlwerkzeug und anschließend 
+das Stempelwerkzeug zum Einfügen. Um die Karte zu verschieben, verwende das Verschiebungswerkzeug oder halte 
+die Leertaste Q,W, um zum vorherigen/nächsten Sprite zu wechseln. Mausrad oder &lt; und &gt; 
+zum Zoomen (zentriert im Vollbildmodus). STRG-H zum Umschalten auf die Hex-Ansicht (zeigt Kachelwerte 
+und Sprite-Index in Hexadezimal an).</p>
+<p>Das Verschieben von Sprites im Sprite-Sheet, ohne die Verweise auf sie in der Karte zu unterbrechen, ist etwas knifflig, aber möglich:</p>
+<p>1. Drücke die Eingabetaste, um die Kartenauswahl zu löschen<br>
+        2. Wähle die Sprites aus, die du verschieben möchtest (während du dich noch in der Kartenansicht befindest), und drücke Strg-X<br>
+        3. Wähle den Bereich der Karte aus, den du ändern möchtest (standardmäßig die obere Hälfte der Karte)<br>
+            // Drücke zweimal Strg-A, um die gesamte Karte einschließlich des gemeinsamen Speichers auszuwählen<br>
+        4. Wähle das Ziel-Sprite aus (ebenfalls noch in der Kartenansicht) und drücke Strg-V<br>
+ <br> 
+// Hinweis: Dieser Vorgang ändert den Rückgängig-Verlauf sowohl für den Karten- als auch für den Sprite-Editor, aber<br>
+// PICO-8 versucht, diese nach Möglichkeit synchron zu halten. Andernfalls können Änderungen, die durch das Verschieben<br>
+// von Kartensprites verursacht wurden, durch manuelles Rückgängigmachen im Sprite-Editor rückgängig gemacht werden.<br>
+
+</p><a href="#SFX_Editor"><h2 id="SFX_Editor">2.4 SFX-Editor</h2></a>
+<p>Es gibt 64 SFX („Soundeffekte“) in einer Kassette, die sowohl für Sound als auch für Musik verwendet werden.</p>
+<p>Jedes SFX hat 32 Noten, und jede Note hat:<br>
+  Eine Frequenz   (C0..C5)<br>
+  Ein Instrument (0..7)<br>
+  Eine Lautstärke      (0..7)<br>
+  Einen Effekt     (0..7)<br>
+
+</p><p>Jedes SFX verfügt außerdem über folgende Eigenschaften:</p>
+ <p> Eine Wiedergabegeschwindigkeit (SPD): die Anzahl der „Ticks“, für die jede Note gespielt wird.<br>
+    // Das bedeutet, dass 1 am schnellsten ist, 3 dreimal so langsam usw.<br>
+ <br> 
+  Loop-Start und -Ende: dies ist der Notenindex, an dem die Schleife beginnt und endet<br>
+    // Die Schleife wird deaktiviert, wenn der Startindex &gt;= Endindex ist<br>
+
+</p><p>Wenn nur die erste der beiden Zahlen verwendet wird (und die zweite 
+0 ist), wird dies als die Anzahl der abzuspielenden Noten interpretiert. Dies ist 
+normalerweise für Soundeffekte nicht erforderlich (Sie können die restlichen 
+Noten einfach leer lassen), ist aber nützlich für die Steuerung der Musikwiedergabe.</p>
+<p>Es gibt zwei Modi zum Bearbeiten/Anzeigen eines SFX: den Pitch-Modus (eher 
+für Soundeffekte geeignet) und den Tracker-Modus (eher für Musik geeignet). 
+Der Modus kann über die Schaltflächen oben links geändert oder mit der TAB-Taste umgeschaltet werden.</p>
+<a href="#Pitch_Mode"><h3 id="Pitch_Mode">▨ Tonhöhenmodus</h3>
+</a><p>Klicke und ziehe im Tonhöhenbereich, um die Frequenz für jede 
+Note festzulegen, wobei das aktuell ausgewählte Instrument (durch Farbe gekennzeichnet) verwendet wird.</p>
+<p>Halte die Umschalttaste gedrückt, um nur das ausgewählte Instrument anzuwenden.<br>
+Halte die STRG-Taste gedrückt, um eingegebene Noten an die C-Moll-Pentatonik anzupassen.<br>
+Klicke mit der rechten Maustaste, um das Instrument dieser Note auszuwählen.<br>
+
+</p><a href="#Tracker_Mode"><h3 id="Tracker_Mode">▨ Tracker-Modus</h3>
+</a><p>Jede Note zeigt an: Frequenz, Oktave, Instrument, Lautstärke, Effekt<br>
+Um eine Note einzugeben, verwende q2w3er5t6y7ui zsxdcvgbhnjm (klavierähnliche Tastenbelegung)<br>
+Halte die Umschalttaste gedrückt, während du eine Note eingibst, um sie um -1 Oktave bis +1 Oktave zu transponieren<br>
+Neue Noten erhalten die Werte des ausgewählten Instruments/Effekts<br>
+Um eine Note zu löschen, verwende die Rücktaste oder setze die Lautstärke auf 0<br>
+
+</p><p>Klicken Sie und dann bei gedrückter Umschalttaste, um einen Bereich auszuwählen, der kopiert 
+(STRG-C) und eingefügt (STRG-V) werden kann. Beachten Sie, dass nur die ausgewählten Attribute
+ kopiert werden. Doppelklicken Sie, um alle Attribute einer einzelnen Note auszuwählen.</p>
+<p>Navigation:<br>
+  Bild auf/ab oder Strg-Bild auf/ab, um 4 Notizen nach oben oder unten zu springen<br>
+  Pos1/Ende, um zur ersten oder letzten Notiz zu springen<br>
+  Strg-Pfeil links/rechts, um zwischen den Spalten zu springen<br>
+
+</p><a href="#Controls_for_both_modes"><h3 id="Controls_for_both_modes">▨ Steuerelemente für beide Modi</h3>
+</a><p>- + zum Navigieren im aktuellen SFX<br>
+&lt; &gt; zum Ändern der Geschwindigkeit.
+SPACE zum Abspielen/Stoppen<br>
+SHIFT-SPACE zum Abspielen ab dem aktuellen SFX-Viertel (Gruppe von 8 Noten)<br>
+A, um ein Looping-Sample abzuspielen<br>
+Links- oder Rechtsklick, um die SPD- oder LOOP-Werte zu erhöhen/verringern<br>
+  // Halte die Umschalttaste beim Klicken gedrückt, um den Wert um 4 zu erhöhen/verringern<br>
+  // Alternativ kannst du klicken und nach links/rechts oder oben/unten ziehen<br>
+Umschalt-Klick auf ein Instrument, einen Effekt oder die Lautstärke, um dies auf alle Noten anzuwenden.<br>
+
+</p><a href="#Effects"><h3 id="Effects">▨ Effekte</h3>
+</a><p>0 keine<br>
+1 Slide          //  Gleite zur nächsten Note und Lautstärke<br>
+2 Vibrato        //  Variiere die Tonhöhe schnell innerhalb eines Vierteltons<br>
+3 Drop           //  Senke die Frequenz schnell auf sehr niedrige Werte<br>
+4 Fade-in        //  Steigere die Lautstärke von 0 an<br>
+5 fade out       //  Die Lautstärke auf 0 abklingen lassen<br>
+6 arpeggio fast  //  Gruppen von 4 Noten mit einer Geschwindigkeit von 4 durchlaufen<br>
+7 arpeggio slow  //  Gruppen von 4 Noten mit einer Geschwindigkeit von 8 durchlaufen<br>
+
+</p><p>Wenn die SFX-Geschwindigkeit &lt;= 8 ist, werden die Arpeggio-Geschwindigkeiten auf 2 und 4 halbiert</p>
+<a href="#Filters"><h3 id="Filters">▨ Filter</h3>
+</a><p>Jedes SFX verfügt über 5 Filterschalter, auf die im Tracker-Modus zugegriffen werden kann:</p>
+<p>NOIZ:      Erzeugt reines weißes Rauschen (gilt nur für Instrument 6)<br>
+BUZZ:      Verschiedene Veränderungen der Wellenform, um sie summender klingen zu lassen<br>
+DETUNE-1:  Verstimmt eine zweite Stimme, um einen flangerähnlichen Effekt zu erzeugen<br>
+DETUNE-2:  Verschiedene Stimmungen der zweiten Stimme, meist eine Oktave nach oben oder unten<br>
+REVERB:    Wendet ein Echo mit einer Verzögerung von 2 oder 4 Ticks an<br>
+DAMPEN:    Tiefpassfilter in 2 verschiedenen Stufen<br>
+
+</p><p>Wenn BUZZ mit Instrument 6 verwendet wird und NOIZ ausgeschaltet ist, wird reines braunes Rauschen erzeugt.</p>
+<a href="#Music_Editor"><h2 id="Music_Editor">2.5 Musik-Editor</h2></a>
+<p>Musik in PICO-8 wird durch eine Abfolge von „Patterns“ gesteuert. Jedes 
+Pattern ist eine Liste aus 4 Zahlen, die angeben, welches SFX auf 
+dem jeweiligen Kanal abgespielt wird.</p>
+<a href="#Flow_control"><h3 id="Flow_control">▨ Ablaufsteuerung</h3>
+</a><p>Der Wiedergabeablauf kann über die 3 Schaltflächen oben rechts gesteuert werden.</p>
+<p>Wenn ein Pattern abgespielt wurde, wird das nächste Pattern abgespielt, es sei denn:</p>
+<p>- es sind keine Daten mehr zum Abspielen vorhanden (die Musik stoppt)<br>
+- für dieses Pattern ist ein STOP-Befehl gesetzt (die dritte Schaltfläche)<br>
+- ein LOOP-BACK-Befehl gesetzt ist (die zweite Schaltfläche); in diesem Fall sucht der Musikplayer<br>
+  rückwärts nach einem Pattern, für das der LOOP-START-Befehl gesetzt ist (die erste Schaltfläche), oder kehrt zu<br>
+  Pattern 0 zurück, wenn keines gefunden wird.<br>
+
+</p><p>Wenn ein Pattern SFX-Elemente mit unterschiedlichen Geschwindigkeiten enthält, endet die Wiedergabe des Patterns, 
+sobald der ganz links liegende, nicht in einer Schleife befindliche Kanal abgespielt wurde. 
+Dies kann genutzt werden, um Drum-Beats im Double-Time-Rhythmus oder ungewöhnliche 
+Polyrhythmen zu erzeugen.</p>
+<p>Bei Taktarten wie 3/4, bei denen weniger als 32 Zeilen gespielt werden sollen,
+ bevor zum nächsten Pattern gesprungen wird, kann die Länge eines SFX festgelegt werden, indem 
+nur die erste Loop-Position angepasst und die zweite auf 
+Null belassen wird. Dies wird im SFX-Editor als „LEN“ (für „Length“) 
+anstelle von „LOOP“ angezeigt.</p>
+<a href="#Copying_and_Pasting_Music"><h3 id="Copying_and_Pasting_Music">▨ Musik kopieren und einfügen</h3>
+</a><p>So wählen Sie einen Bereich von Musiktiteln aus: Klicken Sie einmal auf den ersten Titel im
+Musiktitel-Navigator, dann bei gedrückter Umschalttaste auf den letzten Titel. Ausgewählte 
+Titel können mit STRG-C und STRG-V kopiert  und eingefügt werden. Beim Einfügen 
+in eine andere Cartridge wird auch der SFX, auf den jeder Titel verweist, 
+eingefügt (möglicherweise mit einem anderen Index),  sofern er noch nicht 
+vorhanden ist.</p>
+<a href="#SFX_Instruments"><h3 id="SFX_Instruments">▨ SFX-Instrumente</h3>
+</a><p>Zusätzlich zu den 8 integrierten Instrumenten können benutzerdefinierte Instrumente
+ mithilfe der ersten 8 SFX definiert werden. Verwenden Sie die Umschaltfläche rechts 
+neben den Instrumenten, um einen  Index auszuwählen, der im 
+Instrumentenkanal grün statt rosa angezeigt wird.</p>
+<p>Wenn eine Note eines SFX-Instruments gespielt wird, löst dies im Wesentlichen das SFX aus, verändert jedoch  die Attribute der Note:</p><p>
+  Die Tonhöhe wird relativ zu C2 hinzugefügt<br>
+  Die Lautstärke wird multipliziert<br>
+  Effekte werden zusätzlich zu den Effekten des SFX-Instruments angewendet<br>
+  Alle im SFX-Instrument aktivierten Filter werden für diese Note aktiviert<br></p><p>
+
+Beispielsweise könnte ein einfacher Tremolo-Effekt implementiert werden, indem
+ ein Instrument  in SFX 0 definiert wird, das schnell zwischen den Lautstärken 5 und 2 wechselt.
+ Wenn man dieses Instrument zum Spielen einer Note verwendet, kann die Lautstärke 
+wie gewohnt weiter verändert werden (über den Lautstärkenkanal oder mithilfe der Ein-/Ausblendeffekte 
+). Auf diese Weise können SFX-Instrumente verwendet werden, um  
+Kombinationen aus detaillierten Änderungen von Lautstärke, Tonhöhe und Klangtextur zu steuern.</p>
+<p>SFX-Instrumente werden nur neu getriggert, wenn sich die Tonhöhe ändert oder die 
+vorherige Note eine Lautstärke von Null hat. Dies ist nützlich für Instrumente, die 
+sich im Laufe der Zeit langsamer verändern. Zum Beispiel: eine Glocke, die allmählich 
+ausklingt. Um dieses Verhalten umzukehren, kann Effekt 3 (normalerweise „Drop“) verwendet werden, 
+wenn die Note getriggert wird. Alle anderen Effektwerte    haben  ihre übliche 
+Bedeutung beim Triggern von SFX-Instrumenten.	
+</p><a href="#Waveform_Instruments"><h3 id="Waveform_Instruments">▨ Wellenform-Instrumente</h3>
+</a><p>Wellenform-Instrumente funktionieren genauso wie SFX-Instrumente, 
+bestehen jedoch aus einer benutzerdefinierten 64-Byte-Wellenform, die in einer Schleife abgespielt wird. Klicken Sie auf die Umschaltfläche für die Wellenform 
+im SFX-Editor, um SFX 0..7 als Wellenform-Instrument zu verwenden
+. In diesem Modus können Samples mit der Maus gezeichnet werden.</p>
+<a href="#Scale_Snapping"><h3 id="Scale_Snapping">▨ Skalenausrichtung</h3>
+</a><p>Wenn Sie Noten im Tonhöhenmodus zeichnen, halten Sie die STRG-Taste gedrückt, um an die 
+derzeit definierte Tonleiter anzuschnappen. Standardmäßig ist dies die C-Moll-Pentatonik, 
+die jedoch im Tonleiter-Editor-Modus angepasst werden kann. Unten rechts befindet sich ein 
+kleines Tastatursymbol, um diese Funktion umzuschalten. Es gibt 2 
+Transponier-Schaltflächen, 1 Invertier-Schaltfläche und 3 Schaltflächen für voreingestellte Tonleitern:</p><p class="codebox">
+
+
+Dim   Verminderte Septim-Tonleiter // Umkehren, um eine Ganz-Halb-Tonleiter zu erhalten<br>
+Maj   Dur-Tonleiter          // Umkehren, um eine Pentatonik zu erhalten<br>
+Who   Ganztonleiter     // Umkehren, um … die andere Ganztonleiter zu erhalten<br>
+
+</p><p>Das Ändern der Tonleiter hat keinen Einfluss auf den aktuellen SFX; die Tonleiter wird nur angewendet, wenn 
+neue Noten bei gedrückter STRG-Taste gezeichnet werden.</p>
+<a href="#_Exporters_"><h1 id="_Exporters_"><span style="font-size:48pt">❸</span> Exporter / Importer</h1></a>
+<p>Mit dem Befehl EXPORT können PNG- und WAV-Dateien sowie 
+eigenständige HTML- und native Binär-Cartridge-Anwendungen erstellt werden. Das Ausgabeformat 
+wird aus der Dateiendung abgeleitet (z. B. .png).</p>
+<p>Es steht Ihnen frei, exportierte Cartridges und Daten nach 
+Belieben zu verbreiten und zu nutzen, vorausgesetzt,  Sie haben die Erlaubnis des Cartridge-Autors
+ und der Mitwirkenden.</p>
+<a href="#Sprite_Sheet_"><h3 id="Sprite_Sheet_">▨ Sprite-Sheet / Label (.png)</h3>
+</a><p class="codebox">
+
+&gt; IMPORT BLAH.PNG   -- ERWARTET EINE 128X128-PNG-DATEI, DEREN FARBEN ZUR PICO-8-PALETTE PASSEN<br>
+&gt; EXPORT BLAH.PNG   -- VERWENDE DEN BEFEHL „FOLDER“, UM DIE EXPORTIERTE PNG-DATEI ZU FINDEN<br>
+
+</p><p>Beim Importieren können die Schalter -x und -y verwendet werden, um die Zielposition 
+in Pixeln anzugeben: Mit -s kann das Bild verkleinert werden (3 bedeutet eine Skalierung 
+von 384x384 -&gt; 128x128)</p><p class="codebox">
+
+
+&gt; IMPORT BLAH.PNG -X 16 -Y 16 -S 3<br>
+
+</p><p>Verwenden Sie den Schalter -l mit IMPORT und EXPORT, um stattdessen vom Etikett der Kassette zu lesen und zu schreiben:</p><p class="codebox">
+
+
+&gt; IMPORT -L BLAH.PNG<br>
+
+</p><div style="display:inline-block; float:left; position:relative; left:-10px; top:5px; font-size:16pt; background-color:#fff">ⓘ</div><p style="width:90%; padding:16px; border-width:2px; border-radius:15px; border-style:dashed; border-color:#aaa; background-color:#fff; ">
+
+Beim Importieren von Spritesheets oder Etiketten wird die Palette farblich an die aktuelle Zeichenpalette angepasst.</p>
+<a href="#SFX_and_Music_"><h3 id="SFX_and_Music_">▨ SFX und Musik (.wav)</h3>
+</a><p>So exportierst du Musik aus dem aktuellen Pattern (wenn der Editor-Modus auf MUSIC steht) oder die aktuellen SFX:</p><p class="codebox">
+
+
+&gt; EXPORT FOO.WAV  <br> 
+
+</p><p>So exportierst du alle SFXs als foo0.wav, foo1.wav .. foo63.wav:</p><p class="codebox">
+
+
+&gt; EXPORT FOO%D.WAV<br>
+
+</p><a href="#MAP_and_CODE"><h3 id="MAP_and_CODE">▨ MAP und CODE</h3>
+</a><p>Eine Cartridge-Map oder ein Quellcode kann als einzelnes Bild mit dem Namen .map.png oder .lua.png exportiert werden:</p><p class="codebox">
+
+
+&gt; EXPORT FOO.MAP.PNG<br>
+&gt; EXPORT FOO.LUA.PNG <br>
+
+</p><p>Kartenbilder haben eine Größe von 1024x512 (128x32 8x8-Sprites). Lua-Bilder werden an die Größe angepasst,
+jedoch ist jede Zeile auf eine Breite von 192 Pixel festgelegt (und beschnitten).</p>
+<a href="#Cartridges_"><h3 id="Cartridges_">▨ Cartridges (.p8, .p8.png, .p8.rom)</h3>
+</a><p>Das Speichern einer Cartridge mit EXPORT entspricht der Verwendung von SAVE, jedoch 
+ohne die aktuell bearbeitete Cartridge zu ändern. Dies kann beispielsweise nützlich sein, 
+um eine Kopie im .p8.png-Format zur Weitergabe zu speichern, ohne 
+versehentlich weiterhin Änderungen an dieser Datei statt an der 
+ursprünglichen .p8-Datei vorzunehmen.</p>
+<p>„EXPORT“ kann auch verwendet werden, um Konvertierungen des Cartridge-Dateiformats über die Befehlszeile durchzuführen. Zum Beispiel in einer Linux-Shell:</p><p class="codebox">
+
+
+&gt; pico8 foo.p8 -export foo.p8.png<br>
+
+</p><a href="#Web_Applications_"><h2 id="Web_Applications_">3.1 Webanwendungen (.html)</h2></a>
+<p>So generieren Sie einen eigenständigen HTML-Player (mygame.html, mygame.js):</p><p class="codebox">
+
+
+&gt; EXPORT MYGAME.HTML<br>
+
+</p><p>Oder nur die .js-Datei:</p><p class="codebox">
+
+
+&gt; EXPORT MYGAME.JS<br>
+
+</p><p>Verwenden Sie -f, um die Dateien in einen Ordner namens mygame_html zu schreiben, wobei index.html anstelle von mygame.html verwendet wird</p><p class="codebox">
+
+
+&gt; EXPORT -F MYGAME.HTML<br>
+
+</p><p>Optional kannst du mit dem Schalter -p eine benutzerdefinierte HTML-Vorlage angeben:</p><p class="codebox">
+
+
+&gt; EXPORT MYGAME.HTML -P ONE_BUTTON<br>
+
+</p><p>Dadurch wird die Datei {application 
+data}/pico-8/plates/one_button.html als HTML-Shell verwendet, wobei  eine 
+spezielle Zeichenfolge „##js_file##“ (ohne Anführungszeichen) durch den .js-Dateinamen ersetzt wird 
+und optional die Zeichenfolge „##label_file##“ durch das Label-Bild des Cartridges 
+als Daten-URL ersetzt wird.</p>
+<p>Verwenden Sie -w, um als .wasm + .js zu exportieren:</p><p class="codebox">
+
+
+&gt; EXPORT -W MYGAME.HTML<br>
+
+</p><div style="display:inline-block; float:left; position:relative; left:-10px; top:5px; font-size:16pt; background-color:#fff">ⓘ</div><p style="width:90%; padding:16px; border-width:2px; border-radius:15px; border-style:dashed; border-color:#aaa; background-color:#fff; ">
+
+Beim Export als .wasm muss die Seite von einem Webserver bereitgestellt werden, 
+anstatt sie einfach direkt aus dem lokalen Dateisystem in einem 
+Browser zu öffnen. Für die meisten Zwecke ist der Standard-Export als .js ausreichend, aber .wasm ist
+ etwas kleiner und schneller.</p>
+<a href="#Binary_Applications_"><h2 id="Binary_Applications_">3.2 Binäre Anwendungen (.bin)</h2></a>
+<p>So generieren Sie eigenständige ausführbare Dateien für Windows, Linux (64-Bit), Mac und Raspberry Pi:</p><p class="codebox">
+
+
+&gt; EXPORT MYGAME.BIN<br>
+
+</p><p>Standardmäßig wird das Cartridge-Label als Symbol ohne 
+Transparenz verwendet.  Um ein Symbol aus dem Sprite-Sheet anzugeben, verwenden Sie -i und 
+optional -s und/oder -c , um Größe und Transparenz zu steuern.</p><p class="codebox">
+
+
+-I N  Symbolindex N mit einer standardmäßigen transparenten Farbe von 0 (schwarz).<br>
+-S N  Größe NxN-Sprites. Die Größe 3 würde ein 24x24-Symbol erzeugen.<br>
+-C N  Farbe N als transparent behandeln. Verwenden Sie 16 für keine Transparenz.<br>
+
+</p><p>Beispiel: Um ein 2x2-Sprite ab Index 32 im Sprite-Sheet zu verwenden und dabei die Farbe 12 als transparent zu behandeln:</p><p class="codebox">
+
+
+&gt; EXPORT -I 32 -S 2 -C 12 MYGAME.BIN<br>
+
+</p><p>Um eine zusätzliche Datei in die Ausgabeordner und Archive aufzunehmen, verwende den Schalter -E:</p><p class="codebox">
+
+
+&gt; EXPORT -E README.TXT MYGAME.BIN <br>
+
+</p><div style="display:inline-block; float:left; position:relative; left:-10px; top:5px; font-size:16pt; background-color:#fff">ⓘ</div><p style="width:90%; padding:16px; border-width:2px; border-radius:15px; border-style:dashed; border-color:#aaa; background-color:#fff; ">
+
+Windows-Dateisysteme unterstützen die Dateimetadaten nicht, die zum Erstellen einer
+ ausführbaren Datei für Linux oder Mac erforderlich sind. PICO-8 umgeht dies, indem es ZIP-Dateien 
+so exportiert, dass die Dateiattribute erhalten bleiben. Es wird daher 
+empfohlen, die ausgegebenen ZIP-Dateien unverändert zu verteilen, um sicherzustellen, dass 
+Benutzer auf anderen Betriebssystemen sie ausführen können. Andernfalls muss ein Linux-Benutzer, 
+der die Binärdateien herunterlädt, möglicherweise den Befehl „chmod +x mygame“  auf die Datei anwenden, 
+um sie auszuführen, und ein Mac-Benutzer müsste „chmod +x 
+mygame.app/Contents/MacOS/mygame“</p>
+<a href="#Uploading_to_itch"><h2 id="Uploading_to_itch">3.3 Hochladen auf itch.io</h2></a>
+<p>Wenn Sie Ihre exportierte Cartridge als spielbare HTML-Datei auf itch.io hochladen möchten:</p>
+<p>1. In PICO-8: EXPORT -F MYGAME.HTML<br>
+2. Erstellen Sie ein neues Projekt über Ihr itch-Dashboard.<br>
+3. Komprimiere den Ordner und lade ihn hoch (setze „Diese Datei wird im Browser abgespielt“).<br>
+4. Binde ihn in die Seite ein, mit einer Größe von 750px x 680px.<br>
+5. Aktivieren Sie „Mobile Friendly“ (Standardausrichtung) und „Automatically start on page load“.<br>
+  // Der Vollbild-Button ist nicht erforderlich, da die Standardvorlage von PICO-8 über einen eigenen verfügt.<br>
+6. Stellen Sie den Hintergrund (BG2) auf eine dunkle Farbe (z. B. #232323) und den Text auf eine helle Farbe (#cccccc) ein.<br>
+
+</p><a href="#Exporting_Multiple_Cartridges"><h2 id="Exporting_Multiple_Cartridges">3.4 Exportieren mehrerer Cartridges</h2></a>
+<p>Bis zu 32 Cartridges können gebündelt werden, indem man sie an 
+EXPORT übergibt, wenn man eigenständige HTML- oder native Binär-Player generiert.</p><p class="codebox">
+
+
+&gt; EXPORT MYGAME.HTML DAT1.P8 DAT2.P8 GAME2.P8<br>
+
+</p><p>Während der Laufzeit kann auf die zusätzlichen Cartridges zugegriffen werden, als wären sie lokale Dateien:</p><p class="codebox">
+
+
+RELOAD(0,0,0X2000, "DAT1.P8") -- SPRITESHEET AUS DAT1.P8 LADEN<br>
+LOAD("GAME2.P8")              -- EIN WEITERES MODUL LADEN UND AUSFÜHREN<br>
+
+</p><div style="display:inline-block; float:left; position:relative; left:-10px; top:5px; font-size:16pt; background-color:#fff">ⓘ</div><p style="width:90%; padding:16px; border-width:2px; border-radius:15px; border-style:dashed; border-color:#aaa; background-color:#fff; ">
+
+Exportierte Cartridges können keine BBS-Cartridges laden und ausführen, z. B. über LOAD("#FOO")</p>
+<a href="#Running_EXPORT_from_the_host_operating_system"><h2 id="Running_EXPORT_from_the_host_operating_system">3.5 Ausführen von EXPORT vom Host-Betriebssystem aus</h2></a>
+<p>Verwende den Schalter -export beim Starten von PICO-8, um den Exporter im 
+Headless-Modus auszuführen. Dateipfade beziehen sich auf das aktuelle Verzeichnis und nicht 
+auf das PICO-8-Dateisystem.</p>
+<p>Parameter für den EXPORT-Befehl werden als einzelne Zeichenkette (in Kleinbuchstaben) übergeben:</p>
+<p>pico8 mygame.p8 -export "-i 32 -s 2 -c 12 mygame.bin dat0.p8 dat1.p8"</p>
+<a href="#Lua_Syntax_Primer"><h1 id="Lua_Syntax_Primer"><span style="font-size:48pt">❹</span> Einführung in die Lua-Syntax</h1></a>
+<p>PICO-8-Programme werden in Lua-Syntax geschrieben, verwenden jedoch nicht die 
+Standard-Lua-Bibliothek. Im Folgenden finden Sie eine kurze Zusammenfassung der wesentlichen Lua-Syntax
+.</p>
+<p>Weitere Details sowie Informationen zu „richtigem“ Lua finden Sie unter www.lua.org.</p>
+<a href="#Comments"><h3 id="Comments">▨ Kommentare</h3>
+</a><p class="codebox">
+
+-- VERWENDE ZWEI STRICHZEICHEN WIE HIER, UM EINEN KOMMENTAR ZU SCHREIBEN<br>
+--[[ MEHRZEILIGE<br>
+KOMMENTARE ]]<br>
+
+</p><a href="#Types_and_assignment"><h3 id="Types_and_assignment">▨ Typen und Zuweisung</h3>
+</a><p>Typen in Lua sind Zahlen, Zeichenketten, Boolesche Werte und Tabellen:</p><p class="codebox">
+
+
+NUM = 12/100<br>
+S = "THIS IS A STRING"<br>
+B = FALSE<br>
+T = {1,2,3}<br>
+
+</p><p>Zahlen in PICO-8 sind alle 16:16-Festkomma-Zahlen. Sie reichen von -32768,0 bis 32767,99999</p>
+<p>Es kann die hexadezimale Notation mit optionalen Dezimalstellen verwendet werden:</p><p class="codebox">
+
+
+?0x11        -- 17<br>
+?0x11.4000   -- 17,25<br>
+
+</p><p>Dezimal geschriebene Zahlen werden auf den nächsten Festkommawert gerundet 
+. Um die 32-Bit-Hexadezimal-Darstellung anzuzeigen, verwenden Sie 
+PRINT(TOSTR(VAL,TRUE)):</p><p class="codebox">
+
+
+?TOSTR(-32768,TRUE)      -- 0x8000.0000 <br>
+?TOSTR(32767.99999,TRUE) -- 0X7FFF.FFFF<br>
+
+</p><p>Die Division durch Null ergibt 0x7fff.ffff, wenn sie positiv ist, oder -0x7fff.ffff, wenn sie negativ ist. 
+ </p><a href="#Conditionals"><h3 id="Conditionals">▨ Bedingte Anweisungen</h3>
+</a><p class="codebox">
+
+IF NOT B THEN<br>
+  PRINT("B IST FALSCH")<br>
+ELSE<br>
+  PRINT("B IST NICHT FALSCH")<br>
+END<br>
+
+</p><p>-- mit ELSEIF</p><p class="codebox">
+
+
+IF X == 0 THEN<br>
+  PRINT("X IST 0")<br>
+ELSEIF X &lt; 0 THEN<br>
+  PRINT("X IST NEGATIV")<br>
+ELSE<br>
+  PRINT("X IST POSITIV")<br>
+END<br></p><p class="codebox">
+
+
+
+IF (4 == 4) THEN PRINT("GLEICH") END<br>
+IF (4 ~= 3) THEN PRINT("NICHT GLEICH") END<br>
+IF (4 &lt;= 4) THEN PRINT("KLEINER ODER GLEICH") END<br>
+IF (4 &gt; 3) THEN PRINT("GRÖSSER ALS") END<br>
+
+</p><a href="#Loops"><h3 id="Loops">▨ Schleifen</h3>
+</a><p>Schleifenbereiche sind inklusiv:</p><p class="codebox">
+
+
+FOR X=1,5 DO<br>
+  PRINT(X)<br>
+END<br>
+-- GIBT 1,2,3,4,5</p><p class="codebox">AUS</p><p class="codebox"><br></p><p class="codebox">
+
+
+
+X = 1<br>
+WHILE(X &lt;= 5) DO<br>
+  PRINT(X)<br>
+  X = X + 1<br>
+END<br></p><p class="codebox">
+
+
+
+FOR X=1,10,3 DO PRINT(X) END   -- 1,4,7,10<br></p><p class="codebox">
+
+
+
+FOR X=5,1,-2 DO PRINT(X) END  -- 5,3,1<br>
+
+</p><a href="#Functions_and_Local_Variables"><h3 id="Functions_and_Local_Variables">▨ Funktionen und lokale Variablen</h3>
+</a><p>Variablen, die als LOCAL deklariert sind, gelten nur für den sie enthaltenden Codeblock 
+(zum Beispiel innerhalb einer FUNCTION, einer FOR-Schleife oder einer IF THEN END-Anweisung 
+).</p><p class="codebox">
+
+
+Y=0 <br>
+FUNCTION PLUSONE(X)<br>
+  LOCAL Y = X+1<br>
+  RETURN Y<br>
+END<br>
+PRINT(PLUSONE(2)) -- 3<br>
+PRINT(Y)          -- 0<br>
+
+</p><a href="#Tables"><h3 id="Tables">▨ Tabellen</h3>
+</a><p>In Lua sind Tabellen eine Sammlung von Schlüssel-Wert-Paaren, bei denen die Typen von Schlüssel 
+und Wert gemischt sein können. Sie können als Arrays verwendet werden, indem 
+man sie mit Ganzzahlen indiziert.</p><p class="codebox">
+
+
+A={} -- EINE LEERE TABELLE ERSTELLEN<br>
+A[1] = "BLAH"<br>
+A[2] = 42<br>
+A["FOO"] = {1,2,3}<br>
+
+</p><p>Arrays verwenden standardmäßig eine 1-basierte Indizierung:</p><p class="codebox">
+
+
+&gt; A = {11,12,13,14}<br>
+&gt; PRINT(A[2]) -- 12<br>
+
+</p><p>Wenn Sie jedoch 0-basierte Arrays bevorzugen, schreiben Sie einfach etwas in den nullten Slot:</p><p class="codebox">
+
+
+&gt; A = {[0]=10,11,12,13,14}<br>
+
+</p><p>Tabellen mit 1-basierten ganzzahligen Indizes sind jedoch ein Sonderfall. Die Länge
+eines solchen Arrays lässt sich mit dem Operator # ermitteln, und PICO-8 verwendet solche 
+Arrays zur Implementierung der Funktionen ADD, DEL, DELI, ALL und FOREACH.</p><p class="codebox">
+
+
+&gt; PRINT(#A)   -- 4<br>
+&gt; ADD(A, 15)<br>
+&gt; PRINT(#A)   -- 5<br>
+
+</p><p>Indizes, die Zeichenketten sind, können mit der Punktnotation geschrieben werden</p><p class="codebox">
+
+
+PLAYER = {}<br>
+PLAYER.X = 2 -- entspricht PLAYER["X"]<br>
+PLAYER.Y = 3<br>
+
+</p><p>Weitere Details findest du im Abschnitt <a href="#Table_Functions"><b>„Tabellenfunktionen</b></a> “.</p>
+<a href="#PICO_8_Shorthand"><h3 id="PICO_8_Shorthand">▨ PICO-8-Kurzschreibweise</h3>
+</a><p>PICO-8 erlaubt auch mehrere nicht standardmäßige, kürzere Schreibweisen für gängige Muster.</p>
+<p>1. IF THEN END-Anweisungen sowie WHILE THEN END können in einer einzigen Zeile wie folgt geschrieben werden:</p><p class="codebox">
+
+
+IF (NOT B) I=1 J=2<br>
+
+</p><p>Entspricht:</p><p class="codebox">
+
+
+IF NOT B THEN I=1 J=2 END<br>
+
+</p><p>Beachte, dass Klammern um die Kurzform der Bedingung erforderlich sind.</p>
+<p>2. Zuweisungsoperatoren</p>
+<p>Kurzform-Zuweisungsoperatoren können ebenfalls verwendet werden, wenn die gesamte 
+Anweisung in einer Zeile steht. Sie können gebildet werden, indem ein '=' an 
+einen beliebigen binären Operator angehängt wird, einschließlich arithmetischer (+=, -= ..), bitweiser (&amp;=, 
+|= ..) oder des Zeichenfolgenverkettungsoperators (..=)</p><p class="codebox">
+
+
+A += 2   -- ENTSPRICHT: A = A + 2<br>
+
+</p><p>3. !=-Operator</p>
+<p>Keine Kurzform, aber PICO-8 akzeptiert auch != anstelle von ~= für „ungleich“</p><p class="codebox">
+
+
+PRINT(1 != 2) -- TRUE<br>
+PRINT("FOO" == "FOO") -- TRUE (STRINGS WERDEN INTERN GESPEICHERT)<br>
+
+</p><a href="#PICO_8_Program_Structure"><h1 id="PICO_8_Program_Structure"><span style="font-size:48pt">❺</span> PICO-8-Programmstruktur</h1></a>
+<p>Wenn ein PICO-8-Programm läuft, wird der gesamte Code aus den Registerkarten 
+(von links nach rechts) verkettet und ausgeführt. Es ist möglich, 
+eine eigene Hauptschleife manuell anzugeben, aber typischerweise verwenden PICO-8-Programme drei
+ spezielle Funktionen, die, sofern sie vom Autor definiert wurden, während der 
+Programmausführung aufgerufen werden:</p>
+<br><a href="#_UPDATE"><h5 id="_UPDATE"> _UPDATE() – Wird einmal pro Aktualisierung bei 30 fps aufgerufen.</h5></a>
+<br><a href="#_DRAW"><h5 id="_DRAW"> _DRAW()   -- Wird einmal pro sichtbarem Frame aufgerufen</h5></a>
+<br><a href="#_INIT"><h5 id="_INIT"> _INIT()   -- Wird einmal beim Programmstart aufgerufen.</h5></a>
+<p>Ein einfaches Programm, das alle drei verwendet, könnte so aussehen:</p><p class="codebox">
+
+
+FUNCTION _INIT()<br>
+  -- IMMER AUF WEISS STARTEN<br>
+  COL = 7<br>
+END<br>
+ <br>
+FUNCTION _UPDATE()<br>
+  -- DRÜCKE X FÜR EINE ZUFÄLLIGE FARBE <br>
+  IF (BTNP(5)) COL = 8 + RND(8) <br>
+END<br>
+ <br>
+FUNKTION _DRAW()<br>
+  CLS(1)<br>
+  CIRCFILL(64,64,32,COL)<br>
+END<br>
+
+</p><p>_DRAW() wird normalerweise mit 30 fps aufgerufen, aber wenn es nicht rechtzeitig fertig wird, 
+versucht PICO-8, mit 15 fps zu laufen und ruft _UPDATE() zweimal pro 
+sichtbarem Frame auf, um dies auszugleichen.</p>
+<a href="#Running_PICO_8_at_60fps"><h3 id="Running_PICO_8_at_60fps">▨ PICO-8 mit 60 fps ausführen</h3>
+</a><br><a href="#_UPDATE60"><h5 id="_UPDATE60"> _UPDATE60() </h5></a>
+<p>Wenn _UPDATE60() anstelle von _UPDATE() definiert ist, läuft PICO-8 im 60-fps-Modus:</p>
+<p>- Sowohl _UPDATE60() als auch _DRAW() werden mit 60 fps aufgerufen<br> - Pro Frame steht die Hälfte der PICO-8-CPU zur Verfügung, bevor die Bildrate auf 30 fps sinkt</p>
+<p>Beachte, dass nicht alle Host-Rechner in der Lage sind, mit 60 fps zu laufen. 
+Ältere Rechner und/oder Webversionen können PICO-8 auch dazu veranlassen, 
+mit 30 fps (oder 15 fps) zu laufen, selbst wenn die PICO-8-CPU nicht ausgelastet ist. In
+diesem Fall werden für jeden _DRAW-Aufruf mehrere _UPDATE60-Aufrufe auf 
+die gleiche Weise ausgeführt.</p>
+<a href="#_INCLUDE"><h3 id="_INCLUDE">▨ #INCLUDE</h3>
+</a><p>Quellcode kann beim Starten der Cartridge (jedoch
+ nicht während der Laufzeit) mithilfe von „#INCLUDE FILENAME“ in ein Programm eingefügt werden, wobei FILENAME 
+entweder eine Klartextdatei (mit Lua-Code), eine Registerkarte aus einer anderen 
+Cartridge oder alle Registerkarten aus einer anderen Cartridge ist:</p><p class="codebox">
+
+
+#INCLUDE SOMECODE.LUA<br>
+#INCLUDE ONETAB.P8:1<br>
+#INCLUDE ALLTABS.P8<br>
+
+</p><p>Wenn die Cartridge ausgeführt wird, wird der Inhalt jeder eingebundenen Datei so 
+behandelt, als wäre er anstelle dieser Zeile in den Editor eingefügt worden.</p>
+<p>- Dateinamen sind relativ zur aktuellen Cartridge (d. h., sie müssen zuerst gespeichert werden)<br> - Einbindungen werden nicht rekursiv durchgeführt.<br> - Es gelten die üblichen Zeichen- und Token-Beschränkungen.</p>
+<p>Wenn eine Cartridge als .P8.PNG gespeichert oder in eine Binärdatei exportiert wird, werden alle 
+eingebundenen Dateien  abgeflacht und mit der Cartridge gespeichert, sodass keine
+ externen Abhängigkeiten bestehen.</p>
+<p>#INCLUDE kann beispielsweise für folgende Zwecke verwendet werden:</p>
+<p>- Gemeinsame Nutzung von Code zwischen Cartridges (Bibliotheken oder allgemeiner Multi-Cart-Code)<br> - Verwendung eines externen Code-Editors, ohne die .p8-Datei direkt bearbeiten zu müssen.<br> - Behandlung einer Cartridge als Datendatei, die von einem PICO-8-Bearbeitungstool geladen wird, um sie zu ändern.<br> - Laden und Speichern von Daten, die von einem externen (nicht-PICO-8-)Tool generiert wurden.</p>
+<a href="#Quirks_of_PICO_8"><h3 id="Quirks_of_PICO_8">▨ Eigenheiten von PICO-8</h3>
+</a><p>Häufige Fallstricke, auf die man achten sollte:</p>
+<p>- Die untere Hälfte des Sprite-Sheets und die untere Hälfte der Karte 
+belegen denselben Speicher. // Verwende am besten nur das eine oder das andere, wenn du 
+dir nicht sicher bist, wie das funktioniert.</p>
+<p>- PICO-8-Zahlen haben eine begrenzte Genauigkeit und einen begrenzten Bereich; der kleinste Schritt 
+zwischen den Zahlen beträgt etwa 0,00002 (0x0,0001), mit einem Bereich von 
+-32768 (-0x8000) bis etwa 32767,99999 (0x7fff.ffff)<br> // Wenn Sie in jedem Frame 1 zu einem Zähler addieren, kommt es nach etwa 18 Minuten zu einem Überlauf!</p>
+<p>- Lua-Arrays sind standardmäßig 1-basiert, nicht 0-basiert. FOREACH beginnt bei TBL[1], nicht bei TBL[0].</p>
+<p>- <a href="#COS"><b>COS</b></a>() und <a href="#SIN"><b>SIN</b></a>() nehmen Werte von 0 bis 1 anstelle von 0 bis PI*2 an, und <a href="#SIN"><b>SIN</b></a>() ist invertiert.</p>
+<p>- <a href="#SGN"><b>SGN</b></a>(0) gibt 1 zurück.</p>
+<a href="#CPU"><h3 id="CPU">▨ CPU</h3>
+</a><p>Obwohl PICO-8 keine klar definierte CPU hat, gibt es eine 
+virtuelle CPU-Geschwindigkeit von 8 MHz, wobei jeder Lua-VM-Befehl etwa 2 
+Zyklen kostet. Auch integrierte Operationen wie das Zeichnen von Sprites verursachen CPU-Kosten. 
+Das bedeutet, dass eine PICO-8-Cartridge, die auf einem Host-Rechner mit einer 
+leistungsstarken CPU erstellt wurde, auch auf wesentlich 
+langsameren Rechnern garantiert (ziemlich) gut läuft und auf Smartphones bzw. bei der 
+Ausführung im Web nicht zu viel Akku verbraucht.</p>
+<p>Um die CPU-Auslastung während der Ausführung einer Cartridge anzuzeigen, drücke STRG-P, um eine CPU-Anzeige ein- oder auszublenden, oder gib am Ende jedes Frames <a href="#STAT"><b>STAT</b></a>(1) aus.</p>
+<a href="#API_Reference"><h1 id="API_Reference"><span style="font-size:48pt">❻</span> API-Referenz</h1></a>
+<p>PICO-8 basiert auf der Programmiersprache Lua, enthält jedoch nicht
+ die Lua-Standardbibliothek. Stattdessen wird eine kleine API angeboten, die
+dem minimalistischen Design und dem begrenzten Platz auf dem Bildschirm von PICO-8 entspricht. Ein Beispielprogramm,
+das die meisten API-Funktionen nutzt, finden Sie unter /DEMOS/API.P8 
+ </p><p>Funktionen werden hier wie folgt geschrieben:</p>
+<p>FUNCTION_NAME(PARAMETER, [OPTIONAL_PARAMETER])</p>
+<div style="display:inline-block; float:left; position:relative; left:-10px; top:5px; font-size:16pt; background-color:#fff">ⓘ</div><p style="width:90%; padding:16px; border-width:2px; border-radius:15px; border-style:dashed; border-color:#aaa; background-color:#fff; ">
+
+Beachten Sie, dass PICO-8 keine Groß- oder Kleinbuchstaben kennt – wenn Sie 
+eine .p8- oder .lua-Datei direkt bearbeiten, sollten alle Funktionsnamen in
+ Kleinbuchstaben geschrieben sein.</p>
+<a href="#System"><h2 id="System">6.1 System</h2></a>
+<p>Systemfunktionen, die über die Befehlszeile aufgerufen werden, können auf die üblichen Klammern 
+und Anführungszeichen verzichten. Anstelle von LOAD("BLAH.P8") ist es beispielsweise 
+möglich, Folgendes zu schreiben:</p><p class="codebox">
+
+
+&gt;LOAD BLAH.P8 <br>
+
+</p><br><a href="#LOAD"><h5 id="LOAD"> LOAD(FILENAME, [BREADCRUMB], [PARAM_STR])</h5></a>
+<a href="#SAVE"><h5 id="SAVE"> SAVE(FILENAME)</h5></a>
+<p>Laden oder Speichern einer Cartridge</p>
+<p>Beim Laden aus einer laufenden Cartridge wird die geladene Cartridge 
+sofort mit der Parameterzeichenfolge PARAM_STR (abrufbar mit 
+STAT(6)) ausgeführt, und es wird ein Menüpunkt mit dem Namen BREADCRUMB eingefügt, der
+ den Benutzer zur vorherigen Cartridge zurückführt.</p>
+<p>Dateinamen, die mit „#“ beginnen, werden als BBS-Cart-ID interpretiert, die sofort heruntergeladen und ausgeführt wird:</p><p class="codebox">
+
+
+&gt; LOAD("#MYGAME_LEVEL2", "BACK TO MAP", "LIVES="..LIVES)<br>
+
+</p><p>Wenn die ID der übergeordnete Beitrag des Cartridges ist oder keine Revisionsnummer 
+angegeben wurde, wird die neueste Version abgerufen. BBS-Cartridges können 
+aus anderen BBS-Cartridges oder lokalen Cartridges geladen werden, jedoch nicht aus  exportierten Cartridges. 
+ </p><br><a href="#FOLDER"><h5 id="FOLDER"> ORDNER</h5></a>
+<p>Öffnen Sie den Cart-Ordner im Host-Betriebssystem.</p>
+<br><a href="#LS"><h5 id="LS"> LS([VERZEICHNIS])</h5></a>
+<p>Listet .p8- und .p8.png-Dateien im angegebenen Verzeichnis (Ordner) auf, relativ zum 
+aktuellen Verzeichnis. Elemente, die Verzeichnisse sind, enden mit einem Schrägstrich (z. B. 
+"foo/"). 
+ </p><p>Wenn LS von einer laufenden Cartridge aufgerufen wird, kann es nur lokal verwendet werden und
+ gibt eine Tabelle mit den Ergebnissen zurück. Wenn LS von einer BBS-Cartridge aufgerufen wird, gibt es
+ nil zurück.</p>
+<p>Verzeichnisse können nur innerhalb des virtuellen Laufwerks von PICO-8 aufgelöst werden; 
+LS("..") aus dem Stammverzeichnis wird zum Stammverzeichnis aufgelöst.</p>
+<br><a href="#RUN"><h5 id="RUN"> RUN([PARAM_STR])</h5></a>
+<p>Führt das Programm vom Anfang an aus.</p>
+<p>RUN() kann aus einem laufenden Programm heraus aufgerufen werden, um es zurückzusetzen.</p>
+<p>Wenn PARAM_STR angegeben wird, kann während der Laufzeit mit STAT(6) darauf zugegriffen werden</p>
+<br><a href="#STOP"><h5 id="STOP"> STOP([MESSAGE])</h5></a>
+<p>Das Cartridge anhalten und optional eine Meldung ausgeben.</p>
+<br><a href="#RESUME"><h5 id="RESUME"> RESUME</h5></a>
+<p>Das Programm fortsetzen. Verwende R als Abkürzung.</p>
+<p>Verwende ein einzelnes „.“ in der Befehlszeile, um einen einzelnen Frame vorwärts zu springen. Dies
+aktiviert den Frame-für-Frame-Modus, der mit stat(110) ausgelesen werden kann. Solange 
+der Frame-für-Frame-Modus aktiv ist, springt die Eingabe eines leeren Befehls (durch Drücken der 
+Eingabetaste) einen Frame vorwärts.</p>
+<br><a href="#ASSERT"><h5 id="ASSERT"> ASSERT(CONDITION, [MESSAGE])</h5></a>
+<p>Wenn CONDITION falsch ist, wird das Programm angehalten und MESSAGE ausgegeben, sofern angegeben
+. Dies kann beim Debuggen von Cartridges nützlich sein, indem mit ASSERT() überprüft wird, ob
+die erwarteten Bedingungen tatsächlich erfüllt sind.</p><p class="codebox">
+
+
+ASSERT(ADDR &gt;= 0 AND ADDR &lt;= 0x7FFF, "OUT OF RANGE")<br>
+POKE(ADDR, 42) -- DIE SPEICHERADRESSE IST SICHER OK!<br>
+
+</p><br><a href="#REBOOT"><h5 id="REBOOT"> REBOOT</h5></a>
+<p>Starten Sie den Rechner neu Nützlich für den Start eines neuen Projekts</p>
+<br><a href="#RESET"><h5 id="RESET"> RESET()</h5></a>
+<p>Setzt die Werte im RAM von 0x5f00..0x5f7f auf ihre Standardwerte zurück. 
+Dies umfasst die Palette, die Kameraposition, das Clipping und das Füllmuster. 
+Wenn Sie an der Eingabeaufforderung nicht weiterkommen, weil der Zeichnungsstatus das 
+Anzeigen von Text  unmöglich macht, geben Sie RESET ein! Der Befehl kann auch aus einem
+laufenden Programm aufgerufen werden.</p>
+<br><a href="#INFO"><h5 id="INFO"> INFO()</h5></a>
+<p>Gibt einige Informationen über die Kassette aus: Codegröße, Tokens, komprimierte Größe</p>
+<p>Ebenfalls angezeigt:</p>
+<p>UNSAVED CHANGES   Wenn die Kassette im Speicher von der auf der Diskette abweicht<br>
+EXTERNAL CHANGES  Wenn sich die Kassette auf der Diskette seit dem Laden geändert hat<br>
+  (z. B. durch Bearbeiten des Programms mit einem separaten Texteditor)<br>
+
+</p><br><a href="#FLIP"><h5 id="FLIP"> FLIP()</h5></a>
+<p>Den Backbuffer auf den Bildschirm umkehren und auf den nächsten Frame warten. Dieser Aufruf ist nicht erforderlich, wenn ein <a href="#_DRAW"><b>_DRAW</b></a>()- oder <a href="#_UPDATE"><b>_UPDATE</b></a>()-
+Callback definiert ist, da die Umkehrung automatisch erfolgt. Bei 
+Verwendung einer benutzerdefinierten Hauptschleife ist jedoch normalerweise ein Aufruf von FLIP erforderlich:</p><p class="codebox">
+
+
+::_::<br>
+CLS()<br>
+FOR I=1,100 DO<br>
+  A=I/50 - T()<br>
+  X=64+COS(A)*I<br>
+  Y=64+SIN(A)*I<br>
+  CIRCFILL(X,Y,1,8+(I/4)%8)<br>
+END<br>
+FLIP()GOTO _<br>
+
+</p><p>Wenn Ihr Programm FLIP nicht aufruft, bevor ein Frame fertig ist, und kein <a href="#_DRAW"><b>_DRAW</b></a>()-Callback läuft, wird der aktuelle Inhalt des Backbuffers auf den Bildschirm kopiert.</p>
+<br><a href="#PRINTH"><h5 id="PRINTH"> PRINTH(STR, [FILENAME], [OVERWRITE], [SAVE_TO_DESKTOP])</h5></a>
+<p>Gibt eine Zeichenkette zur Fehlersuche auf der Konsole des Host-Betriebssystems aus.</p>
+<p>Wenn filename gesetzt ist, wird die Zeichenkette an eine Datei auf dem Host-Betriebssystem angehängt
+ (standardmäßig im aktuellen Verzeichnis – verwenden Sie FOLDER, um dies anzuzeigen).</p>
+<p>Wenn OVERWRITE auf true gesetzt ist, wird die Datei überschrieben statt angehängt.</p>
+<p>Wenn SAVE_TO_DESKTOP auf „true“ gesetzt ist, wird die Datei auf dem Desktop statt im aktuellen Pfad gespeichert.</p>
+<p>Verwenden Sie den Dateinamen „@clip“, um in die Zwischenablage des Hosts zu schreiben.
+</p><div style="display:inline-block; float:left; position:relative; left:-10px; top:5px; font-size:16pt; background-color:#fff">ⓘ</div><p style="width:90%; padding:16px; border-width:2px; border-radius:15px; border-style:dashed; border-color:#aaa; background-color:#fff; ">
+
+Verwenden Sie stat(4), um die Zwischenablage auszulesen, aber der Inhalt der Zwischenablage ist
+ erst nach Drücken von STRG-V während der Laufzeit verfügbar (aus Sicherheitsgründen).</p>
+<br><a href="#TIME"><h5 id="TIME"> TIME()</h5></a>
+<a href="#T"><h5 id="T"> T()</h5></a>
+<p>Gibt die Anzahl der Sekunden zurück, die seit dem Start der Cartridge vergangen sind.</p>
+<p>Dies ist nicht die reale Zeit, sondern wird berechnet, indem gezählt wird, wie oft</p>
+<br><a href="#_UPDATE"><h5 id="_UPDATE"> _UPDATE oder @_UPDATE60 aufgerufen wurde. Mehrere Aufrufe von TIME() aus demselben Frame liefern</h5></a>
+<p>das gleiche Ergebnis.</p>
+<br><a href="#STAT"><h5 id="STAT"> STAT(X)</h5></a>
+<p>Systemstatus abrufen, wobei X für Folgendes steht:</p><p class="codebox">
+
+
+0  Speicherauslastung (0..2048)<br>
+1  CPU-Auslastung seit dem letzten Bildwechsel (1,0 == 100 % CPU)<br>
+4  Inhalt der Zwischenablage (nachdem der Benutzer STRG-V gedrückt hat)<br>
+6  Parameterzeichenfolge<br>
+7  Aktuelle Bildrate<br>
+ <br> 
+46..49  Index des aktuell abgespielten SFX auf den Kanälen 0..3<br>
+50..53  Notennummer (0..31) auf Kanal 0..3<br>
+54      Index des aktuell abgespielten Patterns<br>
+55      Gesamtzahl der abgespielten Patterns<br>
+56      Anzahl der Ticks im aktuellen Pattern<br>
+57      (Boolescher Wert) TRUE, wenn Musik abgespielt wird<br>
+ <br>
+80..85  UTC-Zeit: Jahr, Monat, Tag, Stunde, Minute, Sekunde<br>
+90..95  Ortszeit<br>
+ <br> 
+100     Aktuelle Breadcrumb-Bezeichnung oder nil<br>
+110     Gibt „true“ zurück, wenn sich das System im Einzelbildmodus befindet<br>
+
+</p><div style="display:inline-block; float:left; position:relative; left:-10px; top:5px; font-size:16pt; background-color:#fff">ⓘ</div><p style="width:90%; padding:16px; border-width:2px; border-radius:15px; border-style:dashed; border-color:#aaa; background-color:#fff; ">
+
+Die Audiowerte 16..26 sind die veraltete Version der Audio-Statusabfragen 
+46..56. Sie geben nur den aktuellen Zustand des Audiomixers wieder, der sich 
+nur etwa 20 Mal pro Sekunde ändert (abhängig vom Host-Soundtreiber und 
+anderen Faktoren). 46..56 speichert stattdessen bei jedem 
+Tick einen Verlauf des Mixerzustands, um eine Schätzung des aktuell hörbaren 
+Zustands mit höherer Auflösung zu liefern.</p>
+<br><a href="#EXTCMD"><h5 id="EXTCMD"> EXTCMD(CMD_STR, [P1, P2])</h5></a>
+<p>Spezieller Systembefehl, wobei CMD_STR eine Zeichenkette ist:</p>
+<p>"pause"         fordert das Öffnen des Pausenmenüs an<br>
+"reset"         fordert einen Cart-Reset an<br>
+"go_back"       kehrt zum vorherigen Cart zurück, falls vorhanden<br>
+"label"         setzt die Cart-Bezeichnung auf den Bildschirminhalt<br>
+"screen"        speichert einen Screenshot<br>
+"rec"           setzt den Startpunkt des Videos<br>
+"rec_frames"    Videostartpunkt im Frames-Modus festlegen<br>
+"video"         eine .gif-Datei auf dem Desktop speichern<br>
+"audio_rec"     Audioaufnahme starten<br>
+"audio_end"     aufgezeichnetes Audio auf dem Desktop speichern (wird im Web nicht unterstützt)<br>
+"shutdown"      Cartridge beenden (aus exportierter Binärdatei)<br>
+"folder"        aktuellen Arbeitsordner auf dem Host-Betriebssystem öffnen<br>
+"set_filename"  Dateinamen für Screenshots / GIFs / Audioaufnahmen festlegen<br>
+"set_title"     Titel des Host-Fensters festlegen<br>
+
+</p><p>Einige Befehle verfügen über optionale Zahlenparameter:</p>
+<p>„video“ und „screen“: P1: ein ganzzahliger Skalierungsfaktor, der 
+die Systemeinstellung überschreibt. P2: wenn &gt; 0, im aktuellen Ordner statt 
+auf dem Desktop speichern</p>
+<p>„audio_end“ P1: wenn &gt; 0, im aktuellen Ordner statt auf dem Desktop speichern</p>
+<a href="#Recording_GIFs"><h4 id="Recording_GIFs">■ GIFs aufnehmen</h4>
+</a><p>EXTCMD("REC"), EXTCMD("VIDEO") entspricht der Verwendung von Strg-8, 
+Strg-9 und speichert ein GIF unter Verwendung der aktuellen GIF_SCALE-Einstellung 
+auf dem Desktop (zur Änderung CONFIG GIF_SCALE verwenden).</p>
+<p>Die beiden zusätzlichen Parameter können verwendet werden, um diese Standardeinstellungen zu überschreiben:</p><p class="codebox">
+
+
+EXTCMD("VIDEO", 4)    -- SKALIERUNG *4 (512 x 512)<br>
+EXTCMD("VIDEO", 0, 1) -- STANDARD-SKALIERUNG, IM BENUTZERDATENORDNER SPEICHERN<br>
+
+</p><p>Der Benutzerdatenordner kann mit EXTCMD("FOLDER") geöffnet werden und ist standardmäßig
+ auf denselben Pfad wie die Cartridge eingestellt, oder auf {pico-8 appdata}/appdata/appname 
+für exportierte Binärdateien.</p>
+<p>Aufgrund der Eigenschaften des GIF-Formats werden alle GIFs mit 
+33,3 fps aufgezeichnet, und von PICO-8 erzeugte Frames werden im 
+GIF übersprungen oder dupliziert, um in etwa dem zu entsprechen, was der Benutzer sieht. Um genau einen 
+Frame bei jedem Aufruf <a href="#FLIP"><b>von FLIP</b></a>() aufzuzeichnen, unabhängig von der Laufzeit-Framrate oder der Dauer der Frame-Erzeugung, verwende:</p><p class="codebox">
+
+
+EXTCMD("REC_FRAMES")<br>
+</p><p>Der Standarddateiname für GIFs (sowie Screenshots und Audiodateien) lautet foo_%d, 
+wobei foo der Name der Cartridge ist und %d eine Zahl, die bei 0 beginnt
+ und automatisch erhöht wird, bis keine Datei mit diesem Namen mehr existiert.
+ Verwenden Sie EXTCMD("SET_FILENAME","FOO"), um diesen Standard zu überschreiben. Wenn der 
+benutzerdefinierte Dateiname „%d“ enthält, wird die automatische Nummerierung 
+verwendet; andernfalls werden Dateien auch dann geschrieben, wenn  bereits eine 
+Datei mit demselben Namen existiert.</p>
+<a href="#Graphics"><h2 id="Graphics">6.2 Grafiken</h2></a>
+<p>PICO-8 verfügt über eine feste Kapazität von 128 8x8-Sprites sowie weitere 128, die
+sich mit der unteren Hälfte der Kartendaten überschneiden („gemeinsame Daten“). Diese 256
+Sprites werden zusammen als Sprite-Sheet bezeichnet und können sich
+wie ein 128x128-Pixel-Bild vorstellen.</p>
+<p>Alle Zeichenoperationen von PICO-8 unterliegen dem aktuellen Zeichenzustand 
+. Der Zeichenzustand umfasst eine Kameraposition (zum Hinzufügen eines Offsets 
+zu allen Koordinaten), Palettenzuordnung  (zum Umfärben von Sprites), 
+ein Beschneidungsrechteck, eine Zeichenfarbe und ein Füllmuster.</p>
+<p>Der Zeichenzustand wird bei jedem Programmstart oder durch Aufruf <a href="#RESET"><b>von RESET</b></a>() zurückgesetzt.</p>
+<p>Farbindizes:<br>
+ <br>
+   0  schwarz   1  dunkelblau   2  dunkelviolett   3  dunkelgrün  <br> 
+   4  braun   5  dunkelgrau   6  hellgrau    7  weiß<br>
+   8  rot     9  orange     10 
+ gelb       11  grün       <br>
+  12  blau   13  indigo     14  rosa         15  pfirsichfarben<br>
+
+</p><br><a href="#CLIP"><h5 id="CLIP"> CLIP(X, Y, W, H, [CLIP_PREVIOUS])</h5></a>
+<p>Legt das Ausschnittrechteck in Pixeln fest. Alle Zeichenoperationen werden
+ auf das Rechteck bei x, y mit einer Breite und Höhe von w, h beschnitten.</p>
+<p>CLIP(), um zurückzusetzen.</p>
+<p>Wenn CLIP_PREVIOUS wahr ist, wird der neue Ausschnittbereich mit dem alten beschnitten.</p>
+<br><a href="#PSET"><h5 id="PSET"> PSET(X, Y, [COL])</h5></a>
+<p>Setzt den Pixel bei x, y auf den Farbindex COL (0..15).</p>
+<p>Wenn COL nicht angegeben ist, wird die aktuelle Zeichenfarbe verwendet.</p><p class="codebox">
+
+
+FOR Y=0,127 DO<br>  FOR X=0,127 DO<br>    PSET(X, Y, X*Y/8)<br>  END<br>END<br>
+
+</p><br><a href="#PGET"><h5 id="PGET"> PGET(X, Y)</h5></a>
+<p>Gibt die Farbe eines Pixels auf dem Bildschirm an der Position (X, Y) zurück.</p><p class="codebox">
+
+
+WHILE (TRUE) DO<br>
+  X, Y = RND(128), RND(128)<br>
+  DX, DY = RND(4)-2, RND(4)-2<br>
+  PSET(X, Y, PGET(DX+X, DY+Y))<br>
+END<br>
+</p><p>Wenn X und Y außerhalb des zulässigen Bereichs liegen, gibt PGET 0 zurück. Ein benutzerdefinierter Rückgabewert kann wie folgt festgelegt werden:</p><p class="codebox">
+
+
+POKE(0x5f36, 0x10)<br>POKE(0x5f5B, NEWVAL)<br>
+
+</p><br><a href="#SGET"><h5 id="SGET"> SGET(X, Y)</h5></a>
+<a href="#SSET"><h5 id="SSET"> SSET(X, Y, [COL])</h5></a>
+<p>Ruft die Farbe (COL) eines Sprite-Sheet-Pixels ab oder setzt sie.</p>
+<p>Wenn X und Y außerhalb des zulässigen Bereichs liegen, gibt SGET 0 zurück. Ein benutzerdefinierter Wert kann wie folgt festgelegt werden:</p><p class="codebox">
+
+
+POKE(0x5f36, 0x10)<br>
+POKE(0x5f59, NEWVAL)<br>
+
+</p><br><a href="#FGET"><h5 id="FGET"> FGET(N, [F])</h5></a>
+<a href="#FSET"><h5 id="FSET"> FSET(N, [F], VAL)</h5></a>
+<p>Ruft den Wert (VAL) des Flags F von Sprite N ab oder setzt ihn.</p>
+<p>F ist der Flag-Index 0..7.</p>
+<p>VAL ist TRUE oder FALSE.</p>
+<p>Der Anfangszustand der Flags 0..7 kann im Sprite-Editor festgelegt werden, sodass
+damit benutzerdefinierte Sprite-Attribute erstellt werden können. Es ist auch möglich, 
+nur eine Teilmenge der Map-Kacheln zu zeichnen, indem in <a href="#MAP"><b>MAP</b></a>() eine Maske angegeben wird.</p>
+<p>Wenn F weggelassen wird, werden alle Flags als ein einziges Bitfeld abgerufen/gesetzt.</p><p class="codebox">
+
+
+FSET(2, 1 | 2 | 8)   -- SETZT DIE BITS 0, 1 UND 3<br>FSET(2, 4, TRUE)     -- SETZT BIT 4<br>PRINT(FGET(2))       -- 27 (1 | 2 | 8 | 16)<br>
+
+</p><br><a href="#PRINT"><h5 id="PRINT"> PRINT(STR, X, Y, [COL])</h5></a>
+<a href="#PRINT"><h5 id="PRINT"> PRINT(STR, [COL])</h5></a>
+<p>Gibt die Zeichenkette STR aus und setzt optional die Zeichenfarbe auf COL.</p>
+<p>Abkürzung: In einer einzigen Zeile geschrieben, kann ? verwendet werden, um print ohne Klammern aufzurufen: </p><p class="codebox">
+
+
+?"HI"<br>
+
+</p><p>Wenn X und Y nicht angegeben sind, wird automatisch ein Zeilenumbruch angehängt. 
+Dies kann vermieden werden, indem die Zeichenkette mit einem expliziten Beendigungs- 
+Steuerzeichen abgeschlossen wird:</p><p class="codebox">
+
+
+?"THE QUICK BROWN FOX\0"<br>
+
+</p><p>Wenn X und Y nicht angegeben sind, führt das Drucken von Text unterhalb von 122 
+dazu, dass  die Konsole scrollt. Dies kann zur Laufzeit mit 
+POKE(0x5f36,0x40) deaktiviert werden.</p>
+<p>PRINT gibt die Position x ganz rechts zurück, die beim Drucken aufgetreten ist.
+Dies kann verwendet werden, um die Breite eines Textes herauszufinden, indem man ihn 
+außerhalb des Bildschirms druckt:</p><p class="codebox">
+
+
+W = PRINT("HOGE", 0, -20) -- gibt 16 zurück<br>
+
+</p><p>Informationen zu Steuercodes und benutzerdefinierten Schriftarten finden Sie in <a href="#Appendix_A"><b>Anhang A</b></a> (P8SCII).</p>
+<br><a href="#CURSOR"><h5 id="CURSOR"> CURSOR(X, Y, [COL])</h5></a>
+<p>Legt die Cursorposition fest.</p>
+<p>Wenn COL angegeben ist, wird zusätzlich die aktuelle Farbe festgelegt.</p>
+<br><a href="#COLOR"><h5 id="COLOR"> COLOR([COL])</h5></a>
+<p>Legt die aktuelle Farbe fest, die von Zeichenfunktionen verwendet wird.</p>
+<p>Wenn COL nicht angegeben ist, wird die aktuelle Farbe auf 6 gesetzt</p>
+<br><a href="#CLS"><h5 id="CLS"> CLS([COL])</h5></a>
+<p>Löscht den Bildschirm und setzt das Ausschnittrechteck zurück.</p>
+<p>COL ist standardmäßig 0 (schwarz)</p>
+<br><a href="#CAMERA"><h5 id="CAMERA"> CAMERA([X, Y])</h5></a>
+<p>Legt einen Bildschirmversatz von -x, -y für alle Zeichenoperationen fest</p>.
+<p>CAMERA() zum Zurücksetzen</p>
+<br><a href="#CIRC"><h5 id="CIRC"> CIRC(X, Y, R, [COL])</h5></a>
+<a href="#CIRCFILL"><h5 id="CIRCFILL"> CIRCFILL(X, Y, R, [COL])</h5></a>
+<p>Zeichnet einen Kreis oder einen gefüllten Kreis bei x, y mit dem Radius r</p>
+<p>Wenn r negativ ist, wird der Kreis nicht gezeichnet.</p>
+<p>Wenn in COL die Bits 0x1800.0000 gesetzt sind und <a href="#0x5F34"><b>0x5F34</b></a> &amp; 2 == 2, wird der Kreis invertiert gezeichnet.</p>
+<br><a href="#OVAL"><h5 id="OVAL"> OVAL(X0, Y0, X1, Y1, [COL])</h5></a>
+<a href="#OVALFILL"><h5 id="OVALFILL"> OVALFILL(X0, Y0, X1, Y1, [COL])</h5></a>
+<p>Zeichnet ein in x und y symmetrisches Oval (eine Ellipse) mit dem angegebenen Begrenzungsrechteck.</p>
+<br><a href="#LINE"><h5 id="LINE"> LINE(X0, Y0, [X1, Y1, [COL]])</h5></a>
+<p>Zeichne eine Linie von (X0, Y0) nach (X1, Y1)</p>
+<p>Wenn (X1, Y1) nicht angegeben sind, wird das Ende der zuletzt gezeichneten Linie verwendet.</p>
+<p>LINE() ohne Parameter bedeutet, dass der nächste Aufruf von LINE(X1, Y1) nur die Endpunkte festlegt, ohne zu zeichnen.</p><p class="codebox">
+
+
+CLS()<br>
+LINE()<br>
+FOR I=0,6 DO<br>
+  LINE(64+COS(I/6)*20, 64+SIN(I/6)*20, 8+I)<br>
+END	<br>
+
+</p><br><a href="#RECT"><h5 id="RECT"> RECT(X0, Y0, X1, Y1, [COL])</h5></a>
+<a href="#RECTFILL"><h5 id="RECTFILL"> RECTFILL(X0, Y0, X1, Y1, [COL])</h5></a>
+<p>Zeichne ein Rechteck oder ein gefülltes Rechteck mit den Eckpunkten (X0, Y0) und (X1, Y1).</p>
+<br><a href="#RRECT"><h5 id="RRECT"> RRECT(X, Y, W, H, R, [COL])</h5></a>
+<a href="#RRECTFILL"><h5 id="RRECTFILL"> RRECTFILL(X, Y, W, H, R, [COL])</h5></a>
+<p>Zeichnet ein abgerundetes Rechteck oder ein gefülltes Rechteck mit abgerundeten Ecken.</p>
+<p>Die Breite (W) und Höhe (H) sind in Pixeln angegeben und müssen beide größer als 0 sein, damit die Form gezeichnet wird.</p>
+<p>Der Radius (R) ist standardmäßig 0 und entspricht der Größe des Viertelkreises, der
+ an jeder Ecke gezeichnet werden soll. Der verwendete Radius wird so begrenzt, dass er im Bereich 0 ..
+ min(Breite, Höhe)/2 liegt.</p>
+<p>Zeichne ein rotes (Farbe 8) abgerundetes Rechteck mit einer Breite von 40 Pixeln und einer Höhe von 30 Pixeln, bei dem an jeder Ecke 3 Pixel fehlen (Radius 2):</p><p class="codebox">
+
+
+&gt; rrectfill(50,80,40,30,2,8)<br>
+
+</p><p>Wenn die Bits 0x1800.0000 in COL gesetzt sind und (PEEK(0x5F34) &amp; 2) == 2 ist, wird RRECTFILL invertiert gezeichnet.</p>
+<br><a href="#PAL"><h5 id="PAL"> PAL(C0, C1, [P])</h5></a>
+<p>PAL() tauscht die Farbe c0 gegen c1 für eine von drei Paletten-Neuzuordnungen (p ist standardmäßig 0):</p>
+<p>0: Zeichnen-Palette</p>
+<p>Die Zeichnen-Palette ordnet Farben neu zu, wenn sie gezeichnet werden. Beispielsweise kann ein
+ orangefarbenes Blumen-Sprite als rote Blume gezeichnet werden, indem der 9. 
+Palettenwert auf 8 gesetzt wird:</p><p class="codebox">
+
+
+PAL(9,8)     -- nachfolgende orangefarbene (Farbe 9) Pixel werden als rot (Farbe 8) gezeichnet<br>
+SPR(1,70,60) -- alle orangefarbenen Pixel im Sprite werden stattdessen rot gezeichnet<br>
+
+</p><p>Das Ändern der Zeichenpalette hat keine Auswirkungen auf bereits auf dem Bildschirm gezeichnete Elemente.</p>
+<p>1: Anzeigepalette</p>
+<p>Die Anzeigepalette ordnet den gesamten Bildschirm neu zu, wenn er am 
+Ende eines Frames angezeigt wird. Wenn du beispielsweise PICO-8 startest und dann 
+PAL(6,14,1) eingibst, siehst du, wie sich der gesamte graue (Farbe 6) Text sofort 
+in Rosa (Farbe 14) ändert, obwohl er bereits gezeichnet wurde. Dies 
+ist nützlich für bildschirmweite Effekte wie Ein- und Ausblenden.</p>
+<p>2: Sekundäre Palette</p>
+<p>Wird von <a href="#FILLP"><b>FILLP</b></a>() zum Zeichnen von Sprites verwendet. Dies bietet eine Zuordnung von einem einzelnen 4-Bit-Farbindex zu zwei 4-Bit-Farbindizes.</p>
+<p>PAL()  setzt alle Paletten auf die Systemstandardwerte zurück (einschließlich Transparenzwerte)<br>
+PAL(P) setzt eine bestimmte Palette (0..2) auf die Systemstandardwerte zurück<br>
+
+</p><br><a href="#PAL"><h5 id="PAL"> PAL(TBL, [P])</h5></a>
+<p>Wenn der erste Parameter von pal eine Tabelle ist, werden jedem Eintrag Farben zugewiesen. Um beispielsweise die Farben 12 und 14 auf Rot umzuordnen:</p><p class="codebox">
+
+
+PAL({[12]=9, [14]=8})<br>
+
+</p><p>Oder um den gesamten Bildschirm in Graustufen umzufärben (einschließlich aller bereits gezeichneten Elemente):</p><p class="codebox">
+
+
+PAL({1,1,5,5,5,6,7,13,6,7,7,6,13,6,7,1}, 1)<br>
+
+</p><p>Da Tabellenindizes bei 1 beginnen, wird in diesem Fall die Farbe 0 am Ende zugewiesen.</p>
+<br><a href="#PALT"><h5 id="PALT"> PALT(C, [T])</h5></a>
+<p>Transparenz für den Farbindex auf T (boolesch) setzen. Die Transparenz wird von <a href="#SPR"><b>SPR</b></a>(), <a href="#SSPR"><b>SSPR</b></a>(), <a href="#MAP"><b>MAP</b></a>() und <a href="#TLINE"><b>TLINE</b></a>() berücksichtigt</p><p class="codebox">.
+
+
+PALT(8, TRUE) -- ROTE PIXEL WERDEN IN FOLGENDEN SPRITE-/TLINE-ZEICHNUNGSANRUFEN NICHT GEZEICHNET<br>
+
+</p><p>PALT() setzt auf Standard zurück: alle Farben undurchsichtig außer Farbe 0</p>
+<p>Wenn C der einzige Parameter ist, wird er als Bitfeld behandelt, das zum Setzen
+ aller 16 Werte verwendet wird. Beispiel: Um die Farben 0 und 1 als transparent festzulegen:</p><p class="codebox">
+
+
+PALT(0B1100000000000000)<br>
+
+</p><br><a href="#SPR"><h5 id="SPR"> SPR(N, X, Y, [W, H], [FLIP_X], [FLIP_Y])</h5></a>
+<p>Zeichne Sprite N (0..255) an der Position X,Y</p>
+<p>W (Breite) und H (Höhe) sind standardmäßig 1, 1 und geben an, wie viele Sprites breit geblitzt werden sollen.</p>
+<p>Farbe 0 wird standardmäßig transparent gezeichnet (siehe <a href="#PALT"><b>PALT</b></a>())</p>
+<p>Wenn FLIP_X TRUE ist, horizontal spiegeln.</p>
+<p>Wenn FLIP_Y TRUE ist, vertikal spiegeln.</p>
+<br><a href="#SSPR"><h5 id="SSPR"> SSPR(SX, SY, SW, SH, DX, DY, [DW, DH], [FLIP_X], [FLIP_Y]]</h5></a>
+<p>Dehnt ein Rechteck des Sprite-Sheets (sx, sy, sw, sh) auf ein 
+Zielrechteck auf dem Bildschirm (dx, dy, dw, dh) aus. In beiden Fällen sind die
+ x- und y-Werte Koordinaten (in Pixeln) der oberen linken 
+Ecke des Rechtecks mit einer Breite von w und einer Höhe von h.</p>
+<p>Farbe 0 wird standardmäßig transparent gezeichnet (siehe <a href="#PALT"><b>PALT</b></a>())</p>
+<p>dw, dh sind</p><p>standardmäßig</p><p>auf sw, sh gesetzt</p>
+<p>Wenn FLIP_X TRUE ist, wird horizontal gespiegelt.</p>
+<p>Wenn FLIP_Y TRUE ist, wird vertikal gespiegelt.</p>
+<br><a href="#FILLP"><h5 id="FILLP"> FILLP(P)</h5></a>
+<p>Das PICO-8-Füllmuster ist ein 4x4-Muster aus 2-farbigen Kacheln, das von folgenden Funktionen verwendet wird: <a href="#CIRC"><b>CIRC</b></a>() <a href="#CIRCFILL"><b>CIRCFILL</b></a>() <a href="#RECT"><b>RECT</b></a>() <a href="#RECTFILL"><b>RECTFILL</b></a>() <a href="#OVAL"><b>OVAL</b></a>() <a href="#OVALFILL"><b>OVALFILL</b></a>() <a href="#PSET"><b>PSET</b></a>() <a href="#LINE"><b>LINE</b></a>()</p>
+<p>P ist ein Bitfeld, das in Lesereihenfolge beginnend mit dem höchsten Bit interpretiert wird. Um 
+den Wert von P für ein gewünschtes Muster zu berechnen, addiere die Bitwerte 
+miteinander:</p>
+ <p> .-----------------------.<br>
+  |32768|16384| 8192| 4096|<br>
+  |-----|-----|-----|-----|<br>
+  | 2048| 1024| 512 | 256 |<br>
+  |-----|-----|-----|-----|<br>
+  | 128 |  64 |  32 |  16 |<br>
+  |-----|-----|-----|-----|<br>
+  |  8  |  4  |  2  |  1  |<br>
+  '-----------------------'<br>
+
+</p><p>Beispielsweise würde FILLP(4+8+64+128+  256+512+4096+8192) ein Schachbrettmuster erzeugen.</p>
+<p>Dies lässt sich im Binärformat übersichtlicher ausdrücken: FILLP(0b0011001111001100).</p>
+<p>Das Standard-Füllmuster ist 0, was bedeutet, dass eine einzige Volltonfarbe gezeichnet wird.</p>
+<p>Um eine zweite Farbe für das Muster festzulegen, verwenden Sie die oberen Bits eines beliebigen Farbparameters:</p><p class="codebox">
+
+
+FILLP(0b0011010101101000)<br>
+CIRCFILL(64,64,20, 0x4E) -- braun und rosa<br>
+
+</p><p>Zusätzliche Einstellungen sind in den Bits 0b0.111 angegeben:</p>
+<p>0b0.100 Transparenz</p>
+<p>Wenn dieses Bit gesetzt ist, wird die zweite Farbe nicht gezeichnet</p><p class="codebox">
+
+
+-- Schachbrettmuster mit transparenten Quadraten<br>
+FILLP(0b0011001111001100.1) <br>
+
+</p><p>0b0.010 Auf Sprites anwenden</p>
+<p>Wenn gesetzt, wird das Füllmuster auf Sprites (spr, sspr, map, 
+tline) angewendet, wobei eine von der sekundären Palette bereitgestellte Farbabbildung verwendet wird.</p>
+<p>Jeder Pixelwert im Sprite (nach wie vor nach Anwendung der Zeichenpalette) 
+wird als Index in die Sekundärpalette übernommen. Jeder Eintrag in
+ der Sekundärpalette enthält die beiden Farben, die zum Rendern des Füllmusters 
+verwendet werden. Um beispielsweise ein weiß-rotes (7 und 8) Schachbrettmuster 
+nur für blaue Pixel (Farbe 12) in einem Sprite zu zeichnen:</p><p class="codebox">
+
+
+FOR I=0,15 DO PAL(I, I+I*16, 2) END  --  alle anderen Farben werden auf sich selbst abgebildet<br>
+PAL(12, 0x87, 2)                
+     --  Farbe 12 in der Sekundärpalette neu zuordnen<br>
+ <br>
+FILLP(0b0011001111001100.01)         --  Schachbrettmuster-Palette, auf Sprites angewendet<br>
+SPR(1, 64,64)                        --  Sprite zeichnen<br>
+
+</p><p>0b0.001 Sekundäre Palette global anwenden</p>
+<p>Wenn diese Option gesetzt ist, wird die Zuordnung der sekundären Palette auch von allen Zeichenfunktionen angewendet, 
+die Füllmuster berücksichtigen (circfill, line usw.). Dies kann 
+nützlich sein, wenn es in Verbindung mit Sprite-Zeichenfunktionen verwendet wird, sodass 
+der Farbindex jedes Sprite-Pixels dasselbe bedeutet wie der 
+Farbindex, der den Zeichenfunktionen übergeben wird.</p><p class="codebox">
+
+
+FILLP(0b0011001111001100.001)<br>
+PAL(12, 0x87, 2)<br>
+CIRCFILL(64,64,20,12)                -- rot-weiß karierter Kreis<br>
+
+</p><p>Die Zuordnung der Sekundärpalette wird nach der regulären Zeichenpalettenzuordnung 
+angewendet. Daher würde auch Folgendes einen rot-weiß 
+karierten Kreis zeichnen:</p><p class="codebox">
+
+
+PAL(3,12)<br>
+CIRCFILL(64,64,20,3)<br>
+
+</p><p>Das Füllmuster kann auch durch Setzen von Bits in einem beliebigen Farbparameter festgelegt werden (zum Beispiel im Parameter von <a href="#COLOR"><b>COLOR</b></a>() oder im letzten Parameter von <a href="#LINE"><b>LINE</b></a>(), <a href="#RECT"><b>RECT</b></a>() usw.</p>
+<p>POKE(0x5F34, 0x3) -- 0x1 aktiviert Füllmuster in den oberen Bits  0x2 aktiviert Inversionsmodus<br>
+CIRCFILL(64,64,20, 0x114E.ABCD) -- setzt das Füllmuster auf ABCD<br>
+
+</p><p>Bei Verwendung des Farbparameters zur Einstellung des Füllmusters werden die folgenden Bits verwendet:</p>
+<p>Bit  0x1000.0000 muss gesetzt sein: bedeutet „Bits 0xf00.ffff beachten“<br>
+Bit  0x0100.0000 Transparenz<br>
+Bit  0x0200.0000 auf Sprites anwenden<br>
+Bit  0x0400.0000 Sekundärpalette global anwenden<br>
+Bit  0x0800.0000 Zeichenvorgang umkehren (circfill/ovalfill/rectfill/rrectfill)<br>
+Bits 0x00FF.0000 sind die üblichen Farbbits<br>
+Bits 0x0000.FFFF werden als Füllmuster interpretiert<br>
+
+</p><a href="#Table_Functions"><h2 id="Table_Functions">6.3 Tabellenfunktionen</h2></a>
+<div style="display:inline-block; float:left; position:relative; left:-10px; top:5px; font-size:28pt; background-color:#fff">⚠</div><p style="width:90%; padding:16px; border-width:2px; border-radius:15px; border-style:dashed; border-color:#aaa; background-color:#fff; ">
+
+Mit Ausnahme von PAIRS() gelten die folgenden Funktionen und der Operator # 
+nur für Tabellen,  die ab 1 indiziert sind und 
+keine NIL-Einträge enthalten. Alle anderen Tabellenformen können  als 
+Hash-Maps oder Mengen betrachtet werden und nicht als Arrays mit einer bestimmten Länge.</p>
+<br><a href="#ADD"><h5 id="ADD"> ADD(TBL, VAL, [INDEX])</h5></a>
+<p>Fügt den Wert VAL am Ende der Tabelle TBL ein. Entspricht:</p><p class="codebox">
+
+
+TBL[#TBL + 1] = VAL<br>
+
+</p><p>Wenn ein Index angegeben wird, wird das Element an dieser Position eingefügt:</p><p class="codebox">
+
+
+FOO={}        -- LEERE TABELLE ERSTELLEN<br>
+ADD(FOO, 11)<br>
+ADD(FOO, 22)<br>
+PRINT(FOO[2]) -- 22<br>
+
+</p><br><a href="#DEL"><h5 id="DEL"> DEL(TBL, VAL)</h5></a>
+<p>Löscht die erste Instanz des Werts VAL in der Tabelle TBL. Die verbleibenden Einträge werden um einen Index nach links verschoben, um Lücken zu vermeiden.</p>
+<p>Beachten Sie, dass VAL der Wert des zu löschenden Elements ist, nicht der Index 
+in der Tabelle. (Um ein Element an einem bestimmten Index zu entfernen, verwenden Sie stattdessen DELI 
+). DEL gibt das gelöschte Element zurück oder gibt keinen Wert zurück, wenn nichts
+ gelöscht wurde.</p><p class="codebox">
+
+
+A={1,10,2,11,3,12}<br>
+FOR ITEM IN ALL(A) DO<br>
+  IF (ITEM &lt; 10) THEN DEL(A, ITEM) END<br>
+END<br>
+FOREACH(A, PRINT) -- 10,11,12<br>
+PRINT(A[3])       -- 12<br>
+
+</p><br><a href="#DELI"><h5 id="DELI"> DELI(TBL, [I])</h5></a>
+<p>Wie <a href="#DEL"><b>DEL</b></a>(), entfernt jedoch das Element mit dem Index I aus der Tabelle TBL. Wenn I nicht angegeben wird, wird das letzte Element der Tabelle entfernt und zurückgegeben.</p>
+<br><a href="#COUNT"><h5 id="COUNT"> COUNT(TBL, [VAL])</h5></a>
+<p>Gibt die Länge der Tabelle t zurück (entspricht #TBL). Wenn VAL angegeben wird, wird die Anzahl der Vorkommen von VAL in dieser Tabelle zurückgegeben.</p>
+<br><a href="#ALL"><h5 id="ALL"> ALL(TBL)</h5></a>
+<p>Wird in FOR-Schleifen verwendet, um alle Elemente einer Tabelle (die einen auf 1 basierenden ganzzahligen Index haben) in der Reihenfolge ihrer Hinzufügung zu durchlaufen.</p><p class="codebox">
+
+
+T = {11,12,13}<br>ADD(T,14)<br>ADD(T,"HI")<br>FOR V IN ALL(T) DO PRINT(V) END -- 11 12 13 14 HI<br>PRINT(#T) -- 5<br>
+
+</p><br><a href="#FOREACH"><h5 id="FOREACH"> FOREACH(TBL, FUNC)</h5></a>
+<p>Rufe für jedes Element in der Tabelle TBL die Funktion FUNC mit dem Element als einzigem Parameter auf.</p><p class="codebox">
+
+
+&gt; FOREACH({1,2,3}, PRINT)<br>
+
+</p><br><a href="#PAIRS"><h5 id="PAIRS"> PAIRS(TBL)</h5></a>
+<p>Wird in FOR-Schleifen verwendet, um die Tabelle TBL zu durchlaufen, wobei sowohl der Schlüssel als auch der Wert für jedes Element bereitgestellt werden. Im Gegensatz zu <a href="#ALL"><b>ALL</b></a>() durchläuft PAIRS() jedes Element unabhängig vom Indizierungsschema. Die Reihenfolge ist nicht garantiert.</p><p class="codebox">
+
+
+T = {["HELLO"]=3, [10]="BLAH"}<br>
+T.BLUE = 5;<br>FOR K,V IN PAIRS(T) DO<br>  PRINT("K: "..K.."  V:"..V)<br>END<br>
+</p><p>Ausgabe:</p><p class="codebox">
+
+
+K: 10  v:BLAH<br>K: HELLO  v:3<br>K: BLUE  v:5<br>
+
+</p><a href="#Input"><h2 id="Input">6.4 Eingabe</h2></a>
+<br><a href="#BTN"><h5 id="BTN"> BTN([B], [PL])</h5></a>
+<p>Ruft den Status von Taste B für Spieler PL ab (Standardwert 0) 
+ </p><p>B: 0..5: links rechts oben unten button_o button_x<br> PL: Spielerindex 0..7</p>
+<p>Anstelle einer Zahl für B kann auch ein Tastensymbol verwendet werden. (Im Coded-Editor: Shift-L R U D O X)</p>
+<p>Wenn keine Parameter angegeben werden, gibt die Funktion ein Bitfeld mit allen 12 Tastenzuständen für Spieler 0 und 1 zurück // P0: Bits 0..5  P1: Bits 8..13</p>
+<p>Standard-Tastaturbelegungen für Spielertasten:<br>
+ <br> 
+  Spieler 0: [DPAD]: Cursortasten, [O]: Z C N   [X]: X V M<br>
+  Spieler 1: [DPAD]: SFED,    [O]: LSHIFT  [X]: TAB W  Q A<br></p><div style="display:inline-block; float:left; position:relative; left:-10px; top:5px; font-size:28pt; background-color:#fff">
+
+⚠</div><p style="width:90%; padding:16px; border-width:2px; border-radius:15px; border-style:dashed; border-color:#aaa; background-color:#fff; ">
+
+Obwohl PICO-8 alle Tastenkombinationen akzeptiert, beachte bitte, dass es 
+auf einem physischen Game-Controller in der Regel nicht möglich ist, 
+die Tasten LINKS und RECHTS gleichzeitig zu drücken. Bei einigen Controllern ist die Kombination NACH OBEN + LINKS/RECHTS ebenfalls 
+umständlich, wenn [X] oder [O] anstelle von NACH OBEN verwendet werden könnten (z. B. zum Springen / 
+Beschleunigen).</p>
+<br><a href="#BTNP"><h5 id="BTNP"> BTNP(B, [PL])</h5></a>
+<p>BTNP ist die Abkürzung für „Button Pressed“ (Taste gedrückt); anstatt „true“ zu sein, wenn eine 
+Taste gedrückt gehalten wird,  gibt BTNP „true“ zurück, wenn eine Taste gedrückt ist UND sie
+ im letzten Frame nicht gedrückt war. Es wiederholt sich außerdem nach 15 Frames und gibt 
+danach alle 4 Frames „true“ zurück (bei 30 fps – doppelt so oft bei 60 fps). Dies 
+kann beispielsweise für die Menünavigation oder die rasterbasierte Bewegung des Spielers  
+verwendet werden.</p>
+<p>Der von BTNP ausgelesene Status wird zu Beginn jedes Aufrufs von <a href="#_UPDATE"><b>_UPDATE</b></a> oder <a href="#_UPDATE60"><b>_UPDATE60</b></a> zurückgesetzt, daher ist es vorzuziehen, BTNP innerhalb einer dieser Funktionen zu verwenden.</p>
+<p>Benutzerdefinierte Verzögerungen (in Frames bei 30 fps <a href="#"><b></b></a> ) können durch das Ansteuern der folgenden Speicheradressen eingestellt werden:</p><p class="codebox">
+
+
+POKE(0X5F5C, DELAY) -- LEGT DIE ANFÄNGLICHE VERZÖGERUNG VOR DER WIEDERHOLUNG FEST. 255 BEDEUTET „NIEMALS WIEDERHOLEN“.<br>
+POKE(0X5F5D, DELAY) -- LEGT DIE WIEDERHOLUNGSVERZÖGERUNG FEST.<br>
+
+</p><p>In beiden Fällen kann 0 für das Standardverhalten verwendet werden (Verzögerungen 15 und 4)</p>
+<a href="#Audio"><h2 id="Audio">6.5 Audio</h2></a>
+<br><a href="#SFX"><h5 id="SFX"> SFX(N, [CHANNEL], [OFFSET], [LENGTH])</h5></a>
+<p>Spielt den Soundeffekt N (0..63) auf dem Kanal CHANNEL (0..3) ab der Note OFFSET (0..31 in Noten) für die Dauer LENGTH Noten.
+</p><p>Die Verwendung negativer CHANNEL-Werte hat eine besondere Bedeutung:</p>
+<p>CHANNEL -1: (Standard) wählt automatisch einen Kanal aus, der nicht verwendet wird<br>
+CHANNEL -2: stoppt die Wiedergabe des angegebenen Sounds auf allen Kanälen<br>
+
+</p><p>N kann ein Befehl für den angegebenen CHANNEL sein (oder für alle Kanäle, wenn CHANNEL &lt; 0):</p>
+<p>N -1: Ton auf diesem Kanal stoppen<br>
+N -2: Ton auf diesem Kanal aus der Schleife entlassen<br></p><p class="codebox">
+
+
+
+SFX(3)    --  SFX 3 ABSPIELEN<br>
+SFX(3,2)  --  SFX 3 AUF KANAL 2 ABSPIELEN<br>
+SFX(3,-2) --  SFX 3 AUF ALLEN KANÄLEN ANHALTEN<br>
+SFX(-1,2) --  ALLES ANHALTEN, WAS AUF KANAL 2 ABGESPIELT WIRD<br>
+SFX(-2,2) --  LOOP AUF KANAL 2 BEENDEN<br>
+SFX(-1)   --  ALLE TÖNE AUF ALLEN KANÄLEN BEENDEN<br>
+SFX(-2)   --  LOOP AUF ALLEN KANÄLEN BEENDEN<br>
+
+</p><br><a href="#MUSIC"><h5 id="MUSIC"> MUSIC(N, [FADE_LEN], [CHANNEL_MASK])</h5></a>
+<p>Musik ab Muster N (0..63) abspielen<br>
+N -1, um die Musik zu stoppen<br>
+ <br> 
+FADE_LEN wird in ms angegeben (Standard: 0). Um also Muster 0 über 1 Sekunde einblenden zu lassen:<br></p><p class="codebox">
+
+
+
+MUSIC(0, 1000)<br>
+
+</p><p>CHANNEL_MASK legt fest, welche Kanäle ausschließlich für Musik reserviert werden sollen. Um beispielsweise nur auf den Kanälen 0..2</p><p>abzuspielen</p><p>:</p>
+<p>MUSIC(0, NIL, 7) -- 1 | 2 | 4</p>
+<p>Reservierte Kanäle können weiterhin zum Abspielen von Soundeffekten verwendet werden, jedoch nur, wenn dieser Kanalindex explizit von <a href="#SFX"><b>SFX</b></a>() angefordert wird.</p>
+<a href="#Map"><h2 id="Map">6.6 Karte</h2></a>
+<p>Die PICO-8-Map ist ein 128x32-Raster aus 8-Bit-Werten oder 128x64 bei Verwendung
+ des gemeinsamen Speichers. Bei  Verwendung des Map-Editors wird die Bedeutung jedes 
+Werts als Index in das Sprite-Sheet  (0..255) interpretiert. Sie 
+kann jedoch stattdessen auch als allgemeiner Datenblock verwendet werden.</p>
+<br><a href="#MGET"><h5 id="MGET"> MGET(X, Y)</h5></a>
+<a href="#MSET"><h5 id="MSET"> MSET(X, Y, VAL)</h5></a>
+<p>Liest oder setzt den Kartenwert (VAL) an X,Y</p>
+<p>Wenn X und Y außerhalb des Bereichs liegen, gibt MGET 0 zurück oder einen benutzerdefinierten Rückgabewert, der wie folgt festgelegt werden kann:</p><p class="codebox">
+
+
+POKE(0x5f36, 0x10)<br>
+POKE(0x5f5a, NEWVAL)<br>
+
+</p><br><a href="#MAP"><h5 id="MAP"> MAP(TILE_X, TILE_Y, [SX, SY], [TILE_W, TILE_H], [LAYERS])</h5></a>
+<p>Zeichnet einen Ausschnitt der Karte (beginnend bei TILE_X, TILE_Y) an der Bildschirmposition SX, SY (Pixel).</p>
+<p>Um einen 4x2-Block von Kacheln, beginnend bei 0,0 auf der Karte, auf dem Bildschirm bei 20,20 zu zeichnen:</p><p class="codebox">
+
+
+MAP(0, 0, 20, 20, 4, 2) <br>
+
+</p><p>TILE_W und TILE_H beziehen sich standardmäßig auf die gesamte Karte (einschließlich gemeinsam genutzter Bereiche, falls zutreffend).</p>
+<p>MAP() wird oft in Verbindung mit CAMERA() verwendet. Um die Karte so zu zeichnen, 
+dass ein Spielerobjekt (bei PL.X und PL.Y in Pixeln) zentriert ist:</p><p class="codebox">
+
+
+CAMERA(PL.X - 64, PL.Y - 64)<br>
+MAP()<br>
+
+</p><p>LAYERS ist ein Bitfeld. Wenn es angegeben wird, werden nur Sprites mit übereinstimmenden Sprite-Flags 
+gezeichnet. Wenn LAYERS beispielsweise 0x5 ist, werden nur Sprites mit den Flags
+ 0 und 2 gezeichnet.</p>
+<p>Sprite 0 wird als „leer“ interpretiert und nicht gezeichnet. Um dieses Verhalten zu deaktivieren, verwende: POKE(0x5F36, 0x8)</p>
+<br><a href="#TLINE"><h5 id="TLINE"> TLINE(X0, Y0, X1, Y1, MX, MY, [MDX, MDY], [LAYERS])</h5></a>
+<p>Zeichnet eine texturierte Linie von (X0,Y0) nach (X1,Y1) und entnimmt dabei Farbwerte 
+aus der Karte. Wenn LAYERS angegeben ist, werden nur Sprites mit passenden Flags
+ gezeichnet (ähnlich wie bei MAP()) 
+ </p><p>MX und MY sind die Kartenkoordinaten, aus denen die Werte entnommen werden sollen, angegeben in Kacheln. Die Farbwerte 
+werden aus dem 8x8-Sprite entnommen, das sich auf jeder Kartenkachel befindet. Zum 
+Beispiel:</p>
+<p>2.0, 1.0  bedeutet die obere linke Ecke des Sprites an der Position 2,1 auf der Karte<br>
+2.5, 1.5  bedeutet Pixel (4,4) desselben Sprites<br>
+
+</p><p>MDX, MDY sind Deltas, die nach dem Zeichnen jedes Pixels zu mx, my addiert werden. (Standardwert ist 0.125, 0)</p>
+<p>Die Kartenkoordinaten (MX, MY) werden durch Werte maskiert, die berechnet werden, indem 
+0x0.0001 von den Werten an den Adressen 0x5F38 und 0x5F39 abgezogen wird. Einfacher 
+ausgedrückt bedeutet dies, dass Sie einen Abschnitt der Karte in einer Schleife wiederholen können, indem Sie 
+die Breite und Höhe eingeben, innerhalb derer die Schleife laufen soll, sofern  es sich um 
+Potenzen von 2 handelt (2, 4, 8, 16..)</p>
+<p>Um beispielsweise alle 8 Kacheln horizontal und alle 4 Kacheln vertikal zu wiederholen:</p><p class="codebox">
+
+
+POKE(0x5F38, 8)<br>
+POKE(0x5F39, 4)<br>
+TLINE(...)<br>
+
+</p><p>Die Standardwerte (0,0) ergeben eine Maske von 0xff.ffff, was bedeutet, dass die Samples alle 256 Kacheln wiederholt werden.</p>
+<p>Ein Offset für den Startpunkt der Samples (ebenfalls in Kacheln) kann auch an den Adressen 0x5f3a und 0x5f3b angegeben werden:</p><p class="codebox">
+
+
+POKE(0x5F3A, OFFSET_X)<br>
+POKE(0x5F3B, OFFSET_Y)<br>
+
+</p><p>Sprite 0 wird als „leer“ interpretiert und nicht gezeichnet. Um dieses Verhalten zu deaktivieren, verwende: POKE(0x5F36, 0x8)</p>
+<a href="#Setting_TLINE_Precision"><h4 id="Setting_TLINE_Precision">■ Einstellung der TLINE-Genauigkeit</h4>
+</a><p>Standardmäßig werden TLINE-Koordinaten (mx, my, mdx, mdy) in 
+Kacheln ausgedrückt. Das bedeutet, dass 1 Pixel 0,125 entspricht und nur 13 Bits für 
+den Bruchteil verwendet werden. Wenn eine höhere Genauigkeit erforderlich ist, kann der Koordinatenraum 
+angepasst werden, um mehr Bits für den Bruchteil zuzulassen. Dies kann 
+nützlich sein, beispielsweise bei texturierten Wänden, wo der kumulierte Fehler aus der 
+Rundung von mdx und mdy bei Nahaufnahme sichtbar werden kann.</p>
+<p>Die Anzahl der Bits, die für den Bruchteil jedes Pixels verwendet werden, wird 
+in einem speziellen Register gespeichert, das durch einmaligen Aufruf von TLINE 
+mit einem einzigen Argument angepasst werden kann:</p>
+<p>TLINE(16) -- MX,MY,MDX,MDY in Pixeln ausgedrückt</p>
+<a href="#Memory"><h2 id="Memory">6.7 Speicher</h2></a>
+<p>PICO-8 verfügt über 3 Speichertypen:</p>
+<p>1. Basis-RAM (64k): siehe Layout unten. Zugriff mit PEEK(), POKE(), MEMCPY(), MEMSET()<br>
+2. Cartridge-ROM (32k): gleiches Layout wie Basis-RAM bis 0x4300<br>
+3. Lua-RAM (2MB): kompiliertes Programm + Variablen<br>
+
+</p><div style="display:inline-block; float:left; position:relative; left:-10px; top:5px; font-size:16pt; background-color:#fff">ⓘ</div><p style="width:90%; padding:16px; border-width:2px; border-radius:15px; border-style:dashed; border-color:#aaa; background-color:#fff; ">
+
+<br>
+Technischer Hinweis: Während der Verwendung des Editors befinden sich die zu bearbeitenden Daten im Cart-ROM, aber API-Funktionen wie <a href="#SPR"><b>SPR</b></a>()  und <a href="#SFX"><b>SFX</b></a>() wirken nur auf den Basis-RAM. PICO-8 kopiert das Cartridge-ROM automatisch in den Basis-RAM (d. h. ruft <a href="#RELOAD"><b>RELOAD</b></a>() auf) in 3 Fällen:<br> 1. Wenn ein Cartridge geladen wird<br> 2. Wenn ein Cartridge ausgeführt wird<br> 3. Beim Verlassen eines der Editor-Modi // kann mit poke(0x5f37,1) deaktiviert werden<br></p>
+<a href="#Base_RAM_Memory_Layout"><h4 id="Base_RAM_Memory_Layout">■ Basis-RAM-Speicherlayout</h4>
+</a><p class="codebox">
+
+0X0    GFX-<br>0X1000 GFX2/MAP2 (GEMEINSAM)<br>0X2000 MAP-<br>0X3000 GFX-FLAGS<br>0X3100 SONG-<br>0X3200 SFX-<br>0X4300 BENUTZERDATEN<br>
+0X5600 BENUTZERDEFINIERTE SCHRIFTART (FALLS DEFINIERT)<br>
+0X5E00 PERMANENTE CART-DATEN (256 BYTE)<br>
+0X5F00 ZEICHENSTATUS<br>
+0X5F40 HARDWARE-STATUS<br>
+0X5F80 GPIO-PINS (128 BYTE)<br>
+0X6000 SCREEN (8K)<br>
+0x8000 USER DATA<br>
+
+</p><p>Benutzerdaten haben keine besondere Bedeutung und können über <a href="#MEMCPY"><b>MEMCPY</b></a>(), <a href="#PEEK"><b>PEEK</b></a>() und <a href="#POKE"><b>POKE</b></a>() für beliebige Zwecke verwendet werden. Persistente Kartendaten werden auf 0x5e00..0x5eff abgebildet, aber nur gespeichert, wenn <a href="#CARTDATA"><b>CARTDATA</b></a>()
+ aufgerufen wurde. Das Farbformat (gfx/screen) beträgt 2 Pixel pro Byte: Die unteren 
+Bits codieren das linke Pixel jedes Paares. Das Kartenformat beträgt ein Byte pro 
+Kachel, wobei jedes Byte normalerweise einen Sprite-Index codiert.</p>
+<a href="#Remapping_Graphics_and_Map_Data"><h4 id="Remapping_Graphics_and_Map_Data">■ Neuzuordnung von Grafik- und Kartendaten</h4>
+</a><p>Die Speicherbereiche GFX, MAP und SCREEN können durch Setzen von Werten an den folgenden Adressen neu zugewiesen werden:</p><p class="codebox">
+
+
+0X5F54 GFX:    kann 0x00 (Standard) oder 0x60 (Bildspeicher als Spritesheet verwenden) sein<br>
+0X5F55 SCREEN: kann 0x60 (Standard) oder 0x00 sein (Spritesheet als Bildschirmspeicher verwenden)<br>
+0X5F56 MAP:    kann 0x20 (Standard) oder 0x10..0x2f oder 0x80 und höher sein.<br>
+0X5F57 MAP SIZE: Kartenbreite. 0 bedeutet 256. Standardwert ist 128.<br>
+
+</p><p>Adressen können in Schritten von 256 Byte angegeben werden. So bedeutet 0x20 
+0x2000, 0x21 bedeutet 0x2100 usw. Die Map-Adressen 0x30..0x3f werden als 
+0x10..0x1f (gemeinsamer Speicherbereich) interpretiert. Map-Daten können nur 
+innerhalb der Speicherbereiche 0x1000..0x2fff, 0x8000..0xffff enthalten sein, und  die Map-Höhe 
+wird als die größtmögliche Größe bestimmt, die in den 
+gegebenen Bereich passt.</p>
+<p>GFX- und SCREEN-Adressen können zusätzlich auf die oberen Speicherplätze 
+0x80, 0xA0, 0xC0, 0xE0 abgebildet werden,  mit der Einschränkung, dass sich MAP nicht 
+mit dieser Adresse überschneiden darf (in diesem Fall werden die in Konflikt stehenden GFX- und/oder 
+SCREEN-Zuordnungen auf ihre Standardzuordnung zurückgesetzt).</p>
+<div style="display:inline-block; float:left; position:relative; left:-10px; top:5px; font-size:16pt; background-color:#fff">ⓘ</div><p style="width:90%; padding:16px; border-width:2px; border-radius:15px; border-style:dashed; border-color:#aaa; background-color:#fff; ">
+
+Die GFX- und SCREEN-Speicherzuordnung erfolgt auf einer niedrigen Ebene, was sich auch auf 
+Speicherzugriffsfunktionen (peek, poke, memcpy) auswirkt. Die 8-KB-Speicherblöcke 
+ab 0x0 und 0x6000 können als Zeiger  auf einen separaten 
+Videospeicher betrachtet werden, und das Setzen der Werte an 0x5F54 und 0x5F56 verändert diese 
+Zeiger.</p>
+<br><a href="#PEEK"><h5 id="PEEK"> PEEK(ADDR, [N])</h5></a>
+<p>Liest ein Byte von einer Adresse im Basis-RAM. Wenn N angegeben wird, gibt PEEK() 
+diese Anzahl an Ergebnissen zurück (max.: 8192). Um beispielsweise die 
+ersten 2 Bytes des Videospeichers zu lesen:</p><p class="codebox">
+
+
+A, B = PEEK(0x6000, 2)<br>
+
+</p><br><a href="#POKE"><h5 id="POKE"> POKE(ADDR, VAL1, VAL2, ...)</h5></a>
+<p>Schreibt ein oder mehrere Bytes an eine Adresse im Basis-RAM. Wenn mehr als ein 
+Parameter angegeben wird, werden diese nacheinander geschrieben (max.: 8192).</p>
+<br><a href="#PEEK2"><h5 id="PEEK2"> PEEK2(ADDR)</h5></a>
+<a href="#POKE2"><h5 id="POKE2"> POKE2(ADDR, VAL)</h5></a>
+<a href="#PEEK4"><h5 id="PEEK4"> PEEK4(ADDR)</h5></a>
+<a href="#POKE4"><h5 id="POKE4"> POKE4(ADDR, VAL)</h5></a>
+<p>16-Bit- und 32-Bit-Versionen von PEEK und POKE. Lesen und Schreiben einer Zahl (VAL) im Little-Endian-Format:</p>
+ <p> 16 Bit: 0xffff.0000<br>
+  32 Bit: 0xffff.ffff<br>
+
+</p><p>ADDR muss nicht auf 2- oder 4-Byte-Grenzen ausgerichtet sein.</p>
+<p>Alternativ können die folgenden Operatoren zum Auslesen (aber nicht zum Schreiben) verwendet werden; sie sind etwas schneller:</p><p class="codebox">
+
+
+@ADDR  -- PEEK(ADDR)<br>
+%ADDR  -- PEEK2(ADDR)<br>
+$ADDR  -- PEEK4(ADDR)<br>
+
+</p><br><a href="#MEMCPY"><h5 id="MEMCPY"> MEMCPY(DEST_ADDR, SOURCE_ADDR, LEN)</h5></a>
+<p>Kopiere LEN Bytes des Basis-RAMs von der Quelle zum Ziel. Abschnitte können sich überlappen</p>
+<br><a href="#RELOAD"><h5 id="RELOAD"> RELOAD(DEST_ADDR, SOURCE_ADDR LEN, [FILENAME])</h5></a>
+<p>Wie MEMCPY, kopiert jedoch aus dem ROM der Kassette.</p>
+<p>Der Code-Bereich ( &gt;= 0x4300) ist geschützt und kann nicht gelesen werden.</p>
+<p>Wenn ein Dateiname angegeben ist, werden Daten von einer separaten Kassette geladen. In diesem 
+Fall muss die Kassette lokal sein (BBS-Kassetten können auf diese Weise nicht gelesen werden
+).</p>
+<br><a href="#CSTORE"><h5 id="CSTORE"> CSTORE(DEST_ADDR, SOURCE_ADDR, LEN, [FILENAME])</h5></a>
+<p>Wie memcpy, kopiert jedoch vom Basis-RAM in das Cartridge-ROM.</p>
+<p>CSTORE() entspricht CSTORE(0, 0, 0x4300)</p>
+<p>Der Code-Bereich ( &gt;= 0x4300) ist geschützt und kann nicht beschrieben werden.</p>
+<p>Wenn FILENAME angegeben wird, werden die Daten direkt auf die entsprechende 
+Kassette auf der Festplatte geschrieben. In einer Sitzung können bis zu 64 Kassetten beschrieben werden. 
+Weitere Informationen finden Sie unter <a href="#Cartridge_Data"><b>„Kassettendaten</b></a> “.</p>
+<br><a href="#MEMSET"><h5 id="MEMSET"> MEMSET(DEST_ADDR, VAL, LEN)</h5></a>
+<p>Schreibt den 8-Bit-Wert VAL beginnend bei DEST_ADDR für LEN Bytes in den Speicher.</p>
+<p>Beispiel: Um die Hälfte des Videospeichers mit 0xC8 zu füllen:</p><p class="codebox">
+
+
+&gt; MEMSET(0x6000, 0xC8, 0x1000)<br>
+
+</p><a href="#Math"><h2 id="Math">6.8 Mathematik</h2></a>
+<br><a href="#MAX"><h5 id="MAX"> MAX(X, Y)</h5></a>
+<a href="#MIN"><h5 id="MIN"> MIN(X, Y)</h5></a>
+<a href="#MID"><h5 id="MID"> MID(X, Y, Z)</h5></a>
+<p>Gibt den Maximal-, Minimal- oder Mittelwert der Parameter zurück</p><p class="codebox">
+
+
+&gt; ?MID(7,5,10) -- 7<br>
+
+</p><br><a href="#FLR"><h5 id="FLR"> FLR(X)</h5></a><p class="codebox">
+
+
+&gt; ?FLR ( 4,1) --&gt;  4        <br> 
+&gt; ?FLR (-2,3) --&gt; -3<br>
+
+</p><br><a href="#CEIL"><h5 id="CEIL"> CEIL(X)</h5></a>
+<p>Gibt die nächste ganze Zahl zurück, die kleiner oder gleich x ist</p><p class="codebox">
+
+
+&gt; ?CEIL( 4.1) --&gt;  5<br>
+&gt; ?CEIL(-2.3) --&gt; -2<br>
+
+</p><br><a href="#COS"><h5 id="COS"> COS(X)</h5></a>
+<a href="#SIN"><h5 id="SIN"> SIN(X)</h5></a>
+<p>Gibt den Kosinus oder Sinus von x zurück, wobei 1,0 eine volle Umdrehung bedeutet. Beispiel: Um ein Zifferblatt zu animieren, das sich einmal pro Sekunde dreht:</p><p class="codebox">
+
+
+FUNCTION _DRAW()<br>
+  CLS()<br>
+  CIRC(64, 64, 20, 7)<br>
+  X = 64 + COS(T()) * 20<br>
+  Y = 64 + SIN(T()) * 20<br>
+  LINE(64, 64, X, Y)    <br> 
+END<br>
+
+</p><p>Die SIN()-Funktion von PICO-8 gibt ein invertiertes Ergebnis zurück, um es an den Bildschirmbereich anzupassen (wobei Y
+ „ABWÄRTS“ bedeutet, im Gegensatz zu mathematischen Diagrammen, in denen Y typischerweise 
+„AUFWÄRTS“ bedeutet).</p><p class="codebox">
+
+
+&gt; SIN(0.25) -- GIBT -1 ZURÜCK<br>
+
+</p><p>Um herkömmliche radianbasierte Trigonometriefunktionen ohne die y-Inversion zu erhalten, 
+füge den folgenden Codeausschnitt am Anfang deines Programms ein:</p><p class="codebox">
+
+
+P8COS = COS FUNCTION COS(ANGLE) RETURN P8COS(ANGLE/(3.1415*2)) END<br>
+P8SIN = SIN FUNCTION SIN(ANGLE) RETURN -P8SIN(ANGLE/(3.1415*2)) END<br>
+
+</p><br><a href="#ATAN2"><h5 id="ATAN2"> ATAN2(DX, DY)</h5></a>
+<p>Wandelt DX, DY in einen Winkel zwischen 0 und 1 um</p>
+<p>Wie bei cos/sin wird der Winkel im Bildschirmraum gegen den Uhrzeigersinn gemessen. Zum Beispiel:</p><p class="codebox">
+
+
+&gt; ?ATAN(0, -1) -- GIBT 0,25 ZURÜCK<br>
+
+</p><p>ATAN2 kann verwendet werden, um die Richtung zwischen zwei Punkten zu ermitteln:</p><p class="codebox">
+
+
+X=20 Y=30<br>
+FUNKTION _UPDATE()<br>
+  IF (BTN(0)) X-=2<br>
+  IF (BTN(1)) X+=2<br>
+  IF (BTN(2)) Y-=2<br>
+  IF (BTN(3)) Y+=2    <br> 
+END<br>
+ <br>
+FUNKTION _DRAW()<br>
+  CLS()<br>
+  CIRCFILL(X,Y,2,14)<br>
+  CIRCFILL(64,64,2,7)<br>
+   <br>
+  A=ATAN2(X-64, Y-64)<br>
+  PRINT("ANGLE: "..A)<br>
+  LINE(64,64,<br>
+    64+COS(A)*10,<br>
+    64+SIN(A)*10,7)<br>
+END<br>
+
+</p><br><a href="#SQRT"><h5 id="SQRT"> SQRT(X)</h5></a>
+<p>Gibt die Quadratwurzel von x zurück</p>
+<br><a href="#ABS"><h5 id="ABS"> ABS(X)</h5></a>
+<p>Gibt den absoluten (positiven) Wert von x zurück</p>
+<br><a href="#RND"><h5 id="RND"> RND(X)</h5></a>
+<p>Gibt eine Zufallszahl n zurück, wobei 0 &lt;= n &lt; x</p>gilt
+<p>Wenn Sie eine ganze Zahl wünschen, verwenden Sie flr(rnd(x)). Wenn x eine tabellenartige 
+Tabelle ist, geben Sie ein zufälliges Element zwischen table[1] und table[#table] zurück.</p>
+<br><a href="#SRAND"><h5 id="SRAND"> SRAND(X)</h5></a>
+<p>Setzt den Zufallszahlensamen. Der Samen wird beim Start von Cart automatisch zufällig generiert.</p><p class="codebox">
+
+
+FUNCTION _DRAW()<br>  CLS()<br>  SRAND(33)<br>  FOR I=1,100 DO<br>    PSET(RND(128),RND(128),7)<br>  END<br>END<br>
+
+</p><a href="#Bitwise_Operations"><h4 id="Bitwise_Operations">■ Bitweise Operationen</h4>
+</a><p>Bitweise Operationen ähneln logischen Ausdrücken, funktionieren jedoch auf Bit-Ebene.</p>
+<p>Angenommen, Sie haben zwei Zahlen (hier in Binärform mit dem Präfix „0b“ geschrieben): </p><p class="codebox">
+
+
+X = 0b1010<br>
+Y = 0b0110<br>
+
+</p><p>Ein bitweises UND liefert Bits, die gesetzt sind, wenn die entsprechenden Bits in X und Y beide gesetzt sind</p><p class="codebox">
+
+
+&gt; PRINT(BAND(X,Y)) -- ERGEBNIS:0B0010 (2 IN DEZIMAL)<br>
+
+</p><p>In PICO-8 stehen 9 bitweise Funktionen zur Verfügung:</p><p class="codebox">
+
+
+BAND(X, Y) -- BEIDE BITS SIND SETZT<br>
+BOR(X, Y)  -- EINES DER BITS IST SETZT<br>
+BXOR(X, Y) -- EINES DER BITS IST SETZT, ABER NICHT BEIDE<br>
+BNOT(X)    -- KEIN BIT IST SETZT<br>
+SHL(X, N)  -- N BITS NACH LINKS VERSCHIEBEN (NULLEN WERDEN VON RECHTS EINGEFÜGT)<br>
+SHR(X, N)  -- ARITHMETISCHE RECHTSVERSCHIEBUNG (DER ZUSTAND DES ÄUSSERSTEN BITS WIRD KOPIERT)<br>
+LSHR(X, N) -- LOGISCHE RECHTSVERSCHIEBUNG (NULLEN WERDEN VON LINKS EINGEFÜGT)<br>
+ROTL(X, N) -- ALLE BITS IN X UM N STELLEN NACH LINKS DREHEN<br>
+ROTR(X, N) -- ALLE BITS IN X UM N STELLEN NACH RECHTS DREHEN<br>
+
+</p><p>Es sind auch Operatorversionen verfügbar: &amp; | ^^ ~ &lt;&lt; &gt;&gt; &gt;&gt;&gt; &lt;&lt;&gt; &gt;&gt;&lt;</p>
+<p>Beispiel: PRINT(67 &amp; 63) -- Ergebnis: 3  entspricht BAND(67,63)</p>
+<p>Operatoren sind etwas schneller als die entsprechenden Funktionen. 
+Sie verhalten sich genau gleich, außer dass, wenn Operanden keine 
+Zahlen sind, ein Laufzeitfehler auftritt (die Funktionsversionen setzen stattdessen 
+standardmäßig den Wert 0).</p>
+<a href="#Integer_Division"><h4 id="Integer_Division">■ Ganzzahlige Division</h4>
+</a><p>Die ganzzahlige Division kann mit einem \</p><p class="codebox">
+
+
+&gt; PRINT(9\2) -- ERGEBNIS:4  ENTSPRECHT FLR(9/2)<br>
+
+</p><a href="#Custom_Menu_Items"><h2 id="Custom_Menu_Items">6.9 Benutzerdefinierte Menüpunkte</h2></a>
+<br><a href="#MENUITEM"><h5 id="MENUITEM"> MENUITEM(INDEX, [LABEL], [CALLBACK])</h5></a>
+<p>Fügt einen Eintrag zum Pausenmenü hinzu oder aktualisiert ihn.
+</p><p>INDEX sollte zwischen 1 und 5 liegen und bestimmt die Reihenfolge, in der die einzelnen Menüeinträge angezeigt werden.</p>
+<p>LABEL sollte eine Zeichenkette mit einer Länge von bis zu 16 Zeichen sein</p><p>.</p>
+<p>CALLBACK ist eine Funktion, die aufgerufen wird, wenn der Eintrag vom Benutzer ausgewählt wird. Wenn der Callback „true“ zurückgibt, bleibt das Pausenmenü geöffnet.</p>
+<p>Wenn keine Bezeichnung oder Funktion angegeben wird, wird der Menüpunkt entfernt.</p><p class="codebox">
+
+
+MENUITEM(1, "RESTART PUZZLE",<br>
+  FUNCTION() RESET_PUZZLE() SFX(10) END<br>
+)<br>
+
+</p><p>Der Callback nimmt ein einziges Argument entgegen, das ein Bitfeld der Tasten L, R und X darstellt.</p><p class="codebox">
+
+
+MENUITEM(1, „FOO“, <br>
+  FUNCTION(B) IF (B&amp;1 &gt; 0) THEN PRINTH(„LEFT WAS PRESSED“) END END<br>
+)<br>
+
+</p><p>Um Tastendrücke zu filtern, die den Callback auslösen können, kann eine 
+Maske in den Bits 0xff00 von INDEX angegeben werden. Um beispielsweise 
+L und R für einen bestimmten Menüpunkt zu deaktivieren, setzen Sie die Bits 0x300 im Index:</p><p class="codebox">
+
+
+MENUITEM(2 | 0x300, „RESET PROGRESS“,<br>
+  FUNCTION() DSET(0,0) END<br>
+)<br>
+
+</p><p>Menüelemente können innerhalb von Callbacks aktualisiert, hinzugefügt oder entfernt werden:</p><p class="codebox">
+
+
+MENUITEM(3, „SCREENSHAKE: OFF“,<br>
+  FUNCTION()<br>
+    SCREENSHAKE = NOT SCREENSHAKE<br>
+    MENUITEM(NIL, "SCREENSHAKE: "..(SCREENSHAKE AND "ON" OR "OFF"))<br>
+    RETURN TRUE -- DON'T CLOSE<br>
+  END<br>
+)<br>
+
+</p><a href="#Strings_and_Type_Conversion"><h2 id="Strings_and_Type_Conversion">6.10 Zeichenketten und Typkonvertierung</h2></a>
+<p>Zeichenketten in Lua werden entweder in einfache oder doppelte Anführungszeichen gesetzt oder mit passenden [[ ]]-Klammern geschrieben:</p><p class="codebox">
+
+
+S = "THE QUICK"<br>
+S = 'BROWN FOX';<br>
+S = [[<br>
+  JUMPS OVER<br>
+  MULTIPLE LINES<br>
+]]<br>
+
+</p><p>Die Länge einer Zeichenkette (Anzahl der Zeichen) kann mit dem Operator # abgerufen werden:</p><p class="codebox">
+
+
+&gt;PRINT(#S)<br>
+
+</p><p>Zeichenfolgen können mit dem Operator .. verkettet werden. Durch das Verketten von Zahlen werden diese in Zeichenfolgen umgewandelt.</p><p class="codebox">
+
+
+&gt;PRINT("THREE "..4) --&gt; "THREE 4"<br>
+
+</p><p>Bei Verwendung als Teil eines arithmetischen Ausdrucks werden Zeichenfolgenwerte in Zahlen umgewandelt:</p><p class="codebox">
+
+
+&gt;PRINT(2+"3")   --&gt; 5<br>
+
+</p><br><a href="#TOSTR"><h5 id="TOSTR"> TOSTR(VAL, [FORMAT_FLAGS])</h5></a>
+<p>Konvertiert VAL in eine Zeichenkette.
+</p><p>FORMAT_FLAGS ist ein Bitfeld:</p>
+ <p> 0x1: Gibt den rohen Hexadezimalwert von Zahlen, Funktionen oder Tabellen aus.<br>
+  0x2: Gibt VAL als vorzeichenbehaftete 32-Bit-Ganzzahl aus, indem es um 16 Bit nach links verschoben wird.<br>
+
+</p><p>TOSTR(NIL) gibt "[nil]" zurück</p>
+<p>TOSTR() gibt "" zurück</p><p class="codebox">
+
+
+TOSTR(17)       -- „17“<br>
+TOSTR(17,0x1)   -- "0x0011.0000"<br>
+TOSTR(17,0x3)   -- "0x00110000"<br>
+TOSTR(17,0x2)   -- "1114112"<br>
+
+</p><br><a href="#TONUM"><h5 id="TONUM"> TONUM(VAL, [FORMAT_FLAGS])</h5></a>
+<p>Konvertiert VAL in eine Zahl.</p><p class="codebox">
+
+
+TONUM("17.5")  -- 17.5<br>
+TONUM(17.5)    -- 17.5<br>
+TONUM("HOGE")  -- KEIN RÜCKGABEWERT<br>
+
+</p><p>FORMAT_FLAGS ist ein Bitfeld:</p>
+ <p> 0x1: Liest die Zeichenkette als (vorzeichenlose, ganzzahlige) Hexadezimalzahl ohne das Präfix „0x“ ein<br>
+       Nicht-hexadezimale Zeichen werden als „0“ interpretiert.<br>
+  0x2: Die Zeichenkette als vorzeichenbehaftete 32-Bit-Ganzzahl lesen und um 16 Bit nach rechts verschieben.<br>
+  0x4: Wenn VAL nicht in eine Zahl konvertiert werden kann, 0 zurückgeben<br></p><p class="codebox">
+
+
+
+TONUM("FF",       0x1)  -- 255<br>
+TONUM("1114112",  0x2)  -- 17<br>
+TONUM("1234abcd", 0x3)  -- 0x1234.abcd<br>
+
+</p><br><a href="#CHR"><h5 id="CHR"> CHR(VAL0, VAL1, ...)</h5></a>
+<p>Konvertiert einen oder mehrere ordinäre Zeichencodes in eine Zeichenkette.</p><p class="codebox">
+
+
+CHR(64)                    -- "@"<br>
+CHR(104,101,108,108,111)   -- "hello"<br>
+
+</p><br><a href="#ORD"><h5 id="ORD"> ORD(STR, [INDEX], [NUM_RESULTS])</h5></a>
+<p>Konvertiert ein oder mehrere Zeichen aus der Zeichenkette STR in ihre ordinalen (0..255) Zeichencodes.</p>
+<p>Verwenden Sie den Parameter INDEX, um anzugeben, welches Zeichen in der Zeichenkette verwendet werden soll. 
+Wenn INDEX außerhalb des Bereichs liegt oder str keine Zeichenkette ist, gibt ORD nil zurück.</p>
+<p>Wenn NUM_RESULTS angegeben wird, gibt ORD mehrere Werte ab INDEX zurück.</p><p class="codebox">
+
+
+ORD("@")         -- 64<br>
+ORD("123",2)     -- 50 (DAS ZWEITE ZEICHEN: "2")<br>
+ORD("123",2,3)   -- 50,51,52<br>
+
+</p><br><a href="#SUB"><h5 id="SUB"> SUB(STR, POS0, [POS1])</h5></a>
+<p>Extrahiert eine Teilzeichenfolge aus der Zeichenkette str, beginnend bei pos0 bis einschließlich pos1.
+ Wenn POS1 nicht angegeben ist, wird der Rest der Zeichenkette zurückgegeben. 
+Wenn POS1 angegeben ist, aber keine Zahl ist, wird ein einzelnes Zeichen an POS0 
+zurückgegeben.</p><p class="codebox">
+
+
+S = "THE QUICK BROWN FOX"<br>
+PRINT(SUB(S,5,9))    --&gt; "QUICK"<br>
+PRINT(SUB(S,5))      --&gt; "QUICK BROWN FOX"<br>
+PRINT(SUB(S,5,TRUE)) --&gt; "Q"<br>
+
+</p><br><a href="#SPLIT"><h5 id="SPLIT"> SPLIT(STR, [SEPARATOR], [CONVERT_NUMBERS])</h5></a>
+<p>Teilt eine Zeichenkette in eine Tabelle von Elementen auf, die durch das angegebene 
+Trennzeichen getrennt sind (Standard ist „,“). Wenn das Trennzeichen eine Zahl n ist, wird die Zeichenkette
+ in Gruppen von n Zeichen aufgeteilt. Wenn convert_numbers wahr ist, werden numerische 
+Token als Zahlen gespeichert (Standard ist wahr). Leere Elemente werden 
+als leere Zeichenketten gespeichert.</p><p class="codebox">
+
+
+SPLIT("1,2,3")               -- {1,2,3}<br>
+SPLIT("ONE:TWO:3",":",FALSE) -- {"ONE","TWO","3"}<br>
+SPLIT("1,,2,")               -- {1,"",2,""}<br>
+
+</p><br><a href="#TYPE"><h5 id="TYPE"> TYPE(VAL)</h5></a>
+<p>Gibt den Typ von val als Zeichenkette zurück.</p><p class="codebox">
+
+
+&gt; PRINT(TYPE(3))<br>
+NUMBER<br>
+&gt; PRINT(TYPE("3"))<br>
+STRING<br>
+
+</p><a href="#Cartridge_Data"><h2 id="Cartridge_Data">6.11 Cartridge-Daten</h2></a>
+<p>Mit <a href="#CARTDATA"><b>CARTDATA</b></a>(), <a href="#DSET"><b>DSET</b></a>() und <a href="#DGET"><b>DGET</b></a>()
+ können 64 Zahlen (256 Bytes) an persistenten Daten  auf dem PICO-8 des Benutzers gespeichert werden, 
+die auch nach dem Entladen der Cartridge oder dem Herunterfahren von PICO-8 erhalten bleiben. 
+Dies kann als einfache Möglichkeit genutzt werden, um beispielsweise  Highscores 
+oder den Spielfortschritt zu speichern. Es kann auch genutzt werden, um Daten zwischen  
+Kassetten / Kassettenversionen auszutauschen.</p>
+<p>Wenn mehr als 256 Bytes benötigt werden, ist es auch möglich, mit <a href="#CSTORE"><b>CSTORE</b></a>() direkt auf die Kassette zu schreiben.
+ Der Nachteil ist, dass die Daten an diese bestimmte Version der
+ Kassette gebunden sind. Wenn beispielsweise ein Spiel aktualisiert wird, verlieren die Spieler ihre 
+Spielstände. Außerdem muss in den Datenbereichen der Kassette etwas Speicherplatz 
+als Speicherplatz freigehalten werden</p><p>.</p>
+<p>Eine weitere Alternative besteht darin</p><p>,</p><p>durch Angabe eines vierten Parameters bei <a href="#CSTORE"><b>CSTORE</b></a>() direkt auf eine zweite Kassette zu schreiben. Dies erfordert einen Kassettenwechsel (was in der Praxis lediglich bedeutet, dass der Benutzer 1 Sekunde lang eine sich drehende Kassettenanimation sehen muss).</p><p class="codebox">
+
+
+CSTORE(0,0,0X2000, "SPRITE SHEET.P8")<br>
+-- SPÄTER DIE GESPEICHERTEN DATEN WIEDERHERSTELLEN:<br>
+RELOAD(0,0,0X2000, "SPRITE SHEET.P8")<br>
+
+</p><br><a href="#CARTDATA"><h5 id="CARTDATA"> CARTDATA(ID)</h5></a>
+<p>Öffnet einen permanenten Datenspeicherplatz, der durch eine ID indiziert ist und zum
+Speichern und Abrufen von bis zu 256 Byte (64 Zahlen) an Daten mit <a href="#DSET"><b>DSET</b></a>() und <a href="#DGET"><b>DGET</b></a>() verwendet werden kann.</p><p class="codebox">
+
+
+CARTDATA("ZEP_DARK_FOREST")<br>
+DSET(0, SCORE)<br>
+
+</p><p>Die ID ist eine Zeichenkette mit einer Länge von bis zu 64 Zeichen und sollte so ungewöhnlich sein,
+dass  andere Cartridges nicht versehentlich dieselbe ID verwenden. Zulässige 
+Zeichen sind a..z, 0..9 und der Unterstrich (_)</p>
+<p>Gibt „true“ zurück, wenn Daten geladen wurden, andernfalls „false“.</p>
+<p>CARTDATA kann einmal pro Cartridge-Ausführung aufgerufen werden, daher kann nur ein einziger Datenspeicherplatz verwendet werden.</p>
+<p>Sobald eine Cartdata-ID festgelegt wurde, wird der Speicherbereich 0X5E00..0X5EFF
+ auf den permanenten Speicher abgebildet und kann entweder direkt oder 
+über <a href="#DGET"><b>DGET</b></a>()/@DSET() angesprochen werden.
+</p><p>Es ist nicht erforderlich, geschriebene Daten zu flushen – sie werden automatisch im permanenten Speicher gespeichert, selbst wenn sie durch direktes <a href="#POKE"><b>POKE</b></a>() auf 0X5E00..0X5EFF geändert werden.</p>
+<br><a href="#DGET"><h5 id="DGET"> DGET(INDEX)</h5></a>
+<p>Ruft die unter INDEX (0..63) gespeicherte Zahl ab</p>
+<p>Verwenden Sie dies erst, nachdem Sie <a href="#CARTDATA"><b>CARTDATA</b></a>() aufgerufen haben</p>
+<br><a href="#DSET"><h5 id="DSET"> DSET(INDEX, VALUE)</h5></a>
+<p>Setzt die unter INDEX (0..63) gespeicherte Zahl</p>
+<p>Verwenden Sie dies nur, nachdem Sie <a href="#CARTDATA"><b>CARTDATA</b></a>() aufgerufen haben</p>
+<a href="#GPIO"><h2 id="GPIO">6.12 GPIO</h2></a>
+<p>GPIO steht für „General Purpose Input Output“ und ermöglicht es Maschinen, 
+miteinander zu kommunizieren. PICO-8 ordnet Bytes im Bereich 
+0x5f80..0x5fff GPIO-Pins zu, die</p>
+<br><a href="#POKE"><h5 id="POKE"> mit POKE() (um einen Wert auszugeben – z. B. um eine LED zum Leuchten zu bringen) oder mit @PEEK() (z. B. um</h5></a>
+<p>den Zustand eines Schalters abzurufen).</p>
+<p>GPIO hat für verschiedene Host-Plattformen unterschiedliche Bedeutungen:</p>
+<p>CHIP:         0x5f80..0x5f87 zugeordnet zu xio-p0..xio-p7<br>
+Pocket CHIP:  0x5f82..0x5f87 zugeordnet zu GPIO1..GPIO6<br>
+  // xio-p0 &amp; p1 sind im Prototyping-Bereich im Gehäuse freigelegt.<br>
+Raspberry Pi: 0x5f80..0x5f9f zugeordnet zu wiringPi-Pins 0..31<br>
+  // siehe http://wiringpi.com/pins/ für Zuordnungen bei verschiedenen Modellen.<br>
+  // außerdem: Achte auf die unterschiedliche GPIO-Indizierung bei BCM und WiringPi!<br>
+
+</p><p>Die Werte von CHIP und Raspberry Pi sind alle digital: 0 (LOW) und 255 (HIGH)</p>
+<p>Ein Programm zum Ein- und Ausschalten beliebiger angeschlossener LEDs:</p><p class="codebox">
+
+
+T = 0<br>
+FUNCTION _DRAW()<br>
+ CLS(5)<br>
+ FOR I=0,7 DO<br>  VAL = 0<br>  IF (T % 2 &lt; 1) VAL = 255<br>  POKE(0X5F80 + I, VAL)<br>  CIRCFILL(20+I*12,64,4,VAL/11)<br>END<br>T += 0.1<br>END<br>
+
+</p><a href="#Serial"><h4 id="Serial">■ Seriell</h4>
+</a><p>Für eine präzisere Zeitsteuerung kann der Befehl <a href="#SERIAL"><b>SERIAL</b></a>()
+verwendet werden. GPIO-Schreibvorgänge werden gepuffert und  am 
+Ende jedes Frames versendet, was Taktzyklen mit höheren und/oder regelmäßigeren 
+Geschwindigkeiten ermöglicht, als dies durch manuelles Bit-Banging mit <a href="#POKE"><b>POKE</b></a>()-Aufrufen möglich ist.</p>
+<br><a href="#SERIAL"><h5 id="SERIAL"> SERIAL(CHANNEL, ADDRESS, LENGTH)</h5></a>
+<p>CHANNEL:<br>
+  0x000..0x0fe    entspricht den GPIO-Pin-Nummern; sende 0x00 für LOW oder 0xFF für HIGH<br>
+  0x0ff           Verzögerung; Länge wird als „Dauer“ in Mikrosekunden verstanden (ohne Overhead)<br>
+  0x400..0x401    ws281x-LED-Kette (experimentell)<br>
+
+</p><p>ADDRESS: Der PICO-8-Speicherplatz, aus dem gelesen bzw. in den geschrieben werden soll.</p>
+<p>LENGTH:  Anzahl der zu sendenden Bytes. 1/8-Teile sind zulässig, um Teilbitstrings zu senden.</p>
+<p>Beispiel: Um ein Byte bitweise an eine typische APA102-LED-Kette zu senden:</p><p class="codebox">
+
+
+VAL = 42          -- ZU SENDENDER WERT<br>
+DAT = 16 CLK = 15 -- DATEN- UND TAKTPINS HÄNGEN VOM GERÄT AB<br>
+POKE(0X4300,0)    -- ZU SENDENDE DATEN (EINZELNE BYTES: 0 ODER 0XFF)<br>
+POKE(0X4301,0XFF)<br>
+FOR B=0,7 DO<br>
+  -- BIT SENDEN (HIGH ZUERST)<br>
+  SERIAL(DAT, BAND(VAL, SHL(1,7-B))&gt;0 AND 0X4301 OR 0X4300, 1)<br>
+  -- TAKT ZYKLISCH TICKEN LASSEN<br>
+  SERIAL(CLK, 0X4301)<br>
+  SERIAL(0XFF, 5) -- 5 TAKTE VERZÖGERUNG<br>
+  SERIAL(CLK, 0X4300)<br>
+  SERIAL(0XFF, 5) -- 5 TAKTE VERZÖGERUNG<br>
+END<br>
+
+</p><p>Zusätzliche Kanäle stehen für Byte-Ströme zum und vom 
+Host-Betriebssystem zur Verfügung. Diese sind vor allem für 
+UNIX-ähnliche Umgebungen bei der Entwicklung von Toolchains gedacht und stehen nicht 
+zur Verfügung, wenn ein BBS oder ein exportiertes Modul läuft [1]. Die maximale Übertragungsrate 
+beträgt in allen Fällen 64 kbit/s (blockiert die CPU).</p>
+<p>0x800  verworfene Datei   //  stat(120) gibt TRUE zurück, wenn Daten verfügbar sind<br>
+0x802  verworfenes Image  //  stat(121) gibt TRUE zurück, wenn Daten verfügbar sind<br>
+0x804  stdin<br>
+0x805  stdout<br>
+0x806  Datei angegeben mit: pico8 -i Dateiname<br>
+0x807  Datei angegeben mit: pico8 -o Dateiname<br>
+
+</p><p>In PICO-8 abgelegte Bilddateien erscheinen auf Kanal 0x802 als 
+Byte-Stream in einem speziellen Format: Die ersten 4 Bytes geben die 
+Breite und Höhe des Bildes an (jeweils 2 Bytes im Little-Endian-Format, wie bei PEEK2), gefolgt von 
+dem Bild in Lesereihenfolge, ein Byte pro Pixel, farblich angepasst an die 
+Anzeigepalette zum Zeitpunkt des Ablegens der Datei.</p>
+<p>[1]    Die Kanäle 0x800 und 0x802 sind in exportierten Binärdateien verfügbar, jedoch mit einer maximalen Dateigröße von 256 kB oder 128x128 für Bilder.</p>
+<a href="#HTML"><h4 id="HTML">■ HTML</h4>
+</a><p>Als HTML / .js exportierte Cartridges verwenden ein globales Array von Ganzzahlen 
+(pico8_gpio), um  die GPIO-Pins darzustellen. Das Shell-HTML sollte das 
+Array definieren:</p><p class="codebox">
+
+
+var pico8_gpio = Array(128);<br>
+
+</p><a href="#Mouse_and_Keyboard_Input"><h2 id="Mouse_and_Keyboard_Input">6.13 Maus- und Tastatureingabe</h2></a>
+<p>// EXPERIMENTELL – funktioniert jedoch größtenteils auf allen Plattformen</p>
+<p>Maus- und Tastatureingaben können durch Aktivieren des Devkit-Eingabemodus realisiert werden:</p>
+<p>POKE(0x5F2D, flags)  -- wobei flags folgende Werte annehmen können:</p>
+<p>0x1 Devkit-Eingabe aktivieren<br>
+0x2 Maustasten lösen btn(4)..btn(6) aus<br>
+0x4 Zeigersperre (verwende stat 38..39, um Bewegungen auszulesen)<br>
+
+</p><p>Beachten Sie, dass nicht jedes PICO-8 über eine angeschlossene Tastatur oder Maus verfügt
+; daher wird empfohlen, beim Posten von Cartridges im Lexaloffle-BBS die
+Tastatur- und/oder Maussteuerung  optional und standardmäßig deaktiviert zu lassen, sofern
+möglich. Wenn der Devkit-Eingabemodus aktiviert ist, wird den
+BBS-Nutzern eine Meldung angezeigt, die sie darauf hinweist, dass das Programm möglicherweise Eingaben erwartet, die über
+die  Standard-6-Tasten-Controller hinausgehen.</p>
+<p>Der Status von Maus und Tastatur ist in stat(x) zu finden:</p>
+<p>STAT(30) -- (Boolescher Wert) True, wenn ein Tastendruck vorliegt<br>
+STAT(31) -- (Zeichenkette) Von der Tastatur zurückgegebenes Zeichen<br>
+STAT(32) -- Maus-X-Koordinate<br>
+STAT(33) -- Maus-Y-Koordinate<br>
+STAT(34) -- Maustasten (Bitfeld)<br>
+STAT(36) -- Mausrad-Ereignis<br>
+STAT(38) -- Relative x-Bewegung (in Host-Desktop-Pixeln) -- erfordert Flag 0x4<br>
+STAT(39) -- Relative y-Bewegung (in Host-Desktop-Pixeln) -- erfordert Flag 0x4<br>
+
+</p><a href="#Additional_Lua_Features"><h2 id="Additional_Lua_Features">6.14 Zusätzliche Lua-Funktionen</h2></a>
+<p>PICO-8 bietet fortgeschrittenen Benutzern außerdem zwei Lua-Funktionen: Metatabellen und Coroutinen.</p>
+<p>Weitere Informationen finden Sie im Lua 5.2-Handbuch.</p>
+<a href="#Metatables"><h3 id="Metatables">▨ Metatabellen</h3>
+</a><p>Metatabellen können verwendet werden, um das Verhalten von Objekten bei 
+bestimmten Operationen zu definieren. Um beispielsweise Tabellen zur Darstellung von 2D-Vektoren zu verwenden, 
+die addiert werden können, wird der Operator „+“ neu definiert, indem 
+eine „__add“-Funktion für die Metatabelle definiert wird:</p><p class="codebox">
+
+
+VEC2D={<br>
+ __ADD=FUNCTION(A,B) <br>
+     RETURN {X=(A.X+B.X), Y=(A.Y+B.Y)} <br>
+ END<br>
+}<br>
+ <br>
+V1={X=2,Y=9} SETMETATABLE(V1, VEC2D)<br>
+V2={X=1,Y=5} SETMETATABLE(V2, VEC2D)<br>
+V3 = V1+V2<br>
+PRINT(V3.X..","..V3.Y) -- 3,14<br>
+
+</p><br><a href="#SETMETATABLE"><h5 id="SETMETATABLE"> SETMETATABLE(TBL, M)</h5></a>
+<p>Setze die Metatabelle der Tabelle TBL auf M</p>
+<br><a href="#GETMETATABLE"><h5 id="GETMETATABLE"> GETMETATABLE(TBL)</h5></a>
+<p>Gibt die aktuelle Metatabelle für Tabelle t zurück oder nil, falls keine gesetzt ist</p>
+<br><a href="#RAWSET"><h5 id="RAWSET"> RAWSET(TBL, KEY, VALUE)</h5></a>
+<a href="#RAWGET"><h5 id="RAWGET"> RAWGET(TBL, KEY)</h5></a>
+<a href="#RAWEQUAL"><h5 id="RAWEQUAL"> RAWEQUAL(TBL1,TBL2</h5></a>
+<a href="#RAWLEN"><h5 id="RAWLEN"> RAWLEN(TBL)</h5></a>
+<p>Rohzugriff auf die Tabelle, als ob keine Metamethoden definiert wären.</p>
+<a href="#Function_Arguments"><h3 id="Function_Arguments">▨ Funktionsargumente</h3>
+</a><p>Die Liste der Funktionsargumente kann mit ... angegeben werden </p><p class="codebox">
+
+
+FUNCTION PREPRINT(PRE, S, ...)<br>
+  LOCAL S2 = PRE..TOSTR(S)<br>
+  PRINT(S2, ...) -- DIE VERBLEIBENDEN ARGUMENTE AN PRINT() WEITERLEITEN<br>
+END<br>
+
+</p><p>Um eine variable Anzahl von Argumenten zu akzeptieren, definieren Sie mit ihnen eine Tabelle 
+und/oder verwenden Sie die Lua-Funktion select(). select(index, ...) gibt alle 
+Argumente nach index zurück.</p><p class="codebox">
+
+
+FUNCTION FOO(...)<br>
+  LOCAL ARGS={...} -- WIRD ZU EINER ARGUMENTTABELLE<br>
+  FOREACH(ARGS, PRINT)<br>
+  ?SELECT("#",...)    -- ALTERNATIVE MÖGLICHKEIT, DIE ANZAHL DER ARGUMENTE ZU ZÄHLEN<br>
+  FOO2(SELECT(3,...)) -- ARGUMENTE AB 3 AN FOO2() ÜBERGEBEN<br>
+END<br>
+
+</p><a href="#Coroutines"><h3 id="Coroutines">▨ Coroutinen</h3>
+</a><p>Coroutinen bieten eine Möglichkeit, verschiedene Teile eines Programms 
+in gewisser Weise parallel  auszuführen, ähnlich wie bei Threads. Eine Funktion kann 
+als Coroutine aufgerufen, mit 
+ </p><br><a href="#YIELD"><h5 id="YIELD"> YIELD() beliebig oft angehalten und dann an denselben Stellen wieder fortgesetzt werden.</h5></a><p class="codebox">
+
+
+FUNCTION HEY()<br>
+  PRINT("DOING SOMETHING")<br>
+  YIELD()<br>
+  PRINT("DOING THE NEXT THING")<br>
+  YIELD()<br>
+  PRINT("FINISHED")<br>
+END<br>
+ <br>
+C = COCREATE(HEY)<br>FOR I=1,3 DO CORESUME(C) END<br>
+
+</p><br><a href="#COCREATE"><h5 id="COCREATE"> COCREATE(F)</h5></a>
+<p>Erstelle eine Coroutine für die Funktion f.</p>
+<br><a href="#CORESUME"><h5 id="CORESUME"> CORESUME(C, [P0, P1 ..])</h5></a>
+<p>Führt die Coroutine c aus oder setzt sie fort. Die Parameter p0, p1.. werden an die Funktion der Coroutine übergeben.</p>
+<p>Gibt „true“ zurück, wenn die Coroutine ohne Fehler beendet wird</p><p>.</p><p>Gibt „false“, Fehlermeldung zurück, wenn ein Fehler auftritt.</p>
+<p>** Laufzeitfehler, die innerhalb von Coroutinen auftreten, führen nicht dazu, dass das 
+Programm die Ausführung beendet. Es empfiehlt sich, CORESUME() in ein <a href="#ASSERT"><b>ASSERT</b></a>() einzubinden. Wenn die Assertion fehlschlägt, wird die von  coresume generierte Fehlermeldung ausgegeben.</p>
+<br><a href="#ASSERT"><h5 id="ASSERT"> ASSERT(CORESUME(C))</h5></a>
+<br><a href="#COSTATUS"><h5 id="COSTATUS"> COSTATUS(C)</h5></a>
+<p>Gibt den Status der Coroutine C als Zeichenkette zurück:<br>
+  "running"<br>
+  "suspended"<br>
+  "dead"<br>
+
+</p><br><a href="#YIELD"><h5 id="YIELD"> YIELD</h5></a>
+<p>Die Ausführung wird unterbrochen und an den Aufrufer zurückgegeben.</p>
+<a href="#Appendix"><h1 id="Appendix"><span style="font-size:48pt">❼</span> Anhang</h1></a>
+<a href="#Appendix_A__P8SCII_Control_Codes"><h2 id="Appendix_A__P8SCII_Control_Codes">7.1 Anhang A: P8SCII-Steuerzeichen</h2></a>
+<p>Bei der Ausgabe mit <a href="#PRINT"><b>PRINT</b></a>() haben einige 
+Zeichen eine besondere Bedeutung, mit der sich beispielsweise 
+die Cursorposition und der Textdarstellungsstil ändern lassen. Steuerzeichen in 
+PICO-8 sind CHR(0)..CHR(15) und können als Escape-Sequenz geschrieben werden 
+(„\n“ für Zeilenumbruch usw.)</p>
+<p>Einige der unten aufgeführten Steuercodes nehmen Parameter entgegen, die 
+nach einem Schema geschrieben werden, das eine Obermenge des Hexadezimalformats darstellt. Das heißt, 
+'0'..'f' bedeuten auch 0..15. Aber auch Zeichen nach 'f' werden akzeptiert: 
+'g' bedeutet 16 und so weiter. Solche Parameter werden unten als P0, P1 geschrieben.</p>
+<p>Beispiel: Um mit blauem Hintergrund („\#c“) und dunkelgrauem Vordergrund („\f5“) zu drucken:</p><p class="codebox">
+
+
+PRINT("\#C\F5 BLUE ")<br>
+
+</p><p>Die einzigen Auswirkungen auf den Zeichenzustand sind Änderungen der Cursorposition 
+und der Vordergrundfarbe; alle anderen Attribute werden bei jedem Aufruf <a href="#PRINT"><b>von PRINT</b></a>() zurückgesetzt.</p>
+<a href="#Control_Codes"><h4 id="Control_Codes">■ Steuercodes</h4>
+</a><p>0 "\0"   Beendet den Druckvorgang<br>
+1 "\*"   Wiederholt das nächste Zeichen P0-mal. ?"\*3a" --&gt; aaa<br>
+2 "\#"   Zeichnet einen einfarbigen Hintergrund mit der Farbe P0 <br>
+3 "\-"   Cursor horizontal um P0-16 Pixel verschieben<br>
+4 "\|"   Cursor vertikal um P0-16 Pixel verschieben<br>
+5 "\+"   Cursor um P0-16, P1-16 Pixel verschieben<br>
+6 "\^"   Sonderbefehl (siehe unten)<br>
+7 "\a"   Audio (siehe unten)<br>
+8 "\b"   Rücktaste<br>
+9 "\t"   Tabulator<br>
+a "\n"   Zeilenumbruch<br>
+b "\v"   Vorheriges Zeichen verzieren (siehe unten)<br>
+c "\f"   Vordergrundfarbe setzen<br>
+d "\r"   Wagenrücklauf<br>
+e "\014"   Zu der unter 0x5600 definierten Schriftart wechseln<br>
+f "\015" Wechsle zur Standardschriftart<br>
+
+</p><a href="#Special_Commands"><h4 id="Special_Commands">■ Sonderbefehle</h4>
+</a><p>Diese Befehle beginnen alle mit „\^“ und nehmen bis zu 2 Parameter (P0, P1) an. Beispiel: Um den Bildschirm auf Dunkelblau zu setzen: print("\^c1")</p>
+<p>1..9 überspringe 1, 2, 4, 8, 16, 32..256 Frames		<br>
+c cls auf Farbe P0, Cursor auf 0,0 setzen<br>
+d Verzögerung auf P0 Frames für jedes gedruckte Zeichen setzen<br>
+g Cursorposition auf Startposition setzen<br>
+h Startposition auf Cursorposition setzen<br>
+j zu absoluter Position P0*4, P1*4 (in Bildschirmpixeln) springen<br>
+r rechte Zeichenumbruchgrenze auf P0*4 setzen<br>
+s Tabulatorbreite auf P0 Pixel setzen (wird von „\t“ verwendet)<br>
+u Unterstreichen<br>
+x Zeichenbreite festlegen  (Standard: 4)<br>
+y Zeichenhöhe festlegen (Standard: 6)<br>
+
+</p><a href="#Rendering_mode_options__"><h4 id="Rendering_mode_options__">■ Optionen für den Darstellungsmodus  </h4>
+</a><p>// mit „-“ voranstellen, um zu deaktivieren: z. B. ?"\^i ein \^-i aus "</p>
+<p>w Breitmodus: Skalierung 2x1 <br>
+t Hochmodus: Skalierung 1x2<br>
+= Streifenmodus: Im Breit- oder Hochmodus werden nur gerade Pixel gezeichnet<br>
+p Pinball-Modus: Entspricht der Einstellung von Breit, Hoch und Streifen<br>
+i invertieren<br>
+b Rahmen: 1px-Abstand links und oben ein- oder ausschalten // standardmäßig aktiviert<br>
+# einfarbiger Hintergrund  // standardmäßig deaktiviert, wird aber automatisch durch \# aktiviert<br>
+
+</p><a href="#Raw_memory_writes"><h4 id="Raw_memory_writes">■ Rohspeicher-Schreibvorgänge</h4>
+</a><p>Die folgenden beiden Befehle nehmen 4-stellige Hex-Parameter entgegen:</p>
+<p>@addrnnnn[binstr] schreibt nnnn Bytes an die Adresse addr<br>
+!addr[binstr]     schreibt alle verbleibenden Zeichen an die Adresse addr<br>
+
+</p><p>Beispiel: Um 4 Bytes in den Videospeicher in der Mitte des Bildschirms zu schreiben:</p><p class="codebox">
+
+
+&gt;?"\^@70000004xxxxhello"<br>
+
+</p><a href="#One_off_characters"><h4 id="One_off_characters">■ Einzelne Zeichen</h4>
+</a><p>Zeichendaten können inline mit \^ angegeben und ausgegeben werden. 
+Gefolgt von 8 Bytes roher Binärdaten oder \^: gefolgt von 8 zweistelligen 
+Hexadezimalwerten. Das Datenformat entspricht dem von benutzerdefinierten Schriftarten; jedes 
+Byte gibt eine Zeile von 1-Bit-Pixelwerten an, wobei das  niedrigste Bit links steht
+.</p>
+<p>\^.[8 Zeichen roher Binärdaten]<br>
+\^:[16 Zeichen Hexadezimal]<br>
+
+</p><p>So druckst du eine Katze:</p><p class="codebox">
+
+
+&gt; ?"\^:447cb67c3e7f0106"<br>
+
+</p><p>. und : rendern immer ein 8x8-Zeichen ohne Auffüllung. Um den Auffüllstatus zu berücksichtigen, verwende stattdessen , und ;.</p><p class="codebox">
+
+
+&gt; ?"\#3\^;447cb67c3e7f0106"<br>
+
+</p><a href="#P8SCII_Outlines"><h4 id="P8SCII_Outlines">■ P8SCII-Umrisse</h4>
+</a><p>Der Befehl „outline“ zeichnet zunächst jedes Pixel des Zeichens an bis zu
+ 8 benachbarten Positionen, die durch ein 8-Bit-Bitfeld angegeben werden. Der Bitwert 
+für jeden Nachbarn beginnt mit den niedrigsten Bits oben links und steigt  
+in Leserichtung an:</p>
+<p>0x01    0x02    0x04<br>
+0x08     --     0x10<br>
+0x20    0x40    0x80 <br>
+
+</p><p>Das erste Zeichen nach dem Befehl „\^o“ ist die Farbe, und die 
+folgenden beiden Zeichen sind  das Nachbar-Bitfeld in Hexadezimal. 
+Um beispielsweise links von jedem Vordergrundpixel ein Pixel zu zeichnen, 
+kann der Wert 0x01 verwendet werden:</p><p class="codebox">
+
+
+&gt; ?"\^o801hey"<br>
+
+</p><p>Das Folgende zeichnet ein blaues Pixel links, rechts, oben und unten von 
+jedem Vordergrundpixel, was den Bits 8+16+2+64 = 90 entspricht, oder 
+0x08+0x10+0x02+0x40 = 0x5a in Hexadezimal:</p><p class="codebox">
+
+
+&gt; ?"\f7\^oc5aoutline"<br>
+
+</p><p>Schließlich lässt sich ein vollständiger Umriss erzielen, indem alle Bits gesetzt werden. „Outline“ 
+funktioniert in Kombination mit den Befehlen „tall“ und/oder „wide“, aber der Umriss 
+wird weiterhin mit einer Dicke von einem Pixel gezeichnet:</p><p class="codebox">
+
+
+&gt; ?"\fe\^w\^t\^o7ffchunky"<br>
+
+</p><p>Das Zeichnen einer Kontur kostet etwa doppelt so viel CPU-Leistung wie das Zeichnen eines Zeichens ohne Kontur.</p>
+<p>Der Parameter für die Konturfarbe kann „$“ sein, um die aktuelle Farbe zu verwenden, oder
+ „!“, um die aktuelle Farbe zu verwenden und das Zeichnen des Innenbereichs zu überspringen.</p><p class="codebox">
+
+
+&gt; ?" \^o!ff empty interior"<br>
+
+</p><a href="#Audio_"><h4 id="Audio_">■ Audio </h4>
+</a><p>? ?"\A"   -- EINZELNER PIEPTON ?"\A12" -- VORHANDENE DATEN BEI SFX 12 ABSPIELEN</p>
+<p>Wenn kein SFX-Index angegeben wird, wird automatisch ein inaktiver SFX zwischen 60 und 63 
+ausgewählt. Um den SFX vor der Wiedergabe mit Daten zu füllen, können 
+die folgenden Befehle angehängt werden.</p>
+<p>1. (optional) SFX-Attribute müssen einmal am Anfang stehen, da sie für den gesamten Sound gelten:</p>
+<p>s P0     SFX-Geschwindigkeit festlegen<br>
+l P0 P1  SFX-Loop-Start- und -Endpunkt festlegen<br>
+
+</p><p>2. Notendaten:</p>
+<p>Noten werden als a..g geschrieben, optional gefolgt von einem Kreuz # oder einem b, sowie der Oktavzahl.</p><p class="codebox">
+
+
+PRINT "\ACE-G" -- MOLL-DREIKLANG<br>
+
+</p><p>Leere Noten können mit einem Punkt geschrieben werden:</p><p class="codebox">
+
+
+PRINT "\AC..E-..G" -- STACCATO-MOLL-DREIKLANG <br>
+
+</p><p>Notenattribut-Befehle gelten für die folgenden Noten:</p>
+<p>i P0    Instrument einstellen (Standard: 5)<br>
+v P0    Lautstärke einstellen     (Standard: 5)<br>
+x P0    Effekt einstellen     (Standard: 0)<br>
+&lt;  &gt;   Lautstärke um 1 erhöhen oder verringern 
+
+</p><p>Beispiel: Um ein schnelles (Geschwindigkeit 4), stakkatoartiges (Effekt 5) Arpeggio ab C1 abzuspielen:</p><p class="codebox">
+
+
+PRINT "\AS4X5C1EGC2EGC3EGC4"<br>
+
+</p><a href="#Decoration_Characters"><h4 id="Decoration_Characters">■ Dekorationszeichen</h4>
+</a><p>Das Steuerzeichen \v kann verwendet werden, um das zuletzt gedruckte
+Zeichen mit einem anderen Zeichen an einem bestimmten Offset zu verzieren, ohne dass 
+die Cursorposition anderweitig verwaltet werden muss. Nachdem das Verzierungszeichen 
+gedruckt wurde, wird die vorherige Cursorposition wiederhergestellt.</p>
+<p>Das Format lautet \v P0 char, wobei P0 eine Zahl ist, die den gewünschten 
+Offset angibt, und char ein beliebiges Zeichen ist, das an diesem Offset (relativ zum 
+vorher gedruckten Zeichen) gedruckt werden soll.</p>
+<p>Der Offset hat x in den untersten 2 Bits gepackt und beginnt (-2,-8) in der
+Lesereihenfolge. Somit bedeutet 3 (+1, -8), 4 bedeutet (-2, -7) und so weiter.</p>
+<p>Um beispielsweise „cafÃ©!“ zu schreiben und dabei ein Komma zur Darstellung des Akzents zu verwenden:</p><p class="codebox">
+
+
+PRINT"\NCAFE\VB,!"<br>
+
+</p><p>In diesem Fall ist P0 'b', was als die Zahl 11 gelesen wird. Das Komma wird also an folgender Stelle eingefügt:</p>
+<p>x = (11 % 4) - 2 = 1<br>
+y = (11 \ 4) - 8 = -6<br>
+
+</p><a href="#Custom_Font"><h4 id="Custom_Font">■ Benutzerdefinierte Schriftart</h4>
+</a><p>Eine benutzerdefinierte Schriftart kann unter 0x5600 definiert werden und besteht aus 8 Bytes pro
+ Zeichen * 256 Zeichen = 2048 Bytes. Jedes Zeichen ist ein 8x8-Bitfeld 
+(1 Bit/Pixel), wobei, von oben beginnend, jede Zeile ein 
+einzelnes Byte ist, das links mit 0x1 beginnt.</p>
+<p>Die ersten 128 Bytes (die Zeichen 0 bis 15 werden nie gezeichnet) beschreiben die Attribute der Schriftart:</p>
+<p>0x5600 Zeichenbreite in Pixeln (kann mehr als 8 betragen, es werden jedoch nur 8 Pixel gezeichnet)<br>
+0x5601 Zeichenbreite für Zeichen 128 und höher<br>
+0x5602 Zeichenhöhe in Pixeln<br>
+0x5603 Zeichenversatz x<br>
+0x5604 Zeichenversatz y<br>
+0x5605 Flags: 0x1 apply_size_adjustments  0x2: Tabulatoren relativ zur Cursor-Ausgangsposition anwenden<br>
+0x5606 Tabulatorbreite in Pixeln (wird nur verwendet, wenn eine alternative Schriftart gezeichnet wird)<br>
+0x5607 ungenutzt<br>
+
+</p><p>Die verbleibenden 120 Bytes dienen zur Anpassung der Breite und des vertikalen 
+Versatzes der Zeichen 16..255. Jedes Nibble (niedrige Nibbles zuerst) beschreibt 
+die Anpassungen für ein Zeichen:</p>
+<p>Bits 0x7: Zeichenbreite um 0, 1, 2, 3, -4, -3, -2, -1 anpassen<br>
+Bit  0x8: Wenn gesetzt, Zeichen einen Pixel höher zeichnen (nützlich für lateinische Akzente)<br>
+
+</p><a href="#Default_Attributes"><h4 id="Default_Attributes">■ Standardattribute</h4>
+</a><p>Obwohl die Attribute bei jedem Aufruf <a href="#PRINT"><b>von PRINT</b></a>() zurückgesetzt werden, ist es möglich, ihre Standardwerte festzulegen, indem man in die Speicheradressen 0x5f58..0x5f5b schreibt.</p>
+<p>0x5f58 // Bitfeld<br>
+  0x1  wenn auf 0x1 gesetzt, werden die Bits 1..7 beachtet:<br>
+  0x2  Auffüllung<br>
+  0x4  breit<br>
+  0x8  hoch<br>
+  0x10 einfarbiger Hintergrund<br>
+  0x20 invertieren<br>
+  0x40 gestreift (bei „breit“ oder „hoch“)<br>
+  0x80 benutzerdefinierte Schriftart verwenden<br>
+ <br>
+  // z. B. poke(0x5f58, 0x1 | 0x2 | 0x4 | 0x8 | 0x20 | 0x40)  -- Pinball überall<br>
+
+</p><p>0x5f59 char_w   (unteres Nibble), char_h   (oberes)<br>
+0x5f5a char_w2  (unteres Nibble), tab_w    (oberes)<br>
+0x5f5b offset_x (unteres Nibble), offset_y (oberes)<br>
+ <br> 
+// Alle Nibbles, die gleich 0 sind, werden ignoriert<br>
+// tab_w-Werte (globale Tabulatorbreite) werden auf 4..60 abgebildet<br>
+
+
+</p></div>
+
+
+</body></html>
