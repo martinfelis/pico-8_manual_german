@@ -268,13 +268,13 @@ END<br>
 &gt; CD DEMOS<br>
 &gt; LS    <br> 
  <br> 
-HELLO      Grüße von PICO-8<br>
-API        Demonstriert die meisten PICO-8-Funktionen<br>
-JELPI      Plattformspiel-Demo mit 2-Spieler-Unterstützung <br>
-CAST       2,5D-Raycaster-Demo<br>
-DRIPPY     Zeichne eine tropfende Schnörkel<br>
-WANDER     Einfacher Walking-Simulator<br>
-COLLIDE    Beispiel für Kollisionen zwischen Wänden und Akteuren<br>
+HELLO &nbsp; &nbsp; Grüße von PICO-8<br>
+API &nbsp; &nbsp; &nbsp; Demonstriert die meisten PICO-8-Funktionen<br>
+JELPI &nbsp; &nbsp; Plattformspiel-Demo mit 2-Spieler-Unterstützung <br>
+CAST &nbsp; &nbsp;&nbsp; 2,5D-Raycaster-Demo<br>
+DRIPPY &nbsp;&nbsp; Zeichne eine tropfende Schnörkel<br>
+WANDER &nbsp;&nbsp; Einfacher Walking-Simulator<br>
+COLLIDE &nbsp; Beispiel für Kollisionen zwischen Wänden und Akteuren<br>
 
 </p><p>Um eine Cartridge auszuführen, öffne PICO-8 und gib Folgendes ein:</p><p class="codebox">
 
@@ -292,12 +292,12 @@ COLLIDE    Beispiel für Kollisionen zwischen Wänden und Akteuren<br>
 <p>Mit diesen Befehlen können Sie Dateien und Verzeichnisse (Ordner) verwalten:</p><p class="codebox">
 
 
-LS          das aktuelle Verzeichnis auflisten<br>
-CD BLAH     Verzeichnis wechseln<br>
-CD ..       ein Verzeichnis höher gehen<br>
-CD /        zurück zum obersten Verzeichnis wechseln (auf dem virtuellen Laufwerk von PICO-8)<br>
-MKDIR BLAH  ein Verzeichnis erstellen<br>
-FOLDER      das aktuelle Verzeichnis im Dateibrowser des Host-Betriebssystems öffnen<br>
+LS &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; das aktuelle Verzeichnis auflisten<br>
+CD BLAH  &nbsp; &nbsp; Verzeichnis wechseln<br>
+CD .. &nbsp; &nbsp; &nbsp; ein Verzeichnis höher gehen<br>
+CD / &nbsp; &nbsp; &nbsp;&nbsp; zurück zum obersten Verzeichnis wechseln (auf dem virtuellen Laufwerk von PICO-8)<br>
+MKDIR BLAH &nbsp;ein Verzeichnis erstellen<br>
+FOLDER &nbsp; &nbsp;&nbsp; das aktuelle Verzeichnis im Dateibrowser des Host-Betriebssystems öffnen<br>
 
 </p><p>LOAD BLAH  eine Cartridge aus dem aktuellen Verzeichnis laden SAVE BLAH  eine Cartridge im aktuellen Verzeichnis speichern</p>
 <p>Wenn du Dateien verschieben, duplizieren oder löschen möchtest, verwende den Befehl FOLDER  und führe die Aktion im Host-Betriebssystem aus.</p>
@@ -344,13 +344,13 @@ Codes weniger als 15360 Bytes betragen, damit die Gesamtdatenmenge &lt;= 32k ist
 Beschränkung der komprimierten Größe  gilt nicht für das Speichern im .p8-Format.</p>
 <a href="#_Using_an_External_Text_Editor"><h2 id="_Using_an_External_Text_Editor">1.6  Verwendung eines externen Texteditors</h2></a>
 <p>Es ist möglich, .p8-Dateien direkt mit einem separaten Texteditor zu bearbeiten. 
-Wenn Sie STRG-R drücken, um eine Cartridge auszuführen, wird die Datei automatisch neu geladen</p><p>,</p><p>
+Wenn Sie STRG-R drücken, um eine Cartridge auszuführen, wird die Datei automatisch neu geladen,</p><p>
 wenn:
 </p><p>1. keine ungespeicherten Änderungen in den PICO-8-Editoren vorliegen UND<br> 2. sich der Inhalt der Datei von der zuletzt geladenen Version unterscheidet.
 </p><p>Wenn sowohl an der Cartridge auf der Festplatte als auch im Editor Änderungen vorgenommen wurden, wird folgende Meldung angezeigt:</p><p class="codebox">
 
 
-NICHT NEU GELADEN; UNGESPEICHERTE ÄNDERUNGEN<br>
+DIDN'T RELOAD; UNSAVED CHANGES<br>
 
 </p><p>Alternativ können .lua-Textdateien in einem separaten Editor bearbeitet 
 und dann bei jeder Ausführung der Cartridge mithilfe von <a href="#_INCLUDE"><b>#INCLUDE</b></a> (an der gewünschten Stelle im Code) in den Code der Cartridge eingebunden werden:</p><p class="codebox">
@@ -358,7 +358,7 @@ und dann bei jeder Ausführung der Cartridge mithilfe von <a href="#_INCLUDE"><b
 
 #INCLUDE YOURFILE.LUA<br>
 
-</p><a href="#_Backups"><h2 id="_Backups">1.7  Sicherungen</h2></a>
+</p><a href="#_Backups"><h2 id="_Backups">1.7  Backups</h2></a>
 <p>Wenn Sie das Programm beenden, ohne Änderungen zu speichern, oder eine vorhandene 
 Datei überschreiben, wird eine Sicherungskopie der Cartridge  unter {appdata}/pico-8/backup gespeichert. Eine
  zusätzliche Kopie der aktuellen Cartridge kann ebenfalls in demselben 
@@ -386,33 +386,33 @@ Linux: ~/.lexaloffle/pico-8/config.txt<br>
 <a href="#Commandline_parameters"><h4 id="Commandline_parameters">■ Befehlszeilenparameter</h4>
 </a><p>// Hinweis: Diese überschreiben die Einstellungen in config.txt</p>
 <p>pico8 [Schalter] [Dateiname.p8]</p>
-<p>-width n                Fensterbreite festlegen <br>
--height n               Fensterhöhe festlegen <br>
--windowed n             Fenstermodus deaktivieren (0) oder aktivieren (1)<br>
--volume n               Lautstärke festlegen 0..256<br>
--joystick n             Joystick-Steuerung beginnt bei Spieler n (0..7)<br>
--pixel_perfect n        1 für ungefilterte Bildschirmstreckung bei ganzzahligen Skalierungen (standardmäßig aktiviert)<br>
--preblit_scale n        Skaliert die Anzeige um den Faktor n vor dem Blitting auf den Bildschirm (nützlich bei -pixel_perfect 0)<br>
--draw_rect x,y,w,h      absolute Fensterkoordinaten und Größe zum Zeichnen des PICO-8-Bildschirms <br>
--display n              den bevorzugten Anzeigeindex festlegen, wenn mehrere Anzeigen vorhanden sind<br>
--run filename           eine Cartridge laden und ausführen<br>
--x filename             eine PICO-8-Cartridge im Headless-Modus ausführen und dann beenden (experimentell!)<br>
--export param_str       den EXPORT-Befehl im Headless-Modus ausführen und beenden (siehe Hinweise unter „export“)<br>
--p param_str            eine Parameterzeichenfolge an die angegebene Cartridge übergeben<br>
--splore                 im Splore-Modus starten<br>
--home path              den Pfad zum Speichern von config.txt und anderen Benutzerdatendateien festlegen<br>
--root_path Pfad         Legt den Pfad zum Speichern von Cartridge-Dateien fest<br>
--desktop Pfad           Legt einen Speicherort für Screenshots und GIFs fest<br>
--screenshot_scale n     Skalierung von Screenshots.  Standard: 3 (368x368 Pixel)<br>
--gif_scale n            Skalierung von GIF-Aufnahmen. Standard: 2 (256x256 Pixel)<br>
--gif_len n              Legt die maximale GIF-Länge in Sekunden fest (1..120)<br>
--gui_theme n            Verwende 1 für ein Editor-Farbschema mit höherem Kontrast<br>
--timeout n              Wartezeit in Sekunden bis zum Ablauf des Downloads (Standard: 30)<br>
--software_blit n        Software-Blitting-Modus deaktivieren (0) oder aktivieren (1)<br>
--foreground_sleep_ms n  Pause in Millisekunden zwischen den Frames.<br>
--background_sleep_ms n  Wie viele Millisekunden zwischen den Frames pausieren, wenn das Programm im Hintergrund läuft<br>
--accept_future n        1, um das Laden von Kassetten zuzulassen, die mit zukünftigen Versionen von PICO-8 erstellt wurden<br>
--global_api n           1, um API-Funktionen im globalen Bereich zu belassen (nützlich für die Fehlersuche)<br>
+<p>-width n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fensterbreite festlegen <br>
+-height n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fensterhöhe festlegen <br>
+-windowed n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fenstermodus deaktivieren (0) oder aktivieren (1)<br>
+-volume n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lautstärke festlegen 0..256<br>
+-joystick n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Joystick-Steuerung beginnt bei Spieler n (0..7)<br>
+-pixel_perfect n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 für ungefilterte Bildschirmstreckung bei ganzzahligen Skalierungen (standardmäßig aktiviert)<br>
+-preblit_scale n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Skaliert die Anzeige um den Faktor n vor dem Blitting auf den Bildschirm (nützlich bei -pixel_perfect 0)<br>
+-draw_rect x,y,w,h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; absolute Fensterkoordinaten und Größe zum Zeichnen des PICO-8-Bildschirms <br>
+-display n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; den bevorzugten Anzeigeindex festlegen, wenn mehrere Anzeigen vorhanden sind<br>
+-run filename&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eine Cartridge laden und ausführen<br>
+-x filename&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eine PICO-8-Cartridge im Headless-Modus ausführen und dann beenden (experimentell!)<br>
+-export param_str&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; den EXPORT-Befehl im Headless-Modus ausführen und beenden (siehe Hinweise unter „export“)<br>
+-p param_str&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eine Parameterzeichenfolge an die angegebene Cartridge übergeben<br>
+-splore&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; im Splore-Modus starten<br>
+-home path&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; den Pfad zum Speichern von config.txt und anderen Benutzerdatendateien festlegen<br>
+-root_path Pfad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Legt den Pfad zum Speichern von Cartridge-Dateien fest<br>
+-desktop Pfad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Legt einen Speicherort für Screenshots und GIFs fest<br>
+-screenshot_scale n&nbsp;&nbsp;&nbsp;&nbsp; Skalierung von Screenshots.&nbsp;&nbsp; Standard: 3 (368x368 Pixel)<br>
+-gif_scale n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Skalierung von GIF-Aufnahmen. Standard: 2 (256x256 Pixel)<br>
+-gif_len n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Legt die maximale GIF-Länge in Sekunden fest (1..120)<br>
+-gui_theme n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Verwende 1 für ein Editor-Farbschema mit höherem Kontrast<br>
+-timeout n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Wartezeit in Sekunden bis zum Ablauf des Downloads (Standard: 30)<br>
+-software_blit n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Software-Blitting-Modus deaktivieren (0) oder aktivieren (1)<br>
+-foreground_sleep_ms n &nbsp; Pause in Millisekunden zwischen den Frames.<br>
+-background_sleep_ms n &nbsp; Wie viele Millisekunden zwischen den Frames pausieren, wenn das Programm im Hintergrund läuft<br>
+-accept_future n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1, um das Laden von Kassetten zuzulassen, die mit zukünftigen Versionen von PICO-8 erstellt wurden<br>
+-global_api n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1, um API-Funktionen im globalen Bereich zu belassen (nützlich für die Fehlersuche)<br>
 
 </p><a href="#Controller_Setup"><h3 id="Controller_Setup">▨ Controller-Einrichtung</h3>
 </a><p>PICO-8 verwendet das SDL2-Controller-Konfigurationsschema. Es 
@@ -563,12 +563,12 @@ drücke STRG-A (wiederhole dies, um die untere Hälfte, die mit Kartendaten gete
 </a><p>Klicken Sie auf die Werkzeugschaltfläche, um zwischen den Optionen „Oval“, „Rechteck“ und „Linie“ zu wechseln.</p>
 <p>Halten Sie die STRG-Taste gedrückt, um ein gefülltes Oval oder Rechteck zu erhalten.<br> Halten Sie die UMSCHALT-Taste gedrückt, um an Kreisen, Quadraten oder Linien mit einem niedrigen Seitenverhältnis auszurichten.</p>
 <a href="#Extra_keys"><h4 id="Extra_keys">■ Zusatztasten</h4>
-</a><p>STRG-Z:   Rückgängig<br>
+</a><p>STRG-Z:&nbsp;&nbsp; Rückgängig<br>
 STRG-C/X: Ausgewählten Bereich oder ausgewählte Sprites kopieren/ausschneiden<br>
-STRG-V:   An der aktuellen Sprite-Position einfügen<br>
-Q/A,W/Z:  Zum vorherigen/nächsten Sprite wechseln<br>
-1,2:      Zur vorherigen/nächsten Farbe wechseln<br>
-TAB:      Vollbildansicht umschalten<br>
+STRG-V:&nbsp;&nbsp; An der aktuellen Sprite-Position einfügen<br>
+Q/A,W/Z:&nbsp;&nbsp;Zum vorherigen/nächsten Sprite wechseln<br>
+1,2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zur vorherigen/nächsten Farbe wechseln<br>
+TAB:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vollbildansicht umschalten<br>
 Mausrad oder &lt; und &gt; zum Zoomen (zentriert im Vollbildmodus)<br>
 STRG-H zum Umschalten der Hex-Ansicht (zeigt den Sprite-Index in Hexadezimal an)<br>
 STRG-G zum Umschalten der schwarzen Gitterlinien beim Vergrößern<br>
@@ -628,11 +628,11 @@ und Sprite-Index in Hexadezimal an).</p>
   Einen Effekt     (0..7)<br>
 
 </p><p>Jedes SFX verfügt außerdem über folgende Eigenschaften:</p>
- <p> Eine Wiedergabegeschwindigkeit (SPD): die Anzahl der „Ticks“, für die jede Note gespielt wird.<br>
-    // Das bedeutet, dass 1 am schnellsten ist, 3 dreimal so langsam usw.<br>
+ <p>&nbsp; Eine Wiedergabegeschwindigkeit (SPD): die Anzahl der „Ticks“, für die jede Note gespielt wird.<br>
+ &nbsp; &nbsp; // Das bedeutet, dass 1 am schnellsten ist, 3 dreimal so langsam usw.<br>
  <br> 
-  Loop-Start und -Ende: dies ist der Notenindex, an dem die Schleife beginnt und endet<br>
-    // Die Schleife wird deaktiviert, wenn der Startindex &gt;= Endindex ist<br>
+  &nbsp; Loop-Start und -Ende: dies ist der Notenindex, an dem die Schleife beginnt und endet<br>
+ &nbsp; &nbsp; // Die Schleife wird deaktiviert, wenn der Startindex &gt;= Endindex ist<br>
 
 </p><p>Wenn nur die erste der beiden Zahlen verwendet wird (und die zweite 
 0 ist), wird dies als die Anzahl der abzuspielenden Noten interpretiert. Dies ist 
@@ -670,29 +670,29 @@ SPACE zum Abspielen/Stoppen<br>
 SHIFT-SPACE zum Abspielen ab dem aktuellen SFX-Viertel (Gruppe von 8 Noten)<br>
 A, um ein Looping-Sample abzuspielen<br>
 Links- oder Rechtsklick, um die SPD- oder LOOP-Werte zu erhöhen/verringern<br>
-  // Halte die Umschalttaste beim Klicken gedrückt, um den Wert um 4 zu erhöhen/verringern<br>
-  // Alternativ kannst du klicken und nach links/rechts oder oben/unten ziehen<br>
+&nbsp; // Halte die Umschalttaste beim Klicken gedrückt, um den Wert um 4 zu erhöhen/verringern<br>
+&nbsp; // Alternativ kannst du klicken und nach links/rechts oder oben/unten ziehen<br>
 Umschalt-Klick auf ein Instrument, einen Effekt oder die Lautstärke, um dies auf alle Noten anzuwenden.<br>
 
 </p><a href="#Effects"><h3 id="Effects">▨ Effekte</h3>
 </a><p>0 keine<br>
-1 Slide          //  Gleite zur nächsten Note und Lautstärke<br>
-2 Vibrato        //  Variiere die Tonhöhe schnell innerhalb eines Vierteltons<br>
-3 Drop           //  Senke die Frequenz schnell auf sehr niedrige Werte<br>
-4 Fade-in        //  Steigere die Lautstärke von 0 an<br>
-5 fade out       //  Die Lautstärke auf 0 abklingen lassen<br>
-6 arpeggio fast  //  Gruppen von 4 Noten mit einer Geschwindigkeit von 4 durchlaufen<br>
-7 arpeggio slow  //  Gruppen von 4 Noten mit einer Geschwindigkeit von 8 durchlaufen<br>
+1 Slide&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;Gleite zur nächsten Note und Lautstärke<br>
+2 Vibrato&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;Variiere die Tonhöhe schnell innerhalb eines Vierteltons<br>
+3 Drop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //&nbsp;&nbsp;Senke die Frequenz schnell auf sehr niedrige Werte<br>
+4 Fade-in&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;Steigere die Lautstärke von 0 an<br>
+5 fade out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //&nbsp;&nbsp;Die Lautstärke auf 0 abklingen lassen<br>
+6 arpeggio fast&nbsp;&nbsp;//&nbsp;&nbsp;Gruppen von 4 Noten mit einer Geschwindigkeit von 4 durchlaufen<br>
+7 arpeggio slow&nbsp;&nbsp;//&nbsp;&nbsp;Gruppen von 4 Noten mit einer Geschwindigkeit von 8 durchlaufen<br>
 
 </p><p>Wenn die SFX-Geschwindigkeit &lt;= 8 ist, werden die Arpeggio-Geschwindigkeiten auf 2 und 4 halbiert</p>
 <a href="#Filters"><h3 id="Filters">▨ Filter</h3>
 </a><p>Jedes SFX verfügt über 5 Filterschalter, auf die im Tracker-Modus zugegriffen werden kann:</p>
-<p>NOIZ:      Erzeugt reines weißes Rauschen (gilt nur für Instrument 6)<br>
-BUZZ:      Verschiedene Veränderungen der Wellenform, um sie summender klingen zu lassen<br>
-DETUNE-1:  Verstimmt eine zweite Stimme, um einen flangerähnlichen Effekt zu erzeugen<br>
-DETUNE-2:  Verschiedene Stimmungen der zweiten Stimme, meist eine Oktave nach oben oder unten<br>
-REVERB:    Wendet ein Echo mit einer Verzögerung von 2 oder 4 Ticks an<br>
-DAMPEN:    Tiefpassfilter in 2 verschiedenen Stufen<br>
+<p>NOIZ:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Erzeugt reines weißes Rauschen (gilt nur für Instrument 6)<br>
+BUZZ:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Verschiedene Veränderungen der Wellenform, um sie summender klingen zu lassen<br>
+DETUNE-1:&nbsp;&nbsp;Verstimmt eine zweite Stimme, um einen flangerähnlichen Effekt zu erzeugen<br>
+DETUNE-2:&nbsp;&nbsp;Verschiedene Stimmungen der zweiten Stimme, meist eine Oktave nach oben oder unten<br>
+REVERB:&nbsp;&nbsp;&nbsp;&nbsp;Wendet ein Echo mit einer Verzögerung von 2 oder 4 Ticks an<br>
+DAMPEN:&nbsp;&nbsp;&nbsp;&nbsp;Tiefpassfilter in 2 verschiedenen Stufen<br>
 
 </p><p>Wenn BUZZ mit Instrument 6 verwendet wird und NOIZ ausgeschaltet ist, wird reines braunes Rauschen erzeugt.</p>
 <a href="#Music_Editor"><h2 id="Music_Editor">2.5 Musik-Editor</h2></a>
@@ -705,8 +705,8 @@ dem jeweiligen Kanal abgespielt wird.</p>
 <p>- es sind keine Daten mehr zum Abspielen vorhanden (die Musik stoppt)<br>
 - für dieses Pattern ist ein STOP-Befehl gesetzt (die dritte Schaltfläche)<br>
 - ein LOOP-BACK-Befehl gesetzt ist (die zweite Schaltfläche); in diesem Fall sucht der Musikplayer<br>
-  rückwärts nach einem Pattern, für das der LOOP-START-Befehl gesetzt ist (die erste Schaltfläche), oder kehrt zu<br>
-  Pattern 0 zurück, wenn keines gefunden wird.<br>
+&nbsp; rückwärts nach einem Pattern, für das der LOOP-START-Befehl gesetzt ist (die erste Schaltfläche),<br>
+&nbsp; oder kehrt zu Pattern 0 zurück, wenn keines gefunden wird.<br>
 
 </p><p>Wenn ein Pattern SFX-Elemente mit unterschiedlichen Geschwindigkeiten enthält, endet die Wiedergabe des Patterns, 
 sobald der ganz links liegende, nicht in einer Schleife befindliche Kanal abgespielt wurde. 
@@ -731,9 +731,9 @@ neben den Instrumenten, um einen  Index auszuwählen, der im
 Instrumentenkanal grün statt rosa angezeigt wird.</p>
 <p>Wenn eine Note eines SFX-Instruments gespielt wird, löst dies im Wesentlichen das SFX aus, verändert jedoch  die Attribute der Note:</p><p>
   Die Tonhöhe wird relativ zu C2 hinzugefügt<br>
-  Die Lautstärke wird multipliziert<br>
-  Effekte werden zusätzlich zu den Effekten des SFX-Instruments angewendet<br>
-  Alle im SFX-Instrument aktivierten Filter werden für diese Note aktiviert<br></p><p>
+&nbsp;&nbsp;Die Lautstärke wird multipliziert<br>
+&nbsp;&nbsp;Effekte werden zusätzlich zu den Effekten des SFX-Instruments angewendet<br>
+&nbsp;&nbsp;Alle im SFX-Instrument aktivierten Filter werden für diese Note aktiviert<br></p><p>
 
 Beispielsweise könnte ein einfacher Tremolo-Effekt implementiert werden, indem
  ein Instrument  in SFX 0 definiert wird, das schnell zwischen den Lautstärken 5 und 2 wechselt.
@@ -760,9 +760,9 @@ kleines Tastatursymbol, um diese Funktion umzuschalten. Es gibt 2
 Transponier-Schaltflächen, 1 Invertier-Schaltfläche und 3 Schaltflächen für voreingestellte Tonleitern:</p><p class="codebox">
 
 
-Dim   Verminderte Septim-Tonleiter // Umkehren, um eine Ganz-Halb-Tonleiter zu erhalten<br>
-Maj   Dur-Tonleiter          // Umkehren, um eine Pentatonik zu erhalten<br>
-Who   Ganztonleiter     // Umkehren, um … die andere Ganztonleiter zu erhalten<br>
+Dim&nbsp;&nbsp; Verminderte Septim-Tonleiter // Umkehren, um eine Ganz-Halb-Tonleiter zu erhalten<br>
+Maj&nbsp;&nbsp; Dur-Tonleiter&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Umkehren, um eine Pentatonik zu erhalten<br>
+Who&nbsp;&nbsp; Ganztonleiter&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Umkehren, um … die andere Ganztonleiter zu erhalten<br>
 
 </p><p>Das Ändern der Tonleiter hat keinen Einfluss auf den aktuellen SFX; die Tonleiter wird nur angewendet, wenn 
 neue Noten bei gedrückter STRG-Taste gezeichnet werden.</p>
@@ -873,9 +873,9 @@ Transparenz verwendet.  Um ein Symbol aus dem Sprite-Sheet anzugeben, verwenden 
 optional -s und/oder -c , um Größe und Transparenz zu steuern.</p><p class="codebox">
 
 
--I N  Symbolindex N mit einer standardmäßigen transparenten Farbe von 0 (schwarz).<br>
--S N  Größe NxN-Sprites. Die Größe 3 würde ein 24x24-Symbol erzeugen.<br>
--C N  Farbe N als transparent behandeln. Verwenden Sie 16 für keine Transparenz.<br>
+-I N&nbsp;&nbsp;Symbolindex N mit einer standardmäßigen transparenten Farbe von 0 (schwarz).<br>
+-S N&nbsp;&nbsp;Größe NxN-Sprites. Die Größe 3 würde ein 24x24-Symbol erzeugen.<br>
+-C N&nbsp;&nbsp;Farbe N als transparent behandeln. Verwenden Sie 16 für keine Transparenz.<br>
 
 </p><p>Beispiel: Um ein 2x2-Sprite ab Index 32 im Sprite-Sheet zu verwenden und dabei die Farbe 12 als transparent zu behandeln:</p><p class="codebox">
 
@@ -918,7 +918,7 @@ EXPORT übergibt, wenn man eigenständige HTML- oder native Binär-Player generi
 
 
 RELOAD(0,0,0X2000, "DAT1.P8") -- SPRITESHEET AUS DAT1.P8 LADEN<br>
-LOAD("GAME2.P8")              -- EIN WEITERES MODUL LADEN UND AUSFÜHREN<br>
+LOAD("GAME2.P8")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- EIN WEITERES MODUL LADEN UND AUSFÜHREN<br>
 
 </p><div style="display:inline-block; float:left; position:relative; left:-10px; top:5px; font-size:16pt; background-color:#fff">ⓘ</div><p style="width:90%; padding:16px; border-width:2px; border-radius:15px; border-style:dashed; border-color:#aaa; background-color:#fff; ">
 
@@ -970,20 +970,20 @@ PRINT(TOSTR(VAL,TRUE)):</p><p class="codebox">
 </a><p class="codebox">
 
 IF NOT B THEN<br>
-  PRINT("B IST FALSCH")<br>
+&nbsp;&nbsp;PRINT("B IST FALSCH")<br>
 ELSE<br>
-  PRINT("B IST NICHT FALSCH")<br>
+&nbsp;&nbsp;PRINT("B IST NICHT FALSCH")<br>
 END<br>
 
 </p><p>-- mit ELSEIF</p><p class="codebox">
 
 
 IF X == 0 THEN<br>
-  PRINT("X IST 0")<br>
+&nbsp;&nbsp;PRINT("X IST 0")<br>
 ELSEIF X &lt; 0 THEN<br>
-  PRINT("X IST NEGATIV")<br>
+&nbsp;&nbsp;PRINT("X IST NEGATIV")<br>
 ELSE<br>
-  PRINT("X IST POSITIV")<br>
+&nbsp;&nbsp;PRINT("X IST POSITIV")<br>
 END<br></p><p class="codebox">
 
 
@@ -998,24 +998,22 @@ IF (4 &gt; 3) THEN PRINT("GRÖSSER ALS") END<br>
 
 
 FOR X=1,5 DO<br>
-  PRINT(X)<br>
+&nbsp;&nbsp;PRINT(X)<br>
 END<br>
--- GIBT 1,2,3,4,5</p><p class="codebox">AUS</p><p class="codebox"><br></p><p class="codebox">
+-- GIBT 1,2,3,4,5 AUS</p>
 
-
-
+<p class="codebox">
 X = 1<br>
 WHILE(X &lt;= 5) DO<br>
-  PRINT(X)<br>
-  X = X + 1<br>
-END<br></p><p class="codebox">
+&nbsp;&nbsp;PRINT(X)<br>
+&nbsp;&nbsp;X = X + 1<br>
+END<br></p>
 
 
+<p class="codebox">
+FOR X=1,10,3 DO PRINT(X) END   -- 1,4,7,10<br></p>
 
-FOR X=1,10,3 DO PRINT(X) END   -- 1,4,7,10<br></p><p class="codebox">
-
-
-
+<p class="codebox">
 FOR X=5,1,-2 DO PRINT(X) END  -- 5,3,1<br>
 
 </p><a href="#Functions_and_Local_Variables"><h3 id="Functions_and_Local_Variables">▨ Funktionen und lokale Variablen</h3>
@@ -1026,8 +1024,8 @@ FOR X=5,1,-2 DO PRINT(X) END  -- 5,3,1<br>
 
 Y=0 <br>
 FUNCTION PLUSONE(X)<br>
-  LOCAL Y = X+1<br>
-  RETURN Y<br>
+&nbsp;&nbsp;LOCAL Y = X+1<br>
+&nbsp;&nbsp;RETURN Y<br>
 END<br>
 PRINT(PLUSONE(2)) -- 3<br>
 PRINT(Y)          -- 0<br>
@@ -1113,18 +1111,18 @@ Programmausführung aufgerufen werden:</p>
 
 
 FUNCTION _INIT()<br>
-  -- IMMER AUF WEISS STARTEN<br>
-  COL = 7<br>
+&nbsp;&nbsp;-- IMMER AUF WEISS STARTEN<br>
+&nbsp;&nbsp;COL = 7<br>
 END<br>
  <br>
 FUNCTION _UPDATE()<br>
-  -- DRÜCKE X FÜR EINE ZUFÄLLIGE FARBE <br>
-  IF (BTNP(5)) COL = 8 + RND(8) <br>
+&nbsp;&nbsp;-- DRÜCKE X FÜR EINE ZUFÄLLIGE FARBE <br>
+&nbsp;&nbsp;IF (BTNP(5)) COL = 8 + RND(8) <br>
 END<br>
  <br>
 FUNKTION _DRAW()<br>
-  CLS(1)<br>
-  CIRCFILL(64,64,32,COL)<br>
+&nbsp;&nbsp;CLS(1)<br>
+&nbsp;&nbsp;CIRCFILL(64,64,32,COL)<br>
 END<br>
 
 </p><p>_DRAW() wird normalerweise mit 30 fps aufgerufen, aber wenn es nicht rechtzeitig fertig wird, 
@@ -1269,10 +1267,10 @@ Verwendung einer benutzerdefinierten Hauptschleife ist jedoch normalerweise ein 
 ::_::<br>
 CLS()<br>
 FOR I=1,100 DO<br>
-  A=I/50 - T()<br>
-  X=64+COS(A)*I<br>
-  Y=64+SIN(A)*I<br>
-  CIRCFILL(X,Y,1,8+(I/4)%8)<br>
+&nbsp;&nbsp;A=I/50 - T()<br>
+&nbsp;&nbsp;X=64+COS(A)*I<br>
+&nbsp;&nbsp;Y=64+SIN(A)*I<br>
+&nbsp;&nbsp;CIRCFILL(X,Y,1,8+(I/4)%8)<br>
 END<br>
 FLIP()GOTO _<br>
 
@@ -1298,24 +1296,24 @@ Verwenden Sie stat(4), um die Zwischenablage auszulesen, aber der Inhalt der Zwi
 <p>Systemstatus abrufen, wobei X für Folgendes steht:</p><p class="codebox">
 
 
-0  Speicherauslastung (0..2048)<br>
-1  CPU-Auslastung seit dem letzten Bildwechsel (1,0 == 100 % CPU)<br>
-4  Inhalt der Zwischenablage (nachdem der Benutzer STRG-V gedrückt hat)<br>
-6  Parameterzeichenfolge<br>
-7  Aktuelle Bildrate<br>
+0&nbsp;&nbsp;Speicherauslastung (0..2048)<br>
+1&nbsp;&nbsp;CPU-Auslastung seit dem letzten Bildwechsel (1,0 == 100 % CPU)<br>
+4&nbsp;&nbsp;Inhalt der Zwischenablage (nachdem der Benutzer STRG-V gedrückt hat)<br>
+6&nbsp;&nbsp;Parameterzeichenfolge<br>
+7&nbsp;&nbsp;Aktuelle Bildrate<br>
  <br> 
-46..49  Index des aktuell abgespielten SFX auf den Kanälen 0..3<br>
-50..53  Notennummer (0..31) auf Kanal 0..3<br>
-54      Index des aktuell abgespielten Patterns<br>
-55      Gesamtzahl der abgespielten Patterns<br>
-56      Anzahl der Ticks im aktuellen Pattern<br>
-57      (Boolescher Wert) TRUE, wenn Musik abgespielt wird<br>
+46..49&nbsp;&nbsp;Index des aktuell abgespielten SFX auf den Kanälen 0..3<br>
+50..53&nbsp;&nbsp;Notennummer (0..31) auf Kanal 0..3<br>
+54&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index des aktuell abgespielten Patterns<br>
+55&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gesamtzahl der abgespielten Patterns<br>
+56&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Anzahl der Ticks im aktuellen Pattern<br>
+57&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Boolescher Wert) TRUE, wenn Musik abgespielt wird<br>
  <br>
-80..85  UTC-Zeit: Jahr, Monat, Tag, Stunde, Minute, Sekunde<br>
-90..95  Ortszeit<br>
+80..85&nbsp;&nbsp;UTC-Zeit: Jahr, Monat, Tag, Stunde, Minute, Sekunde<br>
+90..95&nbsp;&nbsp;Ortszeit<br>
  <br> 
-100     Aktuelle Breadcrumb-Bezeichnung oder nil<br>
-110     Gibt „true“ zurück, wenn sich das System im Einzelbildmodus befindet<br>
+100&nbsp;&nbsp;&nbsp;&nbsp; Aktuelle Breadcrumb-Bezeichnung oder nil<br>
+110&nbsp;&nbsp;&nbsp;&nbsp; Gibt „true“ zurück, wenn sich das System im Einzelbildmodus befindet<br>
 
 </p><div style="display:inline-block; float:left; position:relative; left:-10px; top:5px; font-size:16pt; background-color:#fff">ⓘ</div><p style="width:90%; padding:16px; border-width:2px; border-radius:15px; border-style:dashed; border-color:#aaa; background-color:#fff; ">
 
@@ -1327,20 +1325,20 @@ Tick einen Verlauf des Mixerzustands, um eine Schätzung des aktuell hörbaren
 Zustands mit höherer Auflösung zu liefern.</p>
 <br><a href="#EXTCMD"><h5 id="EXTCMD"> EXTCMD(CMD_STR, [P1, P2])</h5></a>
 <p>Spezieller Systembefehl, wobei CMD_STR eine Zeichenkette ist:</p>
-<p>"pause"         fordert das Öffnen des Pausenmenüs an<br>
-"reset"         fordert einen Cart-Reset an<br>
-"go_back"       kehrt zum vorherigen Cart zurück, falls vorhanden<br>
-"label"         setzt die Cart-Bezeichnung auf den Bildschirminhalt<br>
-"screen"        speichert einen Screenshot<br>
-"rec"           setzt den Startpunkt des Videos<br>
-"rec_frames"    Videostartpunkt im Frames-Modus festlegen<br>
-"video"         eine .gif-Datei auf dem Desktop speichern<br>
-"audio_rec"     Audioaufnahme starten<br>
-"audio_end"     aufgezeichnetes Audio auf dem Desktop speichern (wird im Web nicht unterstützt)<br>
-"shutdown"      Cartridge beenden (aus exportierter Binärdatei)<br>
-"folder"        aktuellen Arbeitsordner auf dem Host-Betriebssystem öffnen<br>
-"set_filename"  Dateinamen für Screenshots / GIFs / Audioaufnahmen festlegen<br>
-"set_title"     Titel des Host-Fensters festlegen<br>
+<p>"pause"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fordert das Öffnen des Pausenmenüs an<br>
+"reset"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fordert einen Cart-Reset an<br>
+"go_back"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kehrt zum vorherigen Cart zurück, falls vorhanden<br>
+"label"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setzt die Cart-Bezeichnung auf den Bildschirminhalt<br>
+"screen"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;speichert einen Screenshot<br>
+"rec"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setzt den Startpunkt des Videos<br>
+"rec_frames"&nbsp;&nbsp;&nbsp;&nbsp;Videostartpunkt im Frames-Modus festlegen<br>
+"video"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eine .gif-Datei auf dem Desktop speichern<br>
+"audio_rec"&nbsp;&nbsp;&nbsp;&nbsp; Audioaufnahme starten<br>
+"audio_end"&nbsp;&nbsp;&nbsp;&nbsp; aufgezeichnetes Audio auf dem Desktop speichern (wird im Web nicht unterstützt)<br>
+"shutdown"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cartridge beenden (aus exportierter Binärdatei)<br>
+"folder"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aktuellen Arbeitsordner auf dem Host-Betriebssystem öffnen<br>
+"set_filename"&nbsp;&nbsp;Dateinamen für Screenshots / GIFs / Audioaufnahmen festlegen<br>
+"set_title"&nbsp;&nbsp;&nbsp;&nbsp; Titel des Host-Fensters festlegen<br>
 
 </p><p>Einige Befehle verfügen über optionale Zahlenparameter:</p>
 <p>„video“ und „screen“: P1: ein ganzzahliger Skalierungsfaktor, der 
@@ -1354,7 +1352,7 @@ auf dem Desktop (zur Änderung CONFIG GIF_SCALE verwenden).</p>
 <p>Die beiden zusätzlichen Parameter können verwendet werden, um diese Standardeinstellungen zu überschreiben:</p><p class="codebox">
 
 
-EXTCMD("VIDEO", 4)    -- SKALIERUNG *4 (512 x 512)<br>
+EXTCMD("VIDEO", 4)&nbsp;&nbsp;&nbsp;&nbsp;-- SKALIERUNG *4 (512 x 512)<br>
 EXTCMD("VIDEO", 0, 1) -- STANDARD-SKALIERUNG, IM BENUTZERDATENORDNER SPEICHERN<br>
 
 </p><p>Der Benutzerdatenordner kann mit EXTCMD("FOLDER") geöffnet werden und ist standardmäßig
@@ -1386,11 +1384,10 @@ ein Beschneidungsrechteck, eine Zeichenfarbe und ein Füllmuster.</p>
 <p>Der Zeichenzustand wird bei jedem Programmstart oder durch Aufruf <a href="#RESET"><b>von RESET</b></a>() zurückgesetzt.</p>
 <p>Farbindizes:<br>
  <br>
-   0  schwarz   1  dunkelblau   2  dunkelviolett   3  dunkelgrün  <br> 
-   4  braun   5  dunkelgrau   6  hellgrau    7  weiß<br>
-   8  rot     9  orange     10 
- gelb       11  grün       <br>
-  12  blau   13  indigo     14  rosa         15  pfirsichfarben<br>
+   0&nbsp;&nbsp;schwarz&nbsp;&nbsp; 1&nbsp;&nbsp;dunkelblau&nbsp;&nbsp; 2&nbsp;&nbsp;dunkelviolett&nbsp;&nbsp; 3&nbsp;&nbsp;dunkelgrün&nbsp;&nbsp;<br> 
+&nbsp;&nbsp; 4&nbsp;&nbsp;braun&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;dunkelgrau&nbsp;&nbsp; 6&nbsp;&nbsp;hellgrau&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;weiß<br>
+&nbsp;&nbsp; 8&nbsp;&nbsp;rot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;orange&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;gelb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;grün       <br>
+  12&nbsp;&nbsp;blau&nbsp;&nbsp;&nbsp;&nbsp; 13&nbsp;&nbsp;indigo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;rosa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;pfirsichfarben<br>
 
 </p><br><a href="#CLIP"><h5 id="CLIP"> CLIP(X, Y, W, H, [CLIP_PREVIOUS])</h5></a>
 <p>Legt das Ausschnittrechteck in Pixeln fest. Alle Zeichenoperationen werden
@@ -1402,16 +1399,20 @@ ein Beschneidungsrechteck, eine Zeichenfarbe und ein Füllmuster.</p>
 <p>Wenn COL nicht angegeben ist, wird die aktuelle Zeichenfarbe verwendet.</p><p class="codebox">
 
 
-FOR Y=0,127 DO<br>  FOR X=0,127 DO<br>    PSET(X, Y, X*Y/8)<br>  END<br>END<br>
+FOR Y=0,127 DO<br>
+&nbsp;&nbsp;FOR X=0,127 DO<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PSET(X, Y, X*Y/8)<br>
+&nbsp;&nbsp;END<br>
+END<br>
 
 </p><br><a href="#PGET"><h5 id="PGET"> PGET(X, Y)</h5></a>
 <p>Gibt die Farbe eines Pixels auf dem Bildschirm an der Position (X, Y) zurück.</p><p class="codebox">
 
 
 WHILE (TRUE) DO<br>
-  X, Y = RND(128), RND(128)<br>
-  DX, DY = RND(4)-2, RND(4)-2<br>
-  PSET(X, Y, PGET(DX+X, DY+Y))<br>
+&nbsp;&nbsp;X, Y = RND(128), RND(128)<br>
+&nbsp;&nbsp;DX, DY = RND(4)-2, RND(4)-2<br>
+&nbsp;&nbsp;PSET(X, Y, PGET(DX+X, DY+Y))<br>
 END<br>
 </p><p>Wenn X und Y außerhalb des zulässigen Bereichs liegen, gibt PGET 0 zurück. Ein benutzerdefinierter Rückgabewert kann wie folgt festgelegt werden:</p><p class="codebox">
 
@@ -1495,7 +1496,7 @@ W = PRINT("HOGE", 0, -20) -- gibt 16 zurück<br>
 CLS()<br>
 LINE()<br>
 FOR I=0,6 DO<br>
-  LINE(64+COS(I/6)*20, 64+SIN(I/6)*20, 8+I)<br>
+&nbsp;&nbsp;LINE(64+COS(I/6)*20, 64+SIN(I/6)*20, 8+I)<br>
 END	<br>
 
 </p><br><a href="#RECT"><h5 id="RECT"> RECT(X0, Y0, X1, Y1, [COL])</h5></a>
@@ -1583,14 +1584,14 @@ Ecke des Rechtecks mit einer Breite von w und einer Höhe von h.</p>
 den Wert von P für ein gewünschtes Muster zu berechnen, addiere die Bitwerte 
 miteinander:</p>
  <p> .-----------------------.<br>
-  |32768|16384| 8192| 4096|<br>
-  |-----|-----|-----|-----|<br>
-  | 2048| 1024| 512 | 256 |<br>
-  |-----|-----|-----|-----|<br>
-  | 128 |  64 |  32 |  16 |<br>
-  |-----|-----|-----|-----|<br>
-  |  8  |  4  |  2  |  1  |<br>
-  '-----------------------'<br>
+&nbsp;&nbsp;|32768|16384| 8192| 4096|<br>
+&nbsp;&nbsp;|-----|-----|-----|-----|<br>
+&nbsp;&nbsp;| 2048| 1024| 512 | 256 |<br>
+&nbsp;&nbsp;|-----|-----|-----|-----|<br>
+&nbsp;&nbsp;| 128 |&nbsp;&nbsp;64 |&nbsp;&nbsp;32 |&nbsp;&nbsp;16 |<br>
+&nbsp;&nbsp;|-----|-----|-----|-----|<br>
+&nbsp;&nbsp;|&nbsp;&nbsp;8&nbsp;&nbsp;|&nbsp;&nbsp;4&nbsp;&nbsp;|&nbsp;&nbsp;2&nbsp;&nbsp;|&nbsp;&nbsp;1&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;'-----------------------'<br>
 
 </p><p>Beispielsweise würde FILLP(4+8+64+128+  256+512+4096+8192) ein Schachbrettmuster erzeugen.</p>
 <p>Dies lässt sich im Binärformat übersichtlicher ausdrücken: FILLP(0b0011001111001100).</p>
@@ -1690,7 +1691,7 @@ in der Tabelle. (Um ein Element an einem bestimmten Index zu entfernen, verwende
 
 A={1,10,2,11,3,12}<br>
 FOR ITEM IN ALL(A) DO<br>
-  IF (ITEM &lt; 10) THEN DEL(A, ITEM) END<br>
+&nbsp;&nbsp;IF (ITEM &lt; 10) THEN DEL(A, ITEM) END<br>
 END<br>
 FOREACH(A, PRINT) -- 10,11,12<br>
 PRINT(A[3])       -- 12<br>
@@ -1703,7 +1704,11 @@ PRINT(A[3])       -- 12<br>
 <p>Wird in FOR-Schleifen verwendet, um alle Elemente einer Tabelle (die einen auf 1 basierenden ganzzahligen Index haben) in der Reihenfolge ihrer Hinzufügung zu durchlaufen.</p><p class="codebox">
 
 
-T = {11,12,13}<br>ADD(T,14)<br>ADD(T,"HI")<br>FOR V IN ALL(T) DO PRINT(V) END -- 11 12 13 14 HI<br>PRINT(#T) -- 5<br>
+T = {11,12,13}<br>
+ADD(T,14)<br>
+ADD(T,"HI")<br>
+FOR V IN ALL(T) DO PRINT(V) END -- 11 12 13 14 HI<br>
+PRINT(#T) -- 5<br>
 
 </p><br><a href="#FOREACH"><h5 id="FOREACH"> FOREACH(TBL, FUNC)</h5></a>
 <p>Rufe für jedes Element in der Tabelle TBL die Funktion FUNC mit dem Element als einzigem Parameter auf.</p><p class="codebox">
@@ -1716,11 +1721,13 @@ T = {11,12,13}<br>ADD(T,14)<br>ADD(T,"HI")<br>FOR V IN ALL(T) DO PRINT(V) END --
 
 
 T = {["HELLO"]=3, [10]="BLAH"}<br>
-T.BLUE = 5;<br>FOR K,V IN PAIRS(T) DO<br>  PRINT("K: "..K.."  V:"..V)<br>END<br>
+T.BLUE = 5;<br>FOR K,V IN PAIRS(T) DO<br>
+&nbsp;&nbsp;PRINT("K: "..K.."&nbsp;&nbsp;V:"..V)<br>
+END<br>
 </p><p>Ausgabe:</p><p class="codebox">
 
 
-K: 10  v:BLAH<br>K: HELLO  v:3<br>K: BLUE  v:5<br>
+K: 10&nbsp;&nbsp;v:BLAH<br>K: HELLO&nbsp;&nbsp;v:3<br>K: BLUE&nbsp;&nbsp;v:5<br>
 
 </p><a href="#Input"><h2 id="Input">6.4 Eingabe</h2></a>
 <br><a href="#BTN"><h5 id="BTN"> BTN([B], [PL])</h5></a>
@@ -1768,25 +1775,25 @@ N -2: Ton auf diesem Kanal aus der Schleife entlassen<br></p><p class="codebox">
 
 
 
-SFX(3)    --  SFX 3 ABSPIELEN<br>
-SFX(3,2)  --  SFX 3 AUF KANAL 2 ABSPIELEN<br>
-SFX(3,-2) --  SFX 3 AUF ALLEN KANÄLEN ANHALTEN<br>
-SFX(-1,2) --  ALLES ANHALTEN, WAS AUF KANAL 2 ABGESPIELT WIRD<br>
-SFX(-2,2) --  LOOP AUF KANAL 2 BEENDEN<br>
-SFX(-1)   --  ALLE TÖNE AUF ALLEN KANÄLEN BEENDEN<br>
-SFX(-2)   --  LOOP AUF ALLEN KANÄLEN BEENDEN<br>
+SFX(3)&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;SFX 3 ABSPIELEN<br>
+SFX(3,2)&nbsp;&nbsp;--&nbsp;&nbsp;SFX 3 AUF KANAL 2 ABSPIELEN<br>
+SFX(3,-2) --&nbsp;&nbsp;SFX 3 AUF ALLEN KANÄLEN ANHALTEN<br>
+SFX(-1,2) --&nbsp;&nbsp;ALLES ANHALTEN, WAS AUF KANAL 2 ABGESPIELT WIRD<br>
+SFX(-2,2) --&nbsp;&nbsp;LOOP AUF KANAL 2 BEENDEN<br>
+SFX(-1)&nbsp;&nbsp; --&nbsp;&nbsp;ALLE TÖNE AUF ALLEN KANÄLEN BEENDEN<br>
+SFX(-2)&nbsp;&nbsp; --&nbsp;&nbsp;LOOP AUF ALLEN KANÄLEN BEENDEN<br>
 
 </p><br><a href="#MUSIC"><h5 id="MUSIC"> MUSIC(N, [FADE_LEN], [CHANNEL_MASK])</h5></a>
-<p>Musik ab Muster N (0..63) abspielen<br>
+<p>Musik ab Pattern N (0..63) abspielen<br>
 N -1, um die Musik zu stoppen<br>
  <br> 
-FADE_LEN wird in ms angegeben (Standard: 0). Um also Muster 0 über 1 Sekunde einblenden zu lassen:<br></p><p class="codebox">
+FADE_LEN wird in ms angegeben (Standard: 0). Um also Pattern 0 über 1 Sekunde einblenden zu lassen:<br></p><p class="codebox">
 
 
 
 MUSIC(0, 1000)<br>
 
-</p><p>CHANNEL_MASK legt fest, welche Kanäle ausschließlich für Musik reserviert werden sollen. Um beispielsweise nur auf den Kanälen 0..2</p><p>abzuspielen</p><p>:</p>
+</p><p>CHANNEL_MASK legt fest, welche Kanäle ausschließlich für Musik reserviert werden sollen. Um beispielsweise nur auf den Kanälen 0..2 abzuspielen:</p>
 <p>MUSIC(0, NIL, 7) -- 1 | 2 | 4</p>
 <p>Reservierte Kanäle können weiterhin zum Abspielen von Soundeffekten verwendet werden, jedoch nur, wenn dieser Kanalindex explizit von <a href="#SFX"><b>SFX</b></a>() angefordert wird.</p>
 <a href="#Map"><h2 id="Map">6.6 Karte</h2></a>
@@ -1877,7 +1884,7 @@ Technischer Hinweis: Während der Verwendung des Editors befinden sich die zu be
 <a href="#Base_RAM_Memory_Layout"><h4 id="Base_RAM_Memory_Layout">■ Basis-RAM-Speicherlayout</h4>
 </a><p class="codebox">
 
-0X0    GFX-<br>0X1000 GFX2/MAP2 (GEMEINSAM)<br>0X2000 MAP-<br>0X3000 GFX-FLAGS<br>0X3100 SONG-<br>0X3200 SFX-<br>0X4300 BENUTZERDATEN<br>
+0X0&nbsp;&nbsp;&nbsp;&nbsp;GFX-<br>0X1000 GFX2/MAP2 (GEMEINSAM)<br>0X2000 MAP-<br>0X3000 GFX-FLAGS<br>0X3100 SONG-<br>0X3200 SFX-<br>0X4300 BENUTZERDATEN<br>
 0X5600 BENUTZERDEFINIERTE SCHRIFTART (FALLS DEFINIERT)<br>
 0X5E00 PERMANENTE CART-DATEN (256 BYTE)<br>
 0X5F00 ZEICHENSTATUS<br>
@@ -1894,9 +1901,9 @@ Kachel, wobei jedes Byte normalerweise einen Sprite-Index codiert.</p>
 </a><p>Die Speicherbereiche GFX, MAP und SCREEN können durch Setzen von Werten an den folgenden Adressen neu zugewiesen werden:</p><p class="codebox">
 
 
-0X5F54 GFX:    kann 0x00 (Standard) oder 0x60 (Bildspeicher als Spritesheet verwenden) sein<br>
+0X5F54 GFX:&nbsp;&nbsp;&nbsp;&nbsp;kann 0x00 (Standard) oder 0x60 (Bildspeicher als Spritesheet verwenden) sein<br>
 0X5F55 SCREEN: kann 0x60 (Standard) oder 0x00 sein (Spritesheet als Bildschirmspeicher verwenden)<br>
-0X5F56 MAP:    kann 0x20 (Standard) oder 0x10..0x2f oder 0x80 und höher sein.<br>
+0X5F56 MAP:&nbsp;&nbsp;&nbsp;&nbsp;kann 0x20 (Standard) oder 0x10..0x2f oder 0x80 und höher sein.<br>
 0X5F57 MAP SIZE: Kartenbreite. 0 bedeutet 256. Standardwert ist 128.<br>
 
 </p><p>Adressen können in Schritten von 256 Byte angegeben werden. So bedeutet 0x20 
@@ -1993,11 +2000,11 @@ Weitere Informationen finden Sie unter <a href="#Cartridge_Data"><b>„Kassetten
 
 
 FUNCTION _DRAW()<br>
-  CLS()<br>
-  CIRC(64, 64, 20, 7)<br>
-  X = 64 + COS(T()) * 20<br>
+&nbsp;&nbsp;CLS()<br>
+&nbsp;&nbsp;CIRC(64, 64, 20, 7)<br>
+&nbsp;&nbsp;X = 64 + COS(T()) * 20<br>
   Y = 64 + SIN(T()) * 20<br>
-  LINE(64, 64, X, Y)    <br> 
+&nbsp;&nbsp;LINE(64, 64, X, Y)&nbsp;&nbsp;&nbsp;&nbsp;<br> 
 END<br>
 
 </p><p>Die SIN()-Funktion von PICO-8 gibt ein invertiertes Ergebnis zurück, um es an den Bildschirmbereich anzupassen (wobei Y
@@ -2026,22 +2033,22 @@ P8SIN = SIN FUNCTION SIN(ANGLE) RETURN -P8SIN(ANGLE/(3.1415*2)) END<br>
 
 X=20 Y=30<br>
 FUNKTION _UPDATE()<br>
-  IF (BTN(0)) X-=2<br>
-  IF (BTN(1)) X+=2<br>
-  IF (BTN(2)) Y-=2<br>
-  IF (BTN(3)) Y+=2    <br> 
+&nbsp;&nbsp;IF (BTN(0)) X-=2<br>
+&nbsp;&nbsp;IF (BTN(1)) X+=2<br>
+&nbsp;&nbsp;IF (BTN(2)) Y-=2<br>
+&nbsp;&nbsp;IF (BTN(3)) Y+=2&nbsp;&nbsp;&nbsp;&nbsp;<br> 
 END<br>
  <br>
 FUNKTION _DRAW()<br>
-  CLS()<br>
-  CIRCFILL(X,Y,2,14)<br>
-  CIRCFILL(64,64,2,7)<br>
+&nbsp;&nbsp;CLS()<br>
+&nbsp;&nbsp;CIRCFILL(X,Y,2,14)<br>
+&nbsp;&nbsp;CIRCFILL(64,64,2,7)<br>
    <br>
   A=ATAN2(X-64, Y-64)<br>
-  PRINT("ANGLE: "..A)<br>
-  LINE(64,64,<br>
-    64+COS(A)*10,<br>
-    64+SIN(A)*10,7)<br>
+&nbsp;&nbsp;PRINT("ANGLE: "..A)<br>
+&nbsp;&nbsp;LINE(64,64,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;64+COS(A)*10,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;64+SIN(A)*10,7)<br>
 END<br>
 
 </p><br><a href="#SQRT"><h5 id="SQRT"> SQRT(X)</h5></a>
@@ -2056,7 +2063,13 @@ Tabelle ist, geben Sie ein zufälliges Element zwischen table[1] und table[#tabl
 <p>Setzt den Zufallszahlensamen. Der Samen wird beim Start von Cart automatisch zufällig generiert.</p><p class="codebox">
 
 
-FUNCTION _DRAW()<br>  CLS()<br>  SRAND(33)<br>  FOR I=1,100 DO<br>    PSET(RND(128),RND(128),7)<br>  END<br>END<br>
+FUNCTION _DRAW()<br>
+&nbsp;&nbsp;CLS()<br>
+&nbsp;&nbsp;SRAND(33)<br>
+&nbsp;&nbsp;FOR I=1,100 DO<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PSET(RND(128),RND(128),7)<br>
+&nbsp;&nbsp;END<br>
+END<br>
 
 </p><a href="#Bitwise_Operations"><h4 id="Bitwise_Operations">■ Bitweise Operationen</h4>
 </a><p>Bitweise Operationen ähneln logischen Ausdrücken, funktionieren jedoch auf Bit-Ebene.</p>
@@ -2075,11 +2088,11 @@ Y = 0b0110<br>
 
 
 BAND(X, Y) -- BEIDE BITS SIND SETZT<br>
-BOR(X, Y)  -- EINES DER BITS IST SETZT<br>
+BOR(X, Y)&nbsp;&nbsp;-- EINES DER BITS IST SETZT<br>
 BXOR(X, Y) -- EINES DER BITS IST SETZT, ABER NICHT BEIDE<br>
-BNOT(X)    -- KEIN BIT IST SETZT<br>
+BNOT(X)&nbsp;&nbsp;&nbsp;&nbsp;-- KEIN BIT IST SETZT<br>
 SHL(X, N)  -- N BITS NACH LINKS VERSCHIEBEN (NULLEN WERDEN VON RECHTS EINGEFÜGT)<br>
-SHR(X, N)  -- ARITHMETISCHE RECHTSVERSCHIEBUNG (DER ZUSTAND DES ÄUSSERSTEN BITS WIRD KOPIERT)<br>
+SHR(X, N)&nbsp;&nbsp;-- ARITHMETISCHE RECHTSVERSCHIEBUNG (DER ZUSTAND DES ÄUSSERSTEN BITS WIRD KOPIERT)<br>
 LSHR(X, N) -- LOGISCHE RECHTSVERSCHIEBUNG (NULLEN WERDEN VON LINKS EINGEFÜGT)<br>
 ROTL(X, N) -- ALLE BITS IN X UM N STELLEN NACH LINKS DREHEN<br>
 ROTR(X, N) -- ALLE BITS IN X UM N STELLEN NACH RECHTS DREHEN<br>
@@ -2106,14 +2119,14 @@ standardmäßig den Wert 0).</p>
 
 
 MENUITEM(1, "RESTART PUZZLE",<br>
-  FUNCTION() RESET_PUZZLE() SFX(10) END<br>
+&nbsp;&nbsp;FUNCTION() RESET_PUZZLE() SFX(10) END<br>
 )<br>
 
 </p><p>Der Callback nimmt ein einziges Argument entgegen, das ein Bitfeld der Tasten L, R und X darstellt.</p><p class="codebox">
 
 
 MENUITEM(1, „FOO“, <br>
-  FUNCTION(B) IF (B&amp;1 &gt; 0) THEN PRINTH(„LEFT WAS PRESSED“) END END<br>
+&nbsp;&nbsp;FUNCTION(B) IF (B&amp;1 &gt; 0) THEN PRINTH(„LEFT WAS PRESSED“) END END<br>
 )<br>
 
 </p><p>Um Tastendrücke zu filtern, die den Callback auslösen können, kann eine 
@@ -2122,18 +2135,18 @@ L und R für einen bestimmten Menüpunkt zu deaktivieren, setzen Sie die Bits 0x
 
 
 MENUITEM(2 | 0x300, „RESET PROGRESS“,<br>
-  FUNCTION() DSET(0,0) END<br>
+&nbsp;&nbsp;FUNCTION() DSET(0,0) END<br>
 )<br>
 
 </p><p>Menüelemente können innerhalb von Callbacks aktualisiert, hinzugefügt oder entfernt werden:</p><p class="codebox">
 
 
 MENUITEM(3, „SCREENSHAKE: OFF“,<br>
-  FUNCTION()<br>
+&nbsp;&nbsp;FUNCTION()<br>
     SCREENSHAKE = NOT SCREENSHAKE<br>
-    MENUITEM(NIL, "SCREENSHAKE: "..(SCREENSHAKE AND "ON" OR "OFF"))<br>
-    RETURN TRUE -- DON'T CLOSE<br>
-  END<br>
+&nbsp;&nbsp;&nbsp;&nbsp;MENUITEM(NIL, "SCREENSHAKE: "..(SCREENSHAKE AND "ON" OR "OFF"))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;RETURN TRUE -- DON'T CLOSE<br>
+&nbsp;&nbsp;END<br>
 )<br>
 
 </p><a href="#Strings_and_Type_Conversion"><h2 id="Strings_and_Type_Conversion">6.10 Zeichenketten und Typkonvertierung</h2></a>
@@ -2143,8 +2156,8 @@ MENUITEM(3, „SCREENSHAKE: OFF“,<br>
 S = "THE QUICK"<br>
 S = 'BROWN FOX';<br>
 S = [[<br>
-  JUMPS OVER<br>
-  MULTIPLE LINES<br>
+&nbsp;&nbsp;JUMPS OVER<br>
+&nbsp;&nbsp;MULTIPLE LINES<br>
 ]]<br>
 
 </p><p>Die Länge einer Zeichenkette (Anzahl der Zeichen) kann mit dem Operator # abgerufen werden:</p><p class="codebox">
@@ -2259,8 +2272,8 @@ Kassetten / Kassettenversionen auszutauschen.</p>
  Der Nachteil ist, dass die Daten an diese bestimmte Version der
  Kassette gebunden sind. Wenn beispielsweise ein Spiel aktualisiert wird, verlieren die Spieler ihre 
 Spielstände. Außerdem muss in den Datenbereichen der Kassette etwas Speicherplatz 
-als Speicherplatz freigehalten werden</p><p>.</p>
-<p>Eine weitere Alternative besteht darin</p><p>,</p><p>durch Angabe eines vierten Parameters bei <a href="#CSTORE"><b>CSTORE</b></a>() direkt auf eine zweite Kassette zu schreiben. Dies erfordert einen Kassettenwechsel (was in der Praxis lediglich bedeutet, dass der Benutzer 1 Sekunde lang eine sich drehende Kassettenanimation sehen muss).</p><p class="codebox">
+als Speicherplatz freigehalten werden.</p>
+<p>Eine weitere Alternative besteht darin, durch Angabe eines vierten Parameters bei <a href="#CSTORE"><b>CSTORE</b></a>() direkt auf eine zweite Kassette zu schreiben. Dies erfordert einen Kassettenwechsel (was in der Praxis lediglich bedeutet, dass der Benutzer 1 Sekunde lang eine sich drehende Kassettenanimation sehen muss).</p><p class="codebox">
 
 
 CSTORE(0,0,0X2000, "SPRITE SHEET.P8")<br>
@@ -2299,10 +2312,10 @@ miteinander zu kommunizieren. PICO-8 ordnet Bytes im Bereich
 <p>GPIO hat für verschiedene Host-Plattformen unterschiedliche Bedeutungen:</p>
 <p>CHIP:         0x5f80..0x5f87 zugeordnet zu xio-p0..xio-p7<br>
 Pocket CHIP:  0x5f82..0x5f87 zugeordnet zu GPIO1..GPIO6<br>
-  // xio-p0 &amp; p1 sind im Prototyping-Bereich im Gehäuse freigelegt.<br>
+&nbsp;&nbsp;// xio-p0 &amp; p1 sind im Prototyping-Bereich im Gehäuse freigelegt.<br>
 Raspberry Pi: 0x5f80..0x5f9f zugeordnet zu wiringPi-Pins 0..31<br>
-  // siehe http://wiringpi.com/pins/ für Zuordnungen bei verschiedenen Modellen.<br>
-  // außerdem: Achte auf die unterschiedliche GPIO-Indizierung bei BCM und WiringPi!<br>
+&nbsp;&nbsp;// siehe http://wiringpi.com/pins/ für Zuordnungen bei verschiedenen Modellen.<br>
+&nbsp;&nbsp;// außerdem: Achte auf die unterschiedliche GPIO-Indizierung bei BCM und WiringPi!<br>
 
 </p><p>Die Werte von CHIP und Raspberry Pi sind alle digital: 0 (LOW) und 255 (HIGH)</p>
 <p>Ein Programm zum Ein- und Ausschalten beliebiger angeschlossener LEDs:</p><p class="codebox">
@@ -2310,8 +2323,15 @@ Raspberry Pi: 0x5f80..0x5f9f zugeordnet zu wiringPi-Pins 0..31<br>
 
 T = 0<br>
 FUNCTION _DRAW()<br>
- CLS(5)<br>
- FOR I=0,7 DO<br>  VAL = 0<br>  IF (T % 2 &lt; 1) VAL = 255<br>  POKE(0X5F80 + I, VAL)<br>  CIRCFILL(20+I*12,64,4,VAL/11)<br>END<br>T += 0.1<br>END<br>
+&nbsp;&nbsp;CLS(5)<br>
+  FOR I=0,7 DO<br>
+&nbsp;&nbsp;&nbsp;&nbsp;VAL = 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;IF (T % 2 &lt; 1) VAL = 255<br>
+&nbsp;&nbsp;&nbsp;&nbsp;POKE(0X5F80 + I, VAL)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;CIRCFILL(20+I*12,64,4,VAL/11)<br>
+&nbsp;&nbsp;END<br>
+&nbsp;&nbsp;T += 0.1<br>
+END<br>
 
 </p><a href="#Serial"><h4 id="Serial">■ Seriell</h4>
 </a><p>Für eine präzisere Zeitsteuerung kann der Befehl <a href="#SERIAL"><b>SERIAL</b></a>()
@@ -2320,27 +2340,27 @@ Ende jedes Frames versendet, was Taktzyklen mit höheren und/oder regelmäßiger
 Geschwindigkeiten ermöglicht, als dies durch manuelles Bit-Banging mit <a href="#POKE"><b>POKE</b></a>()-Aufrufen möglich ist.</p>
 <br><a href="#SERIAL"><h5 id="SERIAL"> SERIAL(CHANNEL, ADDRESS, LENGTH)</h5></a>
 <p>CHANNEL:<br>
-  0x000..0x0fe    entspricht den GPIO-Pin-Nummern; sende 0x00 für LOW oder 0xFF für HIGH<br>
-  0x0ff           Verzögerung; Länge wird als „Dauer“ in Mikrosekunden verstanden (ohne Overhead)<br>
-  0x400..0x401    ws281x-LED-Kette (experimentell)<br>
+&nbsp;&nbsp;0x000..0x0fe&nbsp;&nbsp;&nbsp;&nbsp;entspricht den GPIO-Pin-Nummern; sende 0x00 für LOW oder 0xFF für HIGH<br>
+&nbsp;&nbsp;0x0ff&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Verzögerung; Länge wird als „Dauer“ in Mikrosekunden verstanden (ohne Overhead)<br>
+  0x400..0x401&nbsp;&nbsp;&nbsp;&nbsp;ws281x-LED-Kette (experimentell)<br>
 
 </p><p>ADDRESS: Der PICO-8-Speicherplatz, aus dem gelesen bzw. in den geschrieben werden soll.</p>
 <p>LENGTH:  Anzahl der zu sendenden Bytes. 1/8-Teile sind zulässig, um Teilbitstrings zu senden.</p>
 <p>Beispiel: Um ein Byte bitweise an eine typische APA102-LED-Kette zu senden:</p><p class="codebox">
 
 
-VAL = 42          -- ZU SENDENDER WERT<br>
+VAL = 42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- ZU SENDENDER WERT<br>
 DAT = 16 CLK = 15 -- DATEN- UND TAKTPINS HÄNGEN VOM GERÄT AB<br>
-POKE(0X4300,0)    -- ZU SENDENDE DATEN (EINZELNE BYTES: 0 ODER 0XFF)<br>
+POKE(0X4300,0)&nbsp;&nbsp;&nbsp;&nbsp;-- ZU SENDENDE DATEN (EINZELNE BYTES: 0 ODER 0XFF)<br>
 POKE(0X4301,0XFF)<br>
 FOR B=0,7 DO<br>
-  -- BIT SENDEN (HIGH ZUERST)<br>
-  SERIAL(DAT, BAND(VAL, SHL(1,7-B))&gt;0 AND 0X4301 OR 0X4300, 1)<br>
+&nbsp;&nbsp;-- BIT SENDEN (HIGH ZUERST)<br>
+&nbsp;&nbsp;SERIAL(DAT, BAND(VAL, SHL(1,7-B))&gt;0 AND 0X4301 OR 0X4300, 1)<br>
   -- TAKT ZYKLISCH TICKEN LASSEN<br>
-  SERIAL(CLK, 0X4301)<br>
-  SERIAL(0XFF, 5) -- 5 TAKTE VERZÖGERUNG<br>
-  SERIAL(CLK, 0X4300)<br>
-  SERIAL(0XFF, 5) -- 5 TAKTE VERZÖGERUNG<br>
+&nbsp;&nbsp;SERIAL(CLK, 0X4301)<br>
+&nbsp;&nbsp;SERIAL(0XFF, 5) -- 5 TAKTE VERZÖGERUNG<br>
+&nbsp;&nbsp;SERIAL(CLK, 0X4300)<br>
+&nbsp;&nbsp;SERIAL(0XFF, 5) -- 5 TAKTE VERZÖGERUNG<br>
 END<br>
 
 </p><p>Zusätzliche Kanäle stehen für Byte-Ströme zum und vom 
@@ -2348,12 +2368,12 @@ Host-Betriebssystem zur Verfügung. Diese sind vor allem für
 UNIX-ähnliche Umgebungen bei der Entwicklung von Toolchains gedacht und stehen nicht 
 zur Verfügung, wenn ein BBS oder ein exportiertes Modul läuft [1]. Die maximale Übertragungsrate 
 beträgt in allen Fällen 64 kbit/s (blockiert die CPU).</p>
-<p>0x800  verworfene Datei   //  stat(120) gibt TRUE zurück, wenn Daten verfügbar sind<br>
-0x802  verworfenes Image  //  stat(121) gibt TRUE zurück, wenn Daten verfügbar sind<br>
-0x804  stdin<br>
-0x805  stdout<br>
-0x806  Datei angegeben mit: pico8 -i Dateiname<br>
-0x807  Datei angegeben mit: pico8 -o Dateiname<br>
+<p>0x800&nbsp;&nbsp;verworfene Datei&nbsp;&nbsp; //&nbsp;&nbsp;stat(120) gibt TRUE zurück, wenn Daten verfügbar sind<br>
+0x802&nbsp;&nbsp;verworfenes Image&nbsp;&nbsp;//&nbsp;&nbsp;stat(121) gibt TRUE zurück, wenn Daten verfügbar sind<br>
+0x804&nbsp;&nbsp;stdin<br>
+0x805&nbsp;&nbsp;stdout<br>
+0x806&nbsp;&nbsp;Datei angegeben mit: pico8 -i Dateiname<br>
+0x807&nbsp;&nbsp;Datei angegeben mit: pico8 -o Dateiname<br>
 
 </p><p>In PICO-8 abgelegte Bilddateien erscheinen auf Kanal 0x802 als 
 Byte-Stream in einem speziellen Format: Die ersten 4 Bytes geben die 
@@ -2404,11 +2424,11 @@ eine „__add“-Funktion für die Metatabelle definiert wird:</p><p class="code
 
 
 VEC2D={<br>
- __ADD=FUNCTION(A,B) <br>
-     RETURN {X=(A.X+B.X), Y=(A.Y+B.Y)} <br>
- END<br>
+&nbsp;&nbsp;__ADD=FUNCTION(A,B) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; RETURN {X=(A.X+B.X), Y=(A.Y+B.Y)} <br>
+&nbsp;&nbsp;END<br>
 }<br>
- <br>
+<br>
 V1={X=2,Y=9} SETMETATABLE(V1, VEC2D)<br>
 V2={X=1,Y=5} SETMETATABLE(V2, VEC2D)<br>
 V3 = V1+V2<br>
@@ -2428,8 +2448,8 @@ PRINT(V3.X..","..V3.Y) -- 3,14<br>
 
 
 FUNCTION PREPRINT(PRE, S, ...)<br>
-  LOCAL S2 = PRE..TOSTR(S)<br>
-  PRINT(S2, ...) -- DIE VERBLEIBENDEN ARGUMENTE AN PRINT() WEITERLEITEN<br>
+&nbsp;&nbsp;LOCAL S2 = PRE..TOSTR(S)<br>
+&nbsp;&nbsp;PRINT(S2, ...) -- DIE VERBLEIBENDEN ARGUMENTE AN PRINT() WEITERLEITEN<br>
 END<br>
 
 </p><p>Um eine variable Anzahl von Argumenten zu akzeptieren, definieren Sie mit ihnen eine Tabelle 
@@ -2438,10 +2458,10 @@ Argumente nach index zurück.</p><p class="codebox">
 
 
 FUNCTION FOO(...)<br>
-  LOCAL ARGS={...} -- WIRD ZU EINER ARGUMENTTABELLE<br>
+&nbsp;&nbsp;LOCAL ARGS={...} -- WIRD ZU EINER ARGUMENTTABELLE<br>
   FOREACH(ARGS, PRINT)<br>
-  ?SELECT("#",...)    -- ALTERNATIVE MÖGLICHKEIT, DIE ANZAHL DER ARGUMENTE ZU ZÄHLEN<br>
-  FOO2(SELECT(3,...)) -- ARGUMENTE AB 3 AN FOO2() ÜBERGEBEN<br>
+&nbsp;&nbsp;?SELECT("#",...)&nbsp;&nbsp;&nbsp;&nbsp;-- ALTERNATIVE MÖGLICHKEIT, DIE ANZAHL DER ARGUMENTE ZU ZÄHLEN<br>
+&nbsp;&nbsp;FOO2(SELECT(3,...)) -- ARGUMENTE AB 3 AN FOO2() ÜBERGEBEN<br>
 END<br>
 
 </p><a href="#Coroutines"><h3 id="Coroutines">▨ Coroutinen</h3>
@@ -2452,28 +2472,28 @@ als Coroutine aufgerufen, mit
 
 
 FUNCTION HEY()<br>
-  PRINT("DOING SOMETHING")<br>
-  YIELD()<br>
-  PRINT("DOING THE NEXT THING")<br>
-  YIELD()<br>
-  PRINT("FINISHED")<br>
+&nbsp;&nbsp;PRINT("DOING SOMETHING")<br>
+&nbsp;&nbsp;YIELD()<br>
+&nbsp;&nbsp;PRINT("DOING THE NEXT THING")<br>
+&nbsp;&nbsp;YIELD()<br>
+&nbsp;&nbsp;PRINT("FINISHED")<br>
 END<br>
- <br>
+<br>
 C = COCREATE(HEY)<br>FOR I=1,3 DO CORESUME(C) END<br>
 
 </p><br><a href="#COCREATE"><h5 id="COCREATE"> COCREATE(F)</h5></a>
 <p>Erstelle eine Coroutine für die Funktion f.</p>
 <br><a href="#CORESUME"><h5 id="CORESUME"> CORESUME(C, [P0, P1 ..])</h5></a>
 <p>Führt die Coroutine c aus oder setzt sie fort. Die Parameter p0, p1.. werden an die Funktion der Coroutine übergeben.</p>
-<p>Gibt „true“ zurück, wenn die Coroutine ohne Fehler beendet wird</p><p>.</p><p>Gibt „false“, Fehlermeldung zurück, wenn ein Fehler auftritt.</p>
+<p>Gibt „true“ zurück, wenn die Coroutine ohne Fehler beendet wird.</p><p>Gibt „false“, Fehlermeldung zurück, wenn ein Fehler auftritt.</p>
 <p>** Laufzeitfehler, die innerhalb von Coroutinen auftreten, führen nicht dazu, dass das 
 Programm die Ausführung beendet. Es empfiehlt sich, CORESUME() in ein <a href="#ASSERT"><b>ASSERT</b></a>() einzubinden. Wenn die Assertion fehlschlägt, wird die von  coresume generierte Fehlermeldung ausgegeben.</p>
 <br><a href="#ASSERT"><h5 id="ASSERT"> ASSERT(CORESUME(C))</h5></a>
 <br><a href="#COSTATUS"><h5 id="COSTATUS"> COSTATUS(C)</h5></a>
 <p>Gibt den Status der Coroutine C als Zeichenkette zurück:<br>
-  "running"<br>
-  "suspended"<br>
-  "dead"<br>
+&nbsp;&nbsp;"running"<br>
+&nbsp;&nbsp;"suspended"<br>
+&nbsp;&nbsp;"dead"<br>
 
 </p><br><a href="#YIELD"><h5 id="YIELD"> YIELD</h5></a>
 <p>Die Ausführung wird unterbrochen und an den Aufrufer zurückgegeben.</p>
@@ -2496,21 +2516,21 @@ PRINT("\#C\F5 BLUE ")<br>
 </p><p>Die einzigen Auswirkungen auf den Zeichenzustand sind Änderungen der Cursorposition 
 und der Vordergrundfarbe; alle anderen Attribute werden bei jedem Aufruf <a href="#PRINT"><b>von PRINT</b></a>() zurückgesetzt.</p>
 <a href="#Control_Codes"><h4 id="Control_Codes">■ Steuercodes</h4>
-</a><p>0 "\0"   Beendet den Druckvorgang<br>
-1 "\*"   Wiederholt das nächste Zeichen P0-mal. ?"\*3a" --&gt; aaa<br>
-2 "\#"   Zeichnet einen einfarbigen Hintergrund mit der Farbe P0 <br>
-3 "\-"   Cursor horizontal um P0-16 Pixel verschieben<br>
-4 "\|"   Cursor vertikal um P0-16 Pixel verschieben<br>
-5 "\+"   Cursor um P0-16, P1-16 Pixel verschieben<br>
-6 "\^"   Sonderbefehl (siehe unten)<br>
-7 "\a"   Audio (siehe unten)<br>
-8 "\b"   Rücktaste<br>
-9 "\t"   Tabulator<br>
-a "\n"   Zeilenumbruch<br>
-b "\v"   Vorheriges Zeichen verzieren (siehe unten)<br>
-c "\f"   Vordergrundfarbe setzen<br>
-d "\r"   Wagenrücklauf<br>
-e "\014"   Zu der unter 0x5600 definierten Schriftart wechseln<br>
+</a><p>0 "\0"&nbsp;&nbsp; Beendet den Druckvorgang<br>
+1 "\*"&nbsp;&nbsp; Wiederholt das nächste Zeichen P0-mal. ?"\*3a" --&gt; aaa<br>
+2 "\#"&nbsp;&nbsp; Zeichnet einen einfarbigen Hintergrund mit der Farbe P0 <br>
+3 "\-"&nbsp;&nbsp; Cursor horizontal um P0-16 Pixel verschieben<br>
+4 "\|"&nbsp;&nbsp; Cursor vertikal um P0-16 Pixel verschieben<br>
+5 "\+"&nbsp;&nbsp; Cursor um P0-16, P1-16 Pixel verschieben<br>
+6 "\^"&nbsp;&nbsp; Sonderbefehl (siehe unten)<br>
+7 "\a"&nbsp;&nbsp; Audio (siehe unten)<br>
+8 "\b"&nbsp;&nbsp; Rücktaste<br>
+9 "\t"&nbsp;&nbsp; Tabulator<br>
+a "\n"&nbsp;&nbsp; Zeilenumbruch<br>
+b "\v"&nbsp;&nbsp; Vorheriges Zeichen verzieren (siehe unten)<br>
+c "\f"&nbsp;&nbsp; Vordergrundfarbe setzen<br>
+d "\r"&nbsp;&nbsp; Wagenrücklauf<br>
+e "\014"&nbsp;Zu der unter 0x5600 definierten Schriftart wechseln<br>
 f "\015" Wechsle zur Standardschriftart<br>
 
 </p><a href="#Special_Commands"><h4 id="Special_Commands">■ Sonderbefehle</h4>
@@ -2566,14 +2586,14 @@ Byte gibt eine Zeile von 1-Bit-Pixelwerten an, wobei das  niedrigste Bit links s
 
 &gt; ?"\#3\^;447cb67c3e7f0106"<br>
 
-</p><a href="#P8SCII_Outlines"><h4 id="P8SCII_Outlines">■ P8SCII-Umrisse</h4>
+</p><a href="#P8SCII_Outlines"><h4 id="P8SCII_Outlines">■ P8SCII-Outlines</h4>
 </a><p>Der Befehl „outline“ zeichnet zunächst jedes Pixel des Zeichens an bis zu
  8 benachbarten Positionen, die durch ein 8-Bit-Bitfeld angegeben werden. Der Bitwert 
 für jeden Nachbarn beginnt mit den niedrigsten Bits oben links und steigt  
 in Leserichtung an:</p>
-<p>0x01    0x02    0x04<br>
-0x08     --     0x10<br>
-0x20    0x40    0x80 <br>
+<p>0x01&nbsp;&nbsp;&nbsp;&nbsp;0x02&nbsp;&nbsp;&nbsp;&nbsp;0x04<br>
+0x08&nbsp;&nbsp;&nbsp;&nbsp; --&nbsp;&nbsp;&nbsp;&nbsp; 0x10<br>
+0x20&nbsp;&nbsp;&nbsp;&nbsp;0x40&nbsp;&nbsp;&nbsp;&nbsp;0x80 <br>
 
 </p><p>Das erste Zeichen nach dem Befehl „\^o“ ist die Farbe, und die 
 folgenden beiden Zeichen sind  das Nachbar-Bitfeld in Hexadezimal. 
@@ -2625,10 +2645,10 @@ PRINT "\ACE-G" -- MOLL-DREIKLANG<br>
 PRINT "\AC..E-..G" -- STACCATO-MOLL-DREIKLANG <br>
 
 </p><p>Notenattribut-Befehle gelten für die folgenden Noten:</p>
-<p>i P0    Instrument einstellen (Standard: 5)<br>
-v P0    Lautstärke einstellen     (Standard: 5)<br>
-x P0    Effekt einstellen     (Standard: 0)<br>
-&lt;  &gt;   Lautstärke um 1 erhöhen oder verringern 
+<p>i P0&nbsp;&nbsp;&nbsp;&nbsp;Instrument einstellen (Standard: 5)<br>
+v P0&nbsp;&nbsp;&nbsp;&nbsp;Lautstärke einstellen&nbsp;&nbsp;&nbsp;&nbsp; (Standard: 5)<br>
+x P0&nbsp;&nbsp;&nbsp;&nbsp;Effekt einstellen&nbsp;&nbsp;&nbsp;&nbsp; (Standard: 0)<br>
+&lt;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp; Lautstärke um 1 erhöhen oder verringern 
 
 </p><p>Beispiel: Um ein schnelles (Geschwindigkeit 4), stakkatoartiges (Effekt 5) Arpeggio ab C1 abzuspielen:</p><p class="codebox">
 
@@ -2678,16 +2698,16 @@ Bit  0x8: Wenn gesetzt, Zeichen einen Pixel höher zeichnen (nützlich für late
 </p><a href="#Default_Attributes"><h4 id="Default_Attributes">■ Standardattribute</h4>
 </a><p>Obwohl die Attribute bei jedem Aufruf <a href="#PRINT"><b>von PRINT</b></a>() zurückgesetzt werden, ist es möglich, ihre Standardwerte festzulegen, indem man in die Speicheradressen 0x5f58..0x5f5b schreibt.</p>
 <p>0x5f58 // Bitfeld<br>
-  0x1  wenn auf 0x1 gesetzt, werden die Bits 1..7 beachtet:<br>
-  0x2  Auffüllung<br>
-  0x4  breit<br>
-  0x8  hoch<br>
-  0x10 einfarbiger Hintergrund<br>
-  0x20 invertieren<br>
-  0x40 gestreift (bei „breit“ oder „hoch“)<br>
-  0x80 benutzerdefinierte Schriftart verwenden<br>
+&nbsp;&nbsp;0x1&nbsp;&nbsp;wenn auf 0x1 gesetzt, werden die Bits 1..7 beachtet:<br>
+  0x2&nbsp;&nbsp;Auffüllung<br>
+&nbsp;&nbsp;0x4&nbsp;&nbsp;breit<br>
+&nbsp;&nbsp;0x8&nbsp;&nbsp;hoch<br>
+&nbsp;&nbsp;0x10 einfarbiger Hintergrund<br>
+&nbsp;&nbsp;0x20 invertieren<br>
+&nbsp;&nbsp;0x40 gestreift (bei „breit“ oder „hoch“)<br>
+&nbsp;&nbsp;0x80 benutzerdefinierte Schriftart verwenden<br>
  <br>
-  // z. B. poke(0x5f58, 0x1 | 0x2 | 0x4 | 0x8 | 0x20 | 0x40)  -- Pinball überall<br>
+&nbsp;&nbsp;// z. B. poke(0x5f58, 0x1 | 0x2 | 0x4 | 0x8 | 0x20 | 0x40)&nbsp;&nbsp;-- Pinball überall<br>
 
 </p><p>0x5f59 char_w   (unteres Nibble), char_h   (oberes)<br>
 0x5f5a char_w2  (unteres Nibble), tab_w    (oberes)<br>
